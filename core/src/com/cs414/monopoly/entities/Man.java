@@ -14,19 +14,21 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 public class Man extends Image {
   private float width = Gdx.graphics.getWidth()*.1f;
   private float height = Gdx.graphics.getHeight()*.18f;
-  Sprite sprite = new Sprite(new Texture(Gdx.files.internal("assets/monopoly_man.png")));
+  private Sprite sprite = new Sprite(new Texture(Gdx.files.internal("assets/monopoly_man.png")));
 
-  public Color tint = Color.WHITE;
+  private Color tint = Color.WHITE;
+  private static int num;
 
   public Man(float x, float y) {
     setDrawable(new SpriteDrawable(sprite));
     setBounds(x, y, width, height);
-    setName("Man");
+    setName("Man " + ++num);
 
     setTouchable(Touchable.enabled);
     addListener(new ClickListener() {
       @Override
       public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+        System.out.println("Hovered: " + getName());
         setColor(tint);
       }
 
