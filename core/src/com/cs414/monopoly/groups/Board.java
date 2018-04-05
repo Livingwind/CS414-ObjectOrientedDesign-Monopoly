@@ -18,7 +18,7 @@ public class Board extends Group {
   private float width = 1024*ratio;
   private float height = 1024*ratio;
 
-  ArrayList<Space> spaces = new ArrayList<Space>();
+  ArrayList<Space> spaces = new ArrayList<Space>(40);
 
   public Board() {
     setSize(width, height);
