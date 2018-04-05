@@ -1,0 +1,280 @@
+[
+  {
+    "position": 0,
+    "type": "event",
+    "name": "Go"
+  },
+  {
+    "position": 1,
+    "type": "lot",
+    "name": "mediterranean avenue",
+    "value": 60,
+    "houseCost": 50,
+    "rent": [2, 10, 30, 90, 160, 250]
+  },
+  {
+    "position": 2,
+    "type": "event",
+    "name": "community chest"
+  },
+  {
+    "position": 3,
+    "type": "lot",
+    "name": "baltic avenue",
+    "value": 60,
+    "houseCost": 50,
+    "rent": [4, 20, 60, 180, 320]
+  },
+  {
+    "position": 4,
+    "type": "event",
+    "name": "income tax"
+  },
+  {
+    "position": 5,
+    "type": "railroad",
+    "name": "reading railroad",
+    "value": 200,
+    "rent": [25, 50, 100, 200]
+  },
+  {
+    "position": 6,
+    "type": "lot",
+    "name": "oriental avenue",
+    "value": 100,
+    "houseCost": 50,
+    "rent": [6, 30, 90, 270, 400, 550]
+  },
+  {
+    "position": 7,
+    "type": "lot",
+    "name": "vermont avenue",
+    "value": 100,
+    "houseCost": 50,
+    "rent": [6, 30, 90, 270, 400, 550]
+  },
+  {
+    "position": 8,
+    "type": "event",
+    "name": "chance"
+  },
+  {
+    "position": 9,
+    "type": "lot",
+    "name": "connecticut avenue",
+    "value": 120,
+    "houseCost": 50,
+    "rent": [8, 40, 100, 300, 450, 600]
+  },
+  {
+    "position": 10,
+    "type": "event",
+    "name": "jail"
+  },
+  {
+    "position": 11,
+    "type": "lot",
+    "name": "st. charles. place",
+    "value": 140,
+    "houseCost": 100,
+    "rent": [10, 50, 150, 450, 620, 750]
+  },
+  {
+    "position": 12,
+    "type": "utility",
+    "name": "electric company",
+    "value": 150,
+    "rent": [4, 10]
+  },
+  {
+    "position": 13,
+    "type": "lot",
+    "name": "states avenue",
+    "value": 140,
+    "houseCost": 100,
+    "rent": [10, 50, 150, 450, 620, 750]
+  },
+  {
+    "position": 14,
+    "type": "lot",
+    "name": "virginia avenue",
+    "value": 160,
+    "houseCost": 100,
+    "rent": [12, 60, 180, 500, 700, 900]
+  },
+  {
+    "position": 15,
+    "type": "railroad",
+    "name": "pennsylvania railroad",
+    "value": 200,
+    "rent": [25, 50, 100, 200]
+  },
+  {
+    "position": 16,
+    "type": "lot",
+    "name": "st. james place",
+    "value": 180,
+    "houseCost": 100,
+    "rent": [14, 70, 200, 550, 750, 950]
+  },
+  {
+    "position": 17,
+    "type": "event",
+    "name": "community chest"
+  },
+  {
+    "position": 18,
+    "type": "lot",
+    "name": "tennessee avenue",
+    "value": 180,
+    "houseCost": 100,
+    "rent": [14, 70, 200, 550, 750, 950]
+  },
+  {
+    "position": 19,
+    "type": "lot",
+    "name": "new york avenue",
+    "value": 200,
+    "houseCost": 100,
+    "rent": [16, 80, 220, 600, 800, 1000]
+  },
+  {
+    "position": 20,
+    "type": "event",
+    "name": "free parking"
+  },
+  {
+    "position": 21,
+    "type": "lot",
+    "name": "kentucky avenue",
+    "value": 220,
+    "houseCost": 150,
+    "rent": [18, 90, 250, 700, 875, 1050]
+  },
+  {
+    "position": 22,
+    "type": "event",
+    "name": "chance"
+  },
+  {
+    "position": 23,
+    "type": "lot",
+    "name": "indiana avenue",
+    "value": 220,
+    "houseCost": 150,
+    "rent": [18, 90, 250, 700, 875, 1050]
+  },
+  {
+    "position": 24,
+    "type": "lot",
+    "name": "illinois avenue",
+    "value": 220,
+    "houseCost": 150,
+    "rent": [20, 100, 300, 750, 925, 1100]
+  },
+  {
+    "position": 25,
+    "type": "railroad",
+    "name": "b. & o. railroad",
+    "value": 200,
+    "rent": [25, 50, 100, 200]
+  },
+  {
+    "position": 26,
+    "type": "lot",
+    "name": "atlantic avenue",
+    "value": 260,
+    "houseCost": 150,
+    "rent": [22, 110, 330, 800, 975, 1150]
+  },
+  {
+    "position": 27,
+    "type": "lot",
+    "name": "ventor avenue",
+    "value": 260,
+    "houseCost": 150,
+    "rent": [22, 110, 330, 800, 975, 1150]
+  },
+  {
+    "position": 28,
+    "type": "utility",
+    "name": "water works",
+    "value": 150,
+    "rent": [4, 10]
+  },
+  {
+    "position": 29,
+    "type": "lot",
+    "name": "marvin gardens",
+    "value": 280,
+    "houseCost": 150,
+    "rent": [24, 120, 360, 850, 1025, 1200]
+  },
+  {
+    "position": 30,
+    "type": "event",
+    "name": "go to jail"
+  },
+  {
+    "position": 31,
+    "type": "lot",
+    "name": "pacific avenue",
+    "value": 300,
+    "houseCost": 200,
+    "rent": [26, 130, 390, 900, 1100, 1275]
+  },
+  {
+    "position": 32,
+    "type": "lot",
+    "name": "north carolina avenue",
+    "value": 300,
+    "houseCost": 200,
+    "rent": [26, 130, 390, 900, 1100, 1275]
+  },
+  {
+    "position": 33,
+    "type": "event",
+    "name": "community chest"
+  },
+  {
+    "position": 34,
+    "type": "lot",
+    "name": "pennsylvania avenue",
+    "value": 320,
+    "houseCost": 200,
+    "rent": [28, 150, 450, 1000, 1200, 1400]
+  },
+  {
+    "position": 35,
+    "type": "railroad",
+    "name": "short line",
+    "value": 200,
+    "rent": [25, 50, 100, 200]
+  },
+  {
+    "position": 36,
+    "type": "event",
+    "name": "chance"
+  },
+  {
+    "position": 37,
+    "type": "lot",
+    "name": "park place",
+    "value": 350,
+    "houseCost": 200,
+    "rent": [350, 175, 500, 1100, 1300, 1500]
+  },
+  {
+    "position": 38,
+    "type": "event",
+    "name": "luxury tax"
+  },
+  {
+    "position": 39,
+    "type": "lot",
+    "name": "boardwalk",
+    "value": 400,
+    "houseCost": 200,
+    "rent": [50, 200, 600, 1400, 1700, 2000]
+  }
+]
