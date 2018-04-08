@@ -1,5 +1,7 @@
 package com.cs414.monopoly.spaces;
 
+import java.util.Map;
+
 public class Space {
   public enum Size {
     STANDARD(81, 133), CORNER(133, 133);
@@ -33,7 +35,7 @@ public class Space {
     }
   }
 
-  public Space(String textureFilename, Size size, Direction direction) {
+  public Space(String textureFilename, Size size, Direction direction, Map<String, Object> properties) {
 
   }
 }

@@ -10,12 +10,14 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.cs414.monopoly.game.GameState;
 
 public class Man extends Image {
   private float width = Gdx.graphics.getWidth()*.1f;
   private float height = Gdx.graphics.getHeight()*.18f;
   private Sprite sprite = new Sprite(new Texture(Gdx.files.internal("assets/monopoly_man.png")));
 
+  private GameState state = GameState.getInstance();
   private Color tint = Color.WHITE;
   private static int num;
 
@@ -35,6 +37,11 @@ public class Man extends Image {
       @Override
       public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
         setColor(Color.WHITE);
+      }
+
+      @Override
+      public void clicked(InputEvent event, float x, float y) {
+        state.getStage().addActor(new Man(0,0));
       }
     });
   }

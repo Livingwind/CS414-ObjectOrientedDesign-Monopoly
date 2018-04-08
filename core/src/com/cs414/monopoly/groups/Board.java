@@ -24,8 +24,6 @@ public class Board extends Group {
     setSize(width, height);
     setPosition(Gdx.graphics.getWidth()/2-getWidth()/2,Gdx.graphics.getHeight()/2-getHeight()/2);
     sprite.setSize(getWidth(), getHeight());
-
-
   }
 
   @Override
