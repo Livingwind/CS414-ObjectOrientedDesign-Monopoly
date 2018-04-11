@@ -1,7 +1,7 @@
-package main.com.cs414.monopoly.spaces;
+package com.cs414.monopoly.spaces;
 
 import com.badlogic.gdx.utils.JsonValue;
-import main.com.cs414.monopoly.entities.Player;
+import com.cs414.monopoly.entities.Player;
 
 public class IncomeTax extends AbstractSpace {
   IncomeTax(String filename, JsonValue props) {

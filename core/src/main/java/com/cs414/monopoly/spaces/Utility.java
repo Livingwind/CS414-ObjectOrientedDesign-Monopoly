@@ -1,7 +1,7 @@
-package main.com.cs414.monopoly.spaces;
+package com.cs414.monopoly.spaces;
 
 import com.badlogic.gdx.utils.JsonValue;
-import main.com.cs414.monopoly.entities.UtilityProperty;
+import com.cs414.monopoly.entities.UtilityProperty;
 
 class Utility extends PropertySpace {
   Utility(String filename, JsonValue props) {

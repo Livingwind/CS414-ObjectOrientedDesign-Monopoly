@@ -1,4 +1,4 @@
-package main.com.cs414.monopoly.entities;
+package com.cs414.monopoly.entities;
 
 public enum GetOutOfJailFree {
   NONE(0), CHEST(1), CHANCE(2), BOTH(3);

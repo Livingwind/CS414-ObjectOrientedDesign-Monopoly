@@ -1,4 +1,4 @@
-package main.com.cs414.monopoly.game;
+package com.cs414.monopoly.game;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 

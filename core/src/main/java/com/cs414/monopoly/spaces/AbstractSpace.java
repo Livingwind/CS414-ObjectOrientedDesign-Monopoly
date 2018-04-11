@@ -1,4 +1,4 @@
-package main.com.cs414.monopoly.spaces;
+package com.cs414.monopoly.spaces;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.JsonValue;
-import main.com.cs414.monopoly.entities.Player;
+import com.cs414.monopoly.entities.Player;
 
 public abstract class AbstractSpace extends Image{
 

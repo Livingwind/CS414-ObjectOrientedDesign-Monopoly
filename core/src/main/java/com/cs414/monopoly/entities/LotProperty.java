@@ -1,4 +1,4 @@
-package main.com.cs414.monopoly.entities;
+package com.cs414.monopoly.entities;
 
 import com.badlogic.gdx.utils.JsonValue;
 

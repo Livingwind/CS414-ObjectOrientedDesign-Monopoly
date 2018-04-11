@@ -1,4 +1,4 @@
-package main.com.cs414.monopoly.spaces;
+package com.cs414.monopoly.spaces;
 
 import com.badlogic.gdx.utils.JsonValue;
 

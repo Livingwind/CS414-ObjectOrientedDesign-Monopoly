@@ -3,7 +3,7 @@ package com.cs414.monopoly.desktop;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import main.com.cs414.monopoly.game.Monopoly;
+import com.cs414.monopoly.game.Monopoly;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
