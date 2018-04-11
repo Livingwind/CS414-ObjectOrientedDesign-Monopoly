@@ -1,12 +1,11 @@
 package com.cs414.monopoly.spaces;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
+import com.cs414.monopoly.entities.UtilityProperty;
 
-public class Utility extends Space {
-
-  public Utility(String filename, JsonValue props) {
-    super(filename, Size.STANDARD, SpaceFactory.SpaceType.UTILITY);
-    setName(props.get("name").asString());
+class Utility extends PropertySpace {
+  Utility(String filename, JsonValue props) {
+    super(filename, props);
+    property = new UtilityProperty(filename, props);
   }
 }

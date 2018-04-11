@@ -1,10 +1,15 @@
 package com.cs414.monopoly.spaces;
 
 import com.badlogic.gdx.utils.JsonValue;
+import com.cs414.monopoly.entities.Player;
 
-public class Go extends Space {
-  public Go(String filename, JsonValue props) {
-    super(filename, Size.CORNER, SpaceFactory.SpaceType.GO);
-    setName(props.get("name").asString());
+public class Go extends AbstractSpace {
+  Go(String filename, JsonValue props) {
+    super(filename, props, Size.CORNER);
+  }
+
+  @Override
+  public void onLand(Player player) {
+
   }
 }

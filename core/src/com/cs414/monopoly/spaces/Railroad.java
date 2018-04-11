@@ -1,11 +1,11 @@
 package com.cs414.monopoly.spaces;
 
 import com.badlogic.gdx.utils.JsonValue;
+import com.cs414.monopoly.entities.RailroadProperty;
 
-public class Railroad extends Space {
-
-  public Railroad(String filename, JsonValue props) {
-    super(filename, Size.STANDARD, SpaceFactory.SpaceType.RAILROAD);
-    setName(props.get("name").asString());
+class Railroad extends PropertySpace {
+  Railroad(String filename, JsonValue props) {
+    super(filename, props);
+    property = new RailroadProperty(filename, props);
   }
 }

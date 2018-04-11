@@ -10,8 +10,13 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.utils.JsonValue;
+import com.cs414.monopoly.entities.Player;
 
-public class Space extends Image{
+import java.util.ArrayList;
+import java.util.Map;
+
+public abstract class AbstractSpace extends Image{
 
   public enum Size {
     STANDARD(84, 133), CORNER(133, 133);
@@ -46,14 +51,14 @@ public class Space extends Image{
     }
   }
 
-  private SpaceFactory.SpaceType type;
+  // CLASS --------------------------------------------------------------
 
-  public Space(String textureFilename, Size size, SpaceFactory.SpaceType type) {
+  public AbstractSpace(String textureFilename, JsonValue props, Size size) {
     Sprite sprite = new Sprite(new Texture(Gdx.files.internal(textureFilename)));
     setDrawable(new SpriteDrawable(sprite));
-    this.type = type;
 
     setBounds(0, 0, size.width, size.height);
+    setName(props.get("name").asString());
 
     addListener(new ClickListener() {
       @Override
@@ -91,5 +96,5 @@ public class Space extends Image{
     setRotation(direction.degree());
   }
 
-
+  public abstract void onLand(Player player);
 }

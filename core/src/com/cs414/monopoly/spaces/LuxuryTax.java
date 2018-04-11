@@ -3,9 +3,8 @@ package com.cs414.monopoly.spaces;
 import com.badlogic.gdx.utils.JsonValue;
 import com.cs414.monopoly.entities.Player;
 
-public class Chest extends AbstractSpace {
-
-  Chest(String filename, JsonValue props) {
+public class LuxuryTax extends AbstractSpace {
+  LuxuryTax(String filename, JsonValue props) {
     super(filename, props, Size.STANDARD);
   }
 

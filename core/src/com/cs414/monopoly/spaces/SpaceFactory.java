@@ -1,6 +1,5 @@
 package com.cs414.monopoly.spaces;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 
 public class SpaceFactory {
@@ -24,8 +23,11 @@ public class SpaceFactory {
     }
   }
 
-  public static Space createSpace(String dir, JsonValue props) {
+  public static AbstractSpace createSpace(String dir, JsonValue props) {
     SpaceType type = SpaceType.fromString(props.get("type").asString());
+    if(type == null) {
+      return null;
+    }
     String path = dir + String.format("%02d.png", props.get("position").asInt());
 
     switch(type) {
@@ -40,9 +42,9 @@ public class SpaceFactory {
       case CHANCE:
         return new Chance(path, props);
       case INCOME:
-        return new Income(path, props);
+        return new IncomeTax(path, props);
       case LUXURY:
-        return new Luxury(path, props);
+        return new LuxuryTax(path, props);
       case JAIL:
         return new Jail(path, props);
       case TO_JAIL:
