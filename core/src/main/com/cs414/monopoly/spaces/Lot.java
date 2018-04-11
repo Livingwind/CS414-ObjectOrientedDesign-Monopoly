@@ -1,8 +1,7 @@
-package com.cs414.monopoly.spaces;
+package main.com.cs414.monopoly.spaces;
 
 import com.badlogic.gdx.utils.JsonValue;
-import com.cs414.monopoly.entities.LotProperty;
-import com.cs414.monopoly.entities.Player;
+import main.com.cs414.monopoly.entities.LotProperty;
 
 class Lot extends PropertySpace {
   Lot(String filename, JsonValue props) {

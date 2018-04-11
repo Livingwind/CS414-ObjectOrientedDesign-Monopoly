@@ -16,6 +16,7 @@ buildscript {
 allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
+    apply plugin: "java"
 
     version = '1.0'
     ext {
@@ -32,6 +33,10 @@ allprojects {
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+    }
+
+    dependencies {
+        testCompile 'junit:junit:4.12'
     }
 }
 

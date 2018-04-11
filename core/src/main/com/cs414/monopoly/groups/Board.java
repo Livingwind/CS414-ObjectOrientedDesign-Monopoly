@@ -1,4 +1,4 @@
-package com.cs414.monopoly.groups;
+package main.com.cs414.monopoly.groups;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,8 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import com.cs414.monopoly.spaces.AbstractSpace;
-import com.cs414.monopoly.spaces.SpaceFactory;
+import main.com.cs414.monopoly.spaces.AbstractSpace;
+import main.com.cs414.monopoly.spaces.SpaceFactory;
 
 import java.util.ArrayList;
 

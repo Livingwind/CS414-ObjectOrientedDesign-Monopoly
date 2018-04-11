@@ -1,4 +1,4 @@
-package com.cs414.monopoly.entities;
+package main.com.cs414.monopoly.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

@@ -1,11 +1,11 @@
-package com.cs414.monopoly.game;
+package main.com.cs414.monopoly.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.cs414.monopoly.groups.Board;
+import main.com.cs414.monopoly.groups.Board;
 
 public class Monopoly extends ApplicationAdapter {
 	private GameState state;

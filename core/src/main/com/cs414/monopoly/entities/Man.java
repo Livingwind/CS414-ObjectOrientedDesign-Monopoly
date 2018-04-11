@@ -1,4 +1,4 @@
-package com.cs414.monopoly.entities;
+package main.com.cs414.monopoly.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-import com.cs414.monopoly.game.GameState;
+import main.com.cs414.monopoly.game.GameState;
 
 public class Man extends Image {
   private float width = Gdx.graphics.getWidth()*.1f;

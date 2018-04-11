@@ -1,7 +1,7 @@
-package com.cs414.monopoly.spaces;
+package main.com.cs414.monopoly.spaces;
 
 import com.badlogic.gdx.utils.JsonValue;
-import com.cs414.monopoly.entities.Player;
+import main.com.cs414.monopoly.entities.Player;
 
 public class Go extends AbstractSpace {
   Go(String filename, JsonValue props) {
