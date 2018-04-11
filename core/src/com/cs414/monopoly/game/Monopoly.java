@@ -14,8 +14,7 @@ public class Monopoly extends ApplicationAdapter {
 	public void create () {
 	  Stage stage = new Stage(new ScreenViewport());
 
-	  stage.addActor(new Board());
-
+		stage.addActor(new Board());
 	  state = GameState.getInstance();
     state.setStage(stage);
     Gdx.input.setInputProcessor(stage);
