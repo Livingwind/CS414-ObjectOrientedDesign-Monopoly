@@ -70,11 +70,6 @@ public abstract class AbstractSpace extends Image{
       public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
         setColor(Color.WHITE);
       }
-
-      @Override
-      public void clicked(InputEvent event, float x, float y) {
-        System.out.println("Clicked " + getName());
-      }
     });
   }
 
