@@ -1,6 +1,7 @@
 package com.cs414.monopoly.entities;
 
 import com.badlogic.gdx.graphics.Color;
+import com.cs414.monopoly.spaces.AbstractSpace;
 
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ public class Player {
   private int netWorth;
   private GetOutOfJailFree getOutOfJail = GetOutOfJailFree.NONE;
 
-  public int location;
+  public AbstractSpace space;
   public int numRoads;
   public int numUtilities;
 

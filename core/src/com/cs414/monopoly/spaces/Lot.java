@@ -22,8 +22,8 @@ import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.game.GameState;
 
 class Lot extends PropertySpace {
-  Lot(final String filename, JsonValue props) {
-    super(filename, props);
+  Lot(String filename, int location, JsonValue props) {
+    super(filename, location, props);
     property = new LotProperty(filename, props);
 
     addListener(new ClickListener() {

@@ -16,8 +16,8 @@ import com.cs414.monopoly.entities.UtilityProperty;
 import com.cs414.monopoly.game.GameState;
 
 class Utility extends PropertySpace {
-  Utility(final String filename, JsonValue props) {
-    super(filename, props);
+  Utility(String filename, int location, JsonValue props) {
+    super(filename, location, props);
     property = new UtilityProperty(filename, props);
 
     addListener(new ClickListener() {

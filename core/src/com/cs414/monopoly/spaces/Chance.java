@@ -4,8 +4,8 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.cs414.monopoly.entities.Player;
 
 public class Chance extends AbstractSpace {
-  Chance(String filename, JsonValue props) {
-    super(filename, props, Size.STANDARD);
+  Chance(String filename, int location, JsonValue props) {
+    super(filename, location, props, Size.STANDARD);
   }
 
   @Override

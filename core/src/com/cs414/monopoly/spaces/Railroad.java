@@ -15,8 +15,8 @@ import com.cs414.monopoly.entities.RailroadProperty;
 import com.cs414.monopoly.game.GameState;
 
 class Railroad extends PropertySpace {
-  Railroad(final String filename, JsonValue props) {
-    super(filename, props);
+  Railroad(String filename, int location, JsonValue props) {
+    super(filename, location, props);
     property = new RailroadProperty(filename, props);
 
     addListener(new ClickListener() {

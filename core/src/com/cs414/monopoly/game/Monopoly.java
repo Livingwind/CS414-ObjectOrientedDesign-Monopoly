@@ -1,5 +1,6 @@
 package com.cs414.monopoly.game;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -13,10 +14,12 @@ public class Monopoly extends ApplicationAdapter {
 	@Override
 	public void create () {
 	  Stage stage = new Stage(new ScreenViewport());
-
-		stage.addActor(new Board());
+		Board board = new Board();
+		stage.addActor(board);
 	  state = GameState.getInstance();
     state.setStage(stage);
+    state.setBoard(board);
+    state.startGame(100000);
     Gdx.input.setInputProcessor(stage);
 	}
 

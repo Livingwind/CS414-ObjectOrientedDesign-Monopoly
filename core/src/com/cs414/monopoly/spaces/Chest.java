@@ -5,8 +5,8 @@ import com.cs414.monopoly.entities.Player;
 
 public class Chest extends AbstractSpace {
 
-  Chest(String filename, JsonValue props) {
-    super(filename, props, Size.STANDARD);
+  Chest(String filename, int location, JsonValue props) {
+    super(filename, location, props, Size.STANDARD);
   }
 
   @Override

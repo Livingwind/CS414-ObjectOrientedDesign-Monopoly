@@ -4,8 +4,8 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.cs414.monopoly.entities.Player;
 
 public class Go extends AbstractSpace {
-  Go(String filename, JsonValue props) {
-    super(filename, props, Size.CORNER);
+  Go(String filename, int location, JsonValue props) {
+    super(filename, location, props, Size.STANDARD);
   }
 
   @Override

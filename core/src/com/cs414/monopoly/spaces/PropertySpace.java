@@ -7,8 +7,8 @@ import com.cs414.monopoly.entities.Property;
 public abstract class PropertySpace extends AbstractSpace {
   Property property;
 
-  PropertySpace(String filename, JsonValue props) {
-    super(filename, props, Size.STANDARD);
+  PropertySpace(String filename, int location, JsonValue props) {
+    super(filename, location, props, Size.STANDARD);
   }
 
   void buyDialog(Player player) {
