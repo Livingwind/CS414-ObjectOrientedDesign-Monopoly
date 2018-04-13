@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.JsonValue;
 import com.cs414.monopoly.entities.Player;
 
+import java.util.ArrayList;
+
 public abstract class AbstractSpace extends Image{
 
   public enum Size {
@@ -50,9 +52,14 @@ public abstract class AbstractSpace extends Image{
 
   // CLASS --------------------------------------------------------------
 
-  public AbstractSpace(String textureFilename, JsonValue props, Size size) {
+  private ArrayList<Player> players = new ArrayList<Player>();
+  public final int location;
+
+  public AbstractSpace(String textureFilename, int location, JsonValue props, Size size) {
     Sprite sprite = new Sprite(new Texture(Gdx.files.internal(textureFilename)));
     setDrawable(new SpriteDrawable(sprite));
+
+    this.location = location;
 
     setBounds(0, 0, size.width, size.height);
     setName(props.get("name").asString());
@@ -66,11 +73,6 @@ public abstract class AbstractSpace extends Image{
       @Override
       public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
         setColor(Color.WHITE);
-      }
-
-      @Override
-      public void clicked(InputEvent event, float x, float y) {
-        System.out.println("Clicked " + getName());
       }
     });
   }
@@ -93,5 +95,11 @@ public abstract class AbstractSpace extends Image{
     setRotation(direction.degree());
   }
 
-  public abstract void onLand(Player player);
+  public void placePlayer(Player player) {
+    player.space = this;
+    players.add(player);
+    onLand(player);
+  }
+
+  protected abstract void onLand(Player player);
 }

@@ -23,7 +23,7 @@ public class SpaceFactory {
     }
   }
 
-  public static AbstractSpace createSpace(String dir, JsonValue props) {
+  public static AbstractSpace createSpace(String dir, int location, JsonValue props) {
     SpaceType type = SpaceType.fromString(props.get("type").asString());
     if(type == null) {
       return null;
@@ -32,27 +32,27 @@ public class SpaceFactory {
 
     switch(type) {
       case LOT:
-        return new Lot(path, props);
+        return new Lot(path, location, props);
       case RAILROAD:
-        return new Railroad(path, props);
+        return new Railroad(path, location, props);
       case UTILITY:
-        return new Utility(path, props);
+        return new Utility(path, location, props);
       case CHEST:
-        return new Chest(path, props);
+        return new Chest(path, location, props);
       case CHANCE:
-        return new Chance(path, props);
+        return new Chance(path, location, props);
       case INCOME:
-        return new IncomeTax(path, props);
+        return new IncomeTax(path, location, props);
       case LUXURY:
-        return new LuxuryTax(path, props);
+        return new LuxuryTax(path, location, props);
       case JAIL:
-        return new Jail(path, props);
+        return new Jail(path, location, props);
       case TO_JAIL:
-        return new ToJail(path, props);
+        return new ToJail(path, location, props);
       case GO:
-        return new Go(path, props);
+        return new Go(path, location, props);
       case FREEPARKING:
-        return new FreeParking(path, props);
+        return new FreeParking(path, location, props);
       default:
         return null;
     }

@@ -5,8 +5,8 @@ import com.cs414.monopoly.entities.Player;
 
 public class ToJail extends AbstractSpace {
 
-  ToJail(String filename, JsonValue props) {
-    super(filename, props, Size.CORNER);
+  ToJail(String filename, int location, JsonValue props) {
+    super(filename, location, props, Size.CORNER);
   }
 
   @Override
