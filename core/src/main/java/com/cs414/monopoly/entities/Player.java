@@ -1,12 +1,17 @@
 package com.cs414.monopoly.entities;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.cs414.monopoly.spaces.AbstractSpace;
 
 import java.util.ArrayList;
 
-public class Player {
-
+public class Player extends Image {
+  public final Sprite sprite;
   public final String name;
   public final Color color;
   public boolean inJail;
@@ -22,6 +27,10 @@ public class Player {
   public ArrayList<Property> properties = new ArrayList<Property>();
 
   public Player(String name, Color color, int startingMoney){
+    sprite = new Sprite(new Texture(Gdx.files.internal("assets/board_original/players/player.png")));
+    setDrawable(new SpriteDrawable(sprite));
+    setSize(AbstractSpace.Size.STANDARD.getWidth()/2, AbstractSpace.Size.STANDARD.getHeight()/4);
+
     this.name = name;
     this.color = color;
     this.money = startingMoney;

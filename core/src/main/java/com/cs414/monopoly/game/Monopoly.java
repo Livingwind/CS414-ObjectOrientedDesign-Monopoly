@@ -3,10 +3,14 @@ package com.cs414.monopoly.game;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.groups.Board;
+
+import java.util.ArrayList;
 
 public class Monopoly extends ApplicationAdapter {
 	private GameState state;
@@ -15,10 +19,19 @@ public class Monopoly extends ApplicationAdapter {
 	public void create () {
 	  Stage stage = new Stage(new ScreenViewport());
 		Board board = new Board();
+		ArrayList<Player> players = new ArrayList<Player>();
+		Player chris = new Player("chris", Color.CYAN, 1500);
+		Player chris2 = new Player("chris", Color.CYAN, 1500);
+		Player chris3 = new Player("chris", Color.CYAN, 1500);
+		players.add(chris);
+		players.add(chris2);
+		players.add(chris3);
 		stage.addActor(board);
 	  state = GameState.getInstance();
     state.setStage(stage);
     state.setBoard(board);
+		state.addPlayers(players);
+
     state.startGame(100000);
     Gdx.input.setInputProcessor(stage);
 	}

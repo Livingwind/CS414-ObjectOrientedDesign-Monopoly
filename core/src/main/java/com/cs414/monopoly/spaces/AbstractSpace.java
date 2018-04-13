@@ -3,19 +3,22 @@ package com.cs414.monopoly.spaces;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
 import com.cs414.monopoly.entities.Player;
 
 import java.util.ArrayList;
 
-public abstract class AbstractSpace extends Image{
+public abstract class AbstractSpace extends Group {
 
   public enum Size {
     STANDARD(84, 133), CORNER(133, 133);
@@ -52,53 +55,57 @@ public abstract class AbstractSpace extends Image{
 
   // CLASS --------------------------------------------------------------
 
+  private final Sprite sprite;
   private ArrayList<Player> players = new ArrayList<Player>();
   public final int location;
 
+
   public AbstractSpace(String textureFilename, int location, JsonValue props, Size size) {
-    Sprite sprite = new Sprite(new Texture(Gdx.files.internal(textureFilename)));
-    setDrawable(new SpriteDrawable(sprite));
+    setBounds(0, 0, size.getWidth(),size.getHeight());
+    sprite = new Sprite(new Texture(Gdx.files.internal(textureFilename)));
+    sprite.setSize(getWidth(), getHeight());
+    addActor(new Image(new SpriteDrawable(sprite)));
 
     this.location = location;
-
-    setBounds(0, 0, size.width, size.height);
     setName(props.get("name").asString());
 
     addListener(new ClickListener() {
       @Override
       public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-        setColor(Color.CYAN);
+        sprite.setColor(Color.CYAN);
       }
 
       @Override
       public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-        setColor(Color.WHITE);
+        sprite.setColor(Color.WHITE);
       }
     });
   }
 
-  public void alignToBoard(Vector2 pos, Direction direction) {
-    setPosition(pos.x, pos.y);
-    switch(direction) {
-      case DOWN:
-        break;
-      case LEFT:
-        setY(getY()+getWidth());
-        break;
-      case RIGHT:
-        setX(getX()+getHeight());
-        break;
-      case UP:
-        setPosition(getX()+getWidth(), getY()+getHeight());
-        break;
-    }
-    setRotation(direction.degree());
+  public void repositionPlayer(Player player, int index) {
+    player.setPosition((getWidth()-player.getWidth())/2,
+    (getHeight()-player.getHeight())-(player.getHeight()*index));
   }
 
   public void placePlayer(Player player) {
-    player.space = this;
-    players.add(player);
+    player.space.removePlayer(player);
+    setPlayer(player);
     onLand(player);
+  }
+
+  public void setPlayer(Player player) {
+    players.add(player);
+    addActor(player);
+    repositionPlayer(player, players.size()-1);
+    player.space = this;
+  }
+
+  public void removePlayer(Player player) {
+    players.remove(player);
+    for(int i = 0; i < players.size(); i++) {
+      repositionPlayer(players.get(i), i);
+    }
+    removeActor(player);
   }
 
   protected abstract void onLand(Player player);

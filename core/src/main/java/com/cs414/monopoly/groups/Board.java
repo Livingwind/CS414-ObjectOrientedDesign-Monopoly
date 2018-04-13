@@ -25,7 +25,8 @@ public class Board extends Group {
   private void placeSpace(String path, int location,
                           JsonValue props, Vector2 pos, AbstractSpace.Direction dir) {
     AbstractSpace temp = SpaceFactory.createSpace(path, location, props);
-    temp.alignToBoard(pos, dir);
+    temp.setPosition(pos.x, pos.y);
+    temp.setRotation(dir.degree());
     addActor(temp);
     spaces.add(temp);
   }
@@ -34,29 +35,31 @@ public class Board extends Group {
     JsonValue root = new JsonReader().parse(Gdx.files.internal("assets/"+preset+"/config.json"));
 
     String path = "assets/"+preset+"/spaces/";
-    Vector2 pos = new Vector2(getWidth()- AbstractSpace.Size.CORNER.getWidth(), 0);
+    Vector2 pos = new Vector2(getWidth(), AbstractSpace.Size.CORNER.getHeight());
 
     // Add GO
     placeSpace(path, 0, root.get(0), pos, AbstractSpace.Direction.UP);
+    pos.x -= AbstractSpace.Size.CORNER.getWidth();
 
     // Add bottom row
     for(int i = 1; i < 10; i++) {
-      pos.x -= AbstractSpace.Size.STANDARD.getWidth();
       placeSpace(path, i, root.get(i), pos, AbstractSpace.Direction.UP);
+      pos.x -= AbstractSpace.Size.STANDARD.getWidth();
     }
 
     // Add Jail
-    pos.x -= AbstractSpace.Size.CORNER.getWidth();
+    pos.y -= AbstractSpace.Size.CORNER.getHeight();
     placeSpace(path, 10, root.get(10), pos, AbstractSpace.Direction.RIGHT);
+    pos.y += AbstractSpace.Size.CORNER.getHeight();
 
     // Add left row
-    pos.set(0, AbstractSpace.Size.CORNER.getHeight());
     for(int i = 1; i < 10; i++) {
       placeSpace(path, i+10, root.get(i+10), pos, AbstractSpace.Direction.RIGHT);
       pos.y += AbstractSpace.Size.STANDARD.getWidth();
     }
 
     // Add free parking
+    pos.x -= AbstractSpace.Size.CORNER.getWidth();
     placeSpace(path, 20, root.get(20), pos, AbstractSpace.Direction.DOWN);
     pos.x += AbstractSpace.Size.CORNER.getWidth();
 
@@ -67,12 +70,14 @@ public class Board extends Group {
     }
 
     // Add go to jail
+    pos.y += AbstractSpace.Size.CORNER.getHeight();
     placeSpace(path, 30, root.get(30), pos, AbstractSpace.Direction.LEFT);
+    pos.y -= AbstractSpace.Size.CORNER.getHeight();
 
     // Add right row
     for(int i = 1; i < 10; i++) {
-      pos.y -= AbstractSpace.Size.STANDARD.getWidth();
       placeSpace(path, 30+i, root.get(i+30), pos, AbstractSpace.Direction.LEFT);
+      pos.y -= AbstractSpace.Size.STANDARD.getWidth();
     }
   }
 
@@ -92,6 +97,10 @@ public class Board extends Group {
 
     int landed = (player.space.location + num) % spaces.size();
     spaces.get(landed).placePlayer(player);
+  }
+
+  public void initPlayer(Player player) {
+    spaces.get(0).setPlayer(player);
   }
 
   @Override

@@ -59,6 +59,10 @@ public class GameState {
     }
 
     timeremaining = timelimit;
+
+    for(Player player: playerList) {
+      board.initPlayer(player);
+    }
   }
 
   // STATE ------------------------------------------------------------------------
