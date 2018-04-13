@@ -5,7 +5,7 @@ import com.cs414.monopoly.entities.Player;
 
 public class FreeParking extends AbstractSpace {
   FreeParking(String filename, int location, JsonValue props) {
-    super(filename, location, props, Size.STANDARD);
+    super(filename, location, props, Size.CORNER);
   }
 
   @Override
