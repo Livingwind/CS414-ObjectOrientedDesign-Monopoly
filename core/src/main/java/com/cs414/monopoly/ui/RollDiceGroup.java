@@ -11,6 +11,17 @@ public class RollDiceGroup extends Group {
     addActor(die1);
     addActor(die2);
     addActor(roll);
+    toggleDice(false);
+  }
+
+  public void updateDice(int d1, int d2) {
+    die1.changeFace(d1-1);
+    die2.changeFace(d2-1);
+  }
+
+  public void toggleDice(boolean status) {
+    die1.setVisible(status);
+    die2.setVisible(status);
   }
 
   @Override

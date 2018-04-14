@@ -2,7 +2,6 @@ package com.cs414.monopoly.game;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.cs414.monopoly.entities.Player;
-import com.cs414.monopoly.ui.RollDiceButton;
 import com.cs414.monopoly.groups.Board;
 import com.cs414.monopoly.ui.RollDiceGroup;
 
@@ -67,11 +66,6 @@ public class GameState {
       board.initPlayer(player);
     }
     currentPlayer = playerList.get(0);
-
-    RollDiceGroup rdg = new RollDiceGroup();
-    rdg.setSize(150, 150);
-    rdg.setPosition(stage.getWidth()-rdg.getWidth(), 0);
-    stage.addActor(rdg);
   }
 
   // STATE ------------------------------------------------------------------------

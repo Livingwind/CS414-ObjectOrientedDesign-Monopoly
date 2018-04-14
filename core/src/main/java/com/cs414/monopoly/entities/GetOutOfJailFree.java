@@ -12,18 +12,18 @@ public enum GetOutOfJailFree {
     if(this == NONE) {
       return this;
     }
-    switch(this.value ^ toRemove.value) {
-      case 1: return CHEST;
-      case 2: return CHANCE;
-      default: return this;
-    }
+    return getJailCardType(toRemove);
   }
 
   public GetOutOfJailFree addCard(GetOutOfJailFree toAdd) {
     if((this.value ^ toAdd.value) == BOTH.value) {
       return BOTH;
     }
-    switch(this.value ^ toAdd.value) {
+    return getJailCardType(toAdd);
+  }
+
+  public GetOutOfJailFree getJailCardType(GetOutOfJailFree card){
+    switch(this.value ^ card.value) {
       case 1: return CHEST;
       case 2: return CHANCE;
       default: return this;
