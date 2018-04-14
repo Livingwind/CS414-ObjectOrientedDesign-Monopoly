@@ -14,10 +14,11 @@ public class LotDialog extends PropertyDialog {
 
   @Override
   public void fill() {
+
     String owner = "Property " + ((property.ownedBy == null) ? "not owned" :
         "owned by: " + property.ownedBy.name);
     text(owner);
-
+    
     // buttons
     Button buyHouse = new TextButton("Buy House", getSkin());
     buyHouse.padRight(10).padLeft(10);

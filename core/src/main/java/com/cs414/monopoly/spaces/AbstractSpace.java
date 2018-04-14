@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public abstract class AbstractSpace extends Group {
 
   public enum Size {
-    STANDARD(84, 133), CORNER(133, 133);
+    STANDARD(83, 132), CORNER(133, 133);
 
     private float ratio = (float)Gdx.graphics.getHeight()/Gdx.graphics.getWidth();
     private float width;

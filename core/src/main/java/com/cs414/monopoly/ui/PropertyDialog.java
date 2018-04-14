@@ -31,7 +31,6 @@ public class PropertyDialog extends Dialog{
     getContentTable().add(imageTable);
     getContentTable().row(); // put text under image
 
-
     fill();
     if(closable) {
       Button exit = new TextButton("X", getSkin());

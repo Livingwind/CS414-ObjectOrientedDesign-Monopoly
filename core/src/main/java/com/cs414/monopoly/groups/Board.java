@@ -39,45 +39,45 @@ public class Board extends Group {
 
     // Add GO
     placeSpace(path, 0, root.get(0), pos, AbstractSpace.Direction.UP);
-    pos.x -= AbstractSpace.Size.CORNER.getWidth();
+    pos.x -= AbstractSpace.Size.CORNER.getWidth()+.5;
 
     // Add bottom row
     for(int i = 1; i < 10; i++) {
       placeSpace(path, i, root.get(i), pos, AbstractSpace.Direction.UP);
-      pos.x -= AbstractSpace.Size.STANDARD.getWidth();
+      pos.x -= AbstractSpace.Size.STANDARD.getWidth()+.5;
     }
 
     // Add Jail
-    pos.y -= AbstractSpace.Size.CORNER.getHeight();
+    pos.y -= AbstractSpace.Size.CORNER.getHeight()+.5;
     placeSpace(path, 10, root.get(10), pos, AbstractSpace.Direction.RIGHT);
-    pos.y += AbstractSpace.Size.CORNER.getHeight();
+    pos.y += AbstractSpace.Size.CORNER.getHeight()+1;
 
     // Add left row
     for(int i = 1; i < 10; i++) {
       placeSpace(path, i+10, root.get(i+10), pos, AbstractSpace.Direction.RIGHT);
-      pos.y += AbstractSpace.Size.STANDARD.getWidth();
+      pos.y += AbstractSpace.Size.STANDARD.getWidth()+.5;
     }
 
     // Add free parking
-    pos.x -= AbstractSpace.Size.CORNER.getWidth();
+    pos.x -= AbstractSpace.Size.CORNER.getWidth()+.5;
     placeSpace(path, 20, root.get(20), pos, AbstractSpace.Direction.DOWN);
-    pos.x += AbstractSpace.Size.CORNER.getWidth();
+    pos.x += AbstractSpace.Size.CORNER.getWidth()+1;
 
     // Add top row
     for(int i = 1; i < 10; i++) {
       placeSpace(path, i+20, root.get(i+20), pos, AbstractSpace.Direction.DOWN);
-      pos.x += AbstractSpace.Size.STANDARD.getWidth();
+      pos.x += AbstractSpace.Size.STANDARD.getWidth()+.5;
     }
 
     // Add go to jail
-    pos.y += AbstractSpace.Size.CORNER.getHeight();
+    pos.y += AbstractSpace.Size.CORNER.getHeight()+.5;
     placeSpace(path, 30, root.get(30), pos, AbstractSpace.Direction.LEFT);
-    pos.y -= AbstractSpace.Size.CORNER.getHeight();
+    pos.y -= AbstractSpace.Size.CORNER.getHeight()+.5;
 
     // Add right row
     for(int i = 1; i < 10; i++) {
       placeSpace(path, 30+i, root.get(i+30), pos, AbstractSpace.Direction.LEFT);
-      pos.y -= AbstractSpace.Size.STANDARD.getWidth();
+      pos.y -= AbstractSpace.Size.STANDARD.getWidth()+.5;
     }
   }
 
