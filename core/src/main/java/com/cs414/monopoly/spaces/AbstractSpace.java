@@ -57,7 +57,7 @@ public abstract class AbstractSpace extends Group {
 
   // CLASS --------------------------------------------------------------
 
-  private final Sprite sprite;
+  final Sprite sprite;
   private ArrayList<Player> players = new ArrayList<Player>();
   public final int location;
 
@@ -72,21 +72,9 @@ public abstract class AbstractSpace extends Group {
     this.location = location;
     setName(props.get("name").asString());
 
-    final GameState state = GameState.getInstance();
-    addListener(new ClickListener() {
-      @Override
-      public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-        sprite.setColor(state.getCurrentPlayer().color);
-      }
-
-      @Override
-      public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-        sprite.setColor(Color.WHITE);
-      }
-    });
   }
 
-  public void repositionPlayer(Player player, int index) {
+  private void repositionPlayer(Player player, int index) {
     player.setPosition((getWidth()-player.getWidth())/2,
     (getHeight()-player.getHeight())-(player.getHeight()*index));
   }
@@ -104,7 +92,7 @@ public abstract class AbstractSpace extends Group {
     player.space = this;
   }
 
-  public void removePlayer(Player player) {
+  private void removePlayer(Player player) {
     players.remove(player);
     for(int i = 0; i < players.size(); i++) {
       repositionPlayer(players.get(i), i);
