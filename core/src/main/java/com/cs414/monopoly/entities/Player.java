@@ -11,7 +11,7 @@ import com.cs414.monopoly.spaces.AbstractSpace;
 import java.util.ArrayList;
 
 public class Player extends Image {
-  public final Sprite sprite;
+  private final Sprite sprite;
   public final String name;
   public final Color color;
   public boolean inJail;
@@ -37,6 +37,15 @@ public class Player extends Image {
     updateNetWorth(money);
   }
 
+  public boolean purchaseProperty(Property property) {
+    property.ownedBy = this;
+    modifyMoney(-property.value);
+    System.out.println(String.format("%s bought %s for $%d.",
+        name, property.name, property.value));
+    return true;
+  }
+
+
   /**
    * Modifies the player's money by the given amount using addition.
    * @param amount amount of money to add or remove from the player.
@@ -44,6 +53,11 @@ public class Player extends Image {
   public void modifyMoney(int amount){
     this.money += amount;
     updateNetWorth(amount);
+    System.out.println(String.format("%s's money was modified by %d", name, amount));
+  }
+
+  public int getMoney() {
+    return money;
   }
 
   public void addProperty(Property property) {
