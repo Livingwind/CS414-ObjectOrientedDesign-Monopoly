@@ -9,11 +9,16 @@ import com.cs414.monopoly.entities.Property;
 
 public class LotDialog extends PropertyDialog {
   public LotDialog(Property property) {
-    super(property);
+    super(property, true);
   }
 
   @Override
   public void fill() {
+
+    String owner = "Property " + ((property.ownedBy == null) ? "not owned" :
+        "owned by: " + property.ownedBy.name);
+    text(owner);
+    
     // buttons
     Button buyHouse = new TextButton("Buy House", getSkin());
     buyHouse.padRight(10).padLeft(10);
