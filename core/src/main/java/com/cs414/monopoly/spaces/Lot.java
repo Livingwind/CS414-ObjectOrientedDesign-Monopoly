@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.Scaling;
 import com.cs414.monopoly.entities.LotProperty;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.game.GameState;
+import com.cs414.monopoly.groups.MonopolySkin;
 
 class Lot extends PropertySpace {
   Lot(final String filename, int location, JsonValue props) {
@@ -30,10 +31,7 @@ class Lot extends PropertySpace {
       @Override
       public void clicked(InputEvent event, float x, float y) {
         GameState state = GameState.getInstance();
-        Skin skin = new Skin(
-            new FileHandle("assets/uiskin.json"),
-            new TextureAtlas(Gdx.files.internal("assets/uiskin.atlas"))
-        );
+        Skin skin = new MonopolySkin();
 
         // texture
         String lotNumber = filename.substring(filename.length() - 6, filename.length() - 4);
@@ -47,8 +45,9 @@ class Lot extends PropertySpace {
           imageTable.add(image).width(300).height(300);
 
         // buttons
-        Button buyHouse = new TextButton("Buy", skin);
+        Button buyHouse = new TextButton("Buy House", skin);
           buyHouse.padRight(10).padLeft(10);
+          buyHouse.setColor(Color.GREEN);
           buyHouse.addListener(new ChangeListener(){
             @Override
             public void changed(ChangeEvent event, Actor actor){
@@ -56,8 +55,9 @@ class Lot extends PropertySpace {
               event.cancel();
             }
           });
-        Button sellHouse = new TextButton("Sell", skin);
+        Button sellHouse = new TextButton("Sell House", skin);
           sellHouse.padRight(10).padLeft(10);
+          sellHouse.setColor(Color.RED);
           sellHouse.addListener(new ChangeListener(){
             @Override
             public void changed(ChangeEvent event, Actor actor){
@@ -65,15 +65,6 @@ class Lot extends PropertySpace {
               event.cancel();
             }
           });
-
-        Button closeButton = new TextButton("Close", skin);
-        //closeButton.padRight(-30).padTop(-20);
-        closeButton.addListener(new ChangeListener(){
-          @Override
-          public void changed(ChangeEvent event, Actor actor){
-            //close
-          }
-        });
 
         // dialog
         Dialog lotDialog = new Dialog(property.name, skin){
@@ -84,17 +75,16 @@ class Lot extends PropertySpace {
             setClip(false);
           }
         };
-          lotDialog.getContentTable().padTop(20);
-          lotDialog.getContentTable().add(imageTable);
-          // put text under image
-          lotDialog.getContentTable().row();
-          lotDialog.add(closeButton);
-          lotDialog.text("Buy House?       y/n?");
-          lotDialog.button(buyHouse);
-          lotDialog.button(sellHouse);
-          lotDialog.button("yes", true);
-          lotDialog.button("no", false);
-          lotDialog.show(state.getStage());
+        lotDialog.getContentTable().padTop(20);
+        lotDialog.getContentTable().add(imageTable);
+        lotDialog.getContentTable().row(); // put text under image
+        String owner = "Property " + ((property.ownedBy == null) ? "not owned" :
+            "owned by: " + property.ownedBy.name);
+        lotDialog.text(owner);
+        lotDialog.button(buyHouse);
+        lotDialog.button(sellHouse);
+        lotDialog.button("close", true);
+        lotDialog.show(state.getStage());
       }
     });
   }

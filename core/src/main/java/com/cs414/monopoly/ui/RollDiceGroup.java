@@ -1,0 +1,23 @@
+package com.cs414.monopoly.ui;
+
+import com.badlogic.gdx.scenes.scene2d.Group;
+
+public class RollDiceGroup extends Group {
+  private Die die1 = new Die();
+  private Die die2 = new Die();
+  private RollDiceButton roll = new RollDiceButton();
+
+  public RollDiceGroup() {
+    addActor(die1);
+    addActor(die2);
+    addActor(roll);
+  }
+
+  @Override
+  protected void sizeChanged() {
+    roll.setBounds(0, 0, getWidth(), getHeight()/2);
+    die1.setBounds(0, roll.getHeight(), getWidth()/2, getHeight()/2);
+    die2.setBounds(die1.getWidth(), roll.getHeight(), getWidth()/2, getHeight()/2);
+    super.sizeChanged();
+  }
+}

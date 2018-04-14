@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.Scaling;
 import com.cs414.monopoly.entities.RailroadProperty;
 import com.cs414.monopoly.game.GameState;
+import com.cs414.monopoly.groups.PropertyDialog;
 
 class Railroad extends PropertySpace {
   Railroad(final String filename, int location, JsonValue props) {
@@ -22,31 +23,7 @@ class Railroad extends PropertySpace {
     addListener(new ClickListener() {
       @Override
       public void clicked(InputEvent event, float x, float y) {
-        GameState state = GameState.getInstance();
-        Skin skin = new Skin(
-            new FileHandle("assets/uiskin.json"),
-            new TextureAtlas(Gdx.files.internal("assets/uiskin.atlas"))
-        );
-
-        // texture
-        String lotNumber = filename.substring(filename.length() - 6, filename.length() - 4);
-        String lotDeed = "assets/board_original/deeds/" + lotNumber + ".png";
-        Texture texture = new Texture(lotDeed);
-
-        // image Table
-        Table imageTable = new Table();
-        Image image = new Image(texture);
-        image.setScaling(Scaling.fit);
-        imageTable.add(image).width(300).height(300);
-
-        // dialog
-        Dialog lotDialog = new Dialog(property.name, skin);
-        lotDialog.getContentTable().padTop(20);
-        lotDialog.getContentTable().add(imageTable);
-        // put text under image
-        lotDialog.getContentTable().row();
-        lotDialog.button("close window", true);
-        lotDialog.show(state.getStage());
+        PropertyDialog dialog = new PropertyDialog(property, filename);
       }
     });
   }

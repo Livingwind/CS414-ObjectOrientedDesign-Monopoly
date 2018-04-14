@@ -2,7 +2,9 @@ package com.cs414.monopoly.game;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.cs414.monopoly.entities.Player;
+import com.cs414.monopoly.ui.RollDiceButton;
 import com.cs414.monopoly.groups.Board;
+import com.cs414.monopoly.ui.RollDiceGroup;
 
 import java.util.ArrayList;
 
@@ -57,26 +59,32 @@ public class GameState {
     if(timelimit <= 0) {
       throw new IllegalStateException();
     }
+    rollContext = new RollContext();
 
     timeremaining = timelimit;
 
     for(Player player: playerList) {
       board.initPlayer(player);
     }
+    currentPlayer = playerList.get(0);
+
+    RollDiceGroup rdg = new RollDiceGroup();
+    rdg.setSize(150, 150);
+    rdg.setPosition(stage.getWidth()-rdg.getWidth(), 0);
+    stage.addActor(rdg);
   }
 
   // STATE ------------------------------------------------------------------------
   public void nextTurn() {
-    rollContext.doAction();
     int index = playerList.indexOf(currentPlayer);
-    currentPlayer = playerList.get(index % playerList.size());
+    currentPlayer = playerList.get((index+1) % playerList.size());
   }
 
   public Player getCurrentPlayer() {
     return currentPlayer;
   }
 
-  public TurnState getCurrentState() {
-    return rollContext.currentState;
+  public RollContext getCurrentContext() {
+    return rollContext;
   }
 }

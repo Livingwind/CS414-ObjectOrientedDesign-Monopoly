@@ -13,6 +13,7 @@ public class PreRollState extends TurnState {
   private int doubles = 1;
   public void doAction(RollContext ctx) {
     int[] dice = rollDice();
+    System.out.println(dice[0] + " " + dice[1]);
     if(dice[0] == dice[1]) {
       doubles++;
       if(doubles == 3) {
