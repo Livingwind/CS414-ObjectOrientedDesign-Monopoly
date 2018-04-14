@@ -1,4 +1,4 @@
-package com.cs414.monopoly.groups;
+package com.cs414.monopoly.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;

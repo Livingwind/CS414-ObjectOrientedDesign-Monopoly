@@ -34,7 +34,7 @@ public class Board extends Group {
   private void initSpaces(String preset) {
     JsonValue root = new JsonReader().parse(Gdx.files.internal("assets/"+preset+"/config.json"));
 
-    String path = "assets/"+preset+"/spaces/";
+    String path = "assets/"+preset+"/%s/";
     Vector2 pos = new Vector2(getWidth(), AbstractSpace.Size.CORNER.getHeight());
 
     // Add GO

@@ -1,5 +1,6 @@
 package com.cs414.monopoly.spaces;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
 import com.cs414.monopoly.entities.Player;
+import com.cs414.monopoly.game.GameState;
 
 import java.util.ArrayList;
 
@@ -60,19 +62,21 @@ public abstract class AbstractSpace extends Group {
   public final int location;
 
 
-  public AbstractSpace(String textureFilename, int location, JsonValue props, Size size) {
+  public AbstractSpace(String formatPath, int location, JsonValue props, Size size) {
     setBounds(0, 0, size.getWidth(),size.getHeight());
-    sprite = new Sprite(new Texture(Gdx.files.internal(textureFilename)));
+    String path = String.format(formatPath, "spaces");
+    sprite = new Sprite(new Texture(Gdx.files.internal(path)));
     sprite.setSize(getWidth(), getHeight());
     addActor(new Image(new SpriteDrawable(sprite)));
 
     this.location = location;
     setName(props.get("name").asString());
 
+    final GameState state = GameState.getInstance();
     addListener(new ClickListener() {
       @Override
       public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-        sprite.setColor(Color.CYAN);
+        sprite.setColor(state.getCurrentPlayer().color);
       }
 
       @Override
