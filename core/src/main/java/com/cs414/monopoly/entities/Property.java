@@ -14,8 +14,9 @@ public abstract class Property {
 
   public Player ownedBy;
 
-  Property(String filename, JsonValue props) {
-    texture = new Texture(Gdx.files.internal(filename));
+  Property(String formatPath, JsonValue props) {
+    String path = String.format(formatPath, "deeds");
+    texture = new Texture(Gdx.files.internal(path));
 
     name = props.get("name").asString();
     value = props.get("value").asInt();

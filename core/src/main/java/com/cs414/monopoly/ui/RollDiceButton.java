@@ -3,14 +3,12 @@ package com.cs414.monopoly.ui;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.game.PostRollState;
 import com.cs414.monopoly.game.PreRollState;
 import com.cs414.monopoly.game.TurnState;
-import com.cs414.monopoly.groups.MonopolySkin;
 
 public class RollDiceButton extends TextButton{
   private GameState state = GameState.getInstance();
