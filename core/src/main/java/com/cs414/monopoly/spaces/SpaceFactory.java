@@ -42,9 +42,9 @@ public class SpaceFactory {
       case CHANCE:
         return new Chance(path, location, props);
       case INCOME:
-        return new IncomeTax(path, location, props);
+        return new Tax(path, location, props, TaxType.INCOME);
       case LUXURY:
-        return new LuxuryTax(path, location, props);
+        return new Tax(path, location, props, TaxType.LUXURY);
       case JAIL:
         return new Jail(path, location, props);
       case TO_JAIL:
