@@ -1,4 +1,4 @@
-package com.cs414.monopoly.entities;
+package com.cs414.monopoly;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;

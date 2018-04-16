@@ -3,6 +3,7 @@ package com.cs414.monopoly.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
+import com.cs414.monopoly.TestGame;
 import org.junit.Before;
 import org.junit.Test;
 
