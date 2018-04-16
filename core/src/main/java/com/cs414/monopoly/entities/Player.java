@@ -62,6 +62,10 @@ public class Player extends Image {
     return money;
   }
 
+  public int getNetWorth() {
+    return netWorth;
+  }
+
   public void addProperty(Property property) {
      properties.add(property);
      updateNetWorth(property.value);

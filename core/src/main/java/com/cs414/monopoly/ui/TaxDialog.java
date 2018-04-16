@@ -47,8 +47,7 @@ public class TaxDialog extends BlankDialog {
       payPercent.addListener(new ChangeListener(){
         @Override
         public void changed(ChangeEvent event, Actor actor){
-          //TODO calculate tax
-          System.out.println(state.getCurrentPlayer().name + " paid %10!");
+          state.getCurrentPlayer().modifyMoney((int)Math.round(-0.1 * state.getCurrentPlayer().getNetWorth()));
           remove();
         }
       });
@@ -61,8 +60,7 @@ public class TaxDialog extends BlankDialog {
     payFlat.addListener(new ChangeListener(){
       @Override
       public void changed(ChangeEvent event, Actor actor){
-        //TODO calculate tax
-        System.out.println(state.getCurrentPlayer().name + " paid $" + flatCost + "!");
+        state.getCurrentPlayer().modifyMoney(-flatCost);
         remove();
       }
     });
