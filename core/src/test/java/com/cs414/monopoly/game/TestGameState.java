@@ -3,6 +3,7 @@ package com.cs414.monopoly.game;
 import com.badlogic.gdx.graphics.Color;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.entities.TestGame;
+import com.cs414.monopoly.ui.CurrentPlayerInfo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,22 +27,7 @@ public class TestGameState extends TestGame {
     players.add(p2);
   }
 
-  @Test
-  public void testAddPlayers() {
-    game.addPlayers(players);
 
-    game.nextTurn();
-    Assert.assertEquals("chris", game.getCurrentPlayer().name);
-    Assert.assertEquals(0, game.getCurrentPlayer().getMoney());
-
-    game.nextTurn();
-    Assert.assertEquals("ian", game.getCurrentPlayer().name);
-    Assert.assertEquals(1500, game.getCurrentPlayer().getMoney());
-
-    game.nextTurn();
-    Assert.assertEquals("brandon", game.getCurrentPlayer().name);
-    Assert.assertEquals(1500, game.getCurrentPlayer().getMoney());
-  }
 
   @Test
   public void testStartGameFail () {
@@ -54,16 +40,5 @@ public class TestGameState extends TestGame {
     assert(fail);
   }
 
-  @Test
-  public void testNextTurn(){
-    game.addPlayers(players);
-    game.nextTurn();
-    Assert.assertEquals("chris", game.getCurrentPlayer().name);
-    game.nextTurn();
-    Assert.assertEquals("ian", game.getCurrentPlayer().name);
-    game.nextTurn();
-    Assert.assertEquals("brandon", game.getCurrentPlayer().name);
-    game.nextTurn();
-    Assert.assertEquals("chris", game.getCurrentPlayer().name);
-  }
+
 }
