@@ -44,6 +44,10 @@ public class Player extends Image {
     modifyMoney(-property.value);
     System.out.println(String.format("%s bought %s for $%d.",
         name, property.name, property.value));
+    if(property instanceof RailroadProperty)
+      numRoads++;
+    else if(property instanceof UtilityProperty)
+      numUtilities++;
     return true;
   }
 

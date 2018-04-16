@@ -8,6 +8,6 @@ public class RailroadProperty extends Property {
   }
 
   public int getRent() {
-    return rents[ownedBy.numRoads];
+    return rents[ownedBy.numRoads - 1];
   }
 }

@@ -11,6 +11,6 @@ public class UtilityProperty extends Property{
     // TODO Have the current player roll dice
     int rollResult = 3;
 
-    return rents[ownedBy.numUtilities] * rollResult;
+    return rents[ownedBy.numUtilities - 1] * rollResult;
   }
 }
