@@ -1,10 +1,11 @@
 package com.cs414.monopoly.game;
 
+import com.cs414.monopoly.entities.TestGame;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestHelpers {
+public class TestHelpers extends TestGame {
 
   @Test
   public void testRollDice(){
