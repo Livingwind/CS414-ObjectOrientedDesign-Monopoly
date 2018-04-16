@@ -1,11 +1,13 @@
 package com.cs414.monopoly.entities;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.spaces.AbstractSpace;
 
 import java.util.ArrayList;
@@ -101,5 +103,6 @@ public class Player extends Image {
    */
   private void updateNetWorth(int amount){
     netWorth += amount;
+    GameState.getInstance().update();
   }
 }

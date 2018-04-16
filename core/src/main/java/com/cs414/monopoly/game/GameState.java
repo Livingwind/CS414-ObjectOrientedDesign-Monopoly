@@ -3,7 +3,7 @@ package com.cs414.monopoly.game;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.groups.Board;
-import com.cs414.monopoly.ui.RollDiceGroup;
+import com.cs414.monopoly.ui.CurrentPlayerInfo;
 
 import java.util.ArrayList;
 
@@ -17,6 +17,7 @@ public class GameState {
 
   private Stage stage;
   private Board board;
+  private CurrentPlayerInfo info;
 
   public static GameState getInstance() {
     if(instance == null) {
@@ -66,12 +67,21 @@ public class GameState {
       board.initPlayer(player);
     }
     currentPlayer = playerList.get(0);
+
+    info = new CurrentPlayerInfo();
+    stage.addActor(info);
   }
 
   // STATE ------------------------------------------------------------------------
+  public void update() {
+    if(info != null) {
+      info.changePlayer(currentPlayer);
+    }
+  }
   public void nextTurn() {
     int index = playerList.indexOf(currentPlayer);
     currentPlayer = playerList.get((index+1) % playerList.size());
+    info.changePlayer(currentPlayer);
   }
 
   public Player getCurrentPlayer() {
