@@ -10,8 +10,8 @@ public class TestHelpers extends TestGame {
   public void testRollDice(){
     int[] dice = Helpers.rollDice();
     for(int i = 0; i<dice.length; i++) {
-      Assert.assertTrue(dice[i] > 0);
-      Assert.assertTrue(dice[i] < 6);
+      Assert.assertTrue(dice[i] >= 1);
+      Assert.assertTrue(dice[i] <= 6);
 
     }
   }
