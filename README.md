@@ -25,3 +25,4 @@ Design documents are located in the design_documents folder.
 * https://libgdx.badlogicgames.com/nightlies/docs/api/ libgdx javadoc
 * http://www.gamefromscratch.com/ Older tutorial that explains some basic concepts
 
+<a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
