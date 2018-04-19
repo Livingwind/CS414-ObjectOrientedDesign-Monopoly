@@ -9,6 +9,7 @@
     "type": "lot",
     "name": "mediterranean avenue",
     "value": 60,
+    "color": "brown",
     "houseCost": 50,
     "rent": [2, 10, 30, 90, 160, 250]
   },
@@ -22,6 +23,7 @@
     "type": "lot",
     "name": "baltic avenue",
     "value": 60,
+    "color": "brown",
     "houseCost": 50,
     "rent": [4, 20, 60, 180, 320]
   },
@@ -41,6 +43,7 @@
     "position": 6,
     "type": "lot",
     "name": "oriental avenue",
+    "color": "cyan",
     "value": 100,
     "houseCost": 50,
     "rent": [6, 30, 90, 270, 400, 550]
@@ -55,6 +58,7 @@
     "type": "lot",
     "name": "vermont avenue",
     "value": 100,
+    "color": "cyan",
     "houseCost": 50,
     "rent": [6, 30, 90, 270, 400, 550]
   },
@@ -63,6 +67,7 @@
     "type": "lot",
     "name": "connecticut avenue",
     "value": 120,
+    "color": "cyan",
     "houseCost": 50,
     "rent": [8, 40, 100, 300, 450, 600]
   },
@@ -76,6 +81,7 @@
     "type": "lot",
     "name": "st. charles. place",
     "value": 140,
+    "color": "magenta",
     "houseCost": 100,
     "rent": [10, 50, 150, 450, 620, 750]
   },
@@ -91,6 +97,7 @@
     "type": "lot",
     "name": "states avenue",
     "value": 140,
+    "color": "magenta",
     "houseCost": 100,
     "rent": [10, 50, 150, 450, 620, 750]
   },
@@ -99,6 +106,7 @@
     "type": "lot",
     "name": "virginia avenue",
     "value": 160,
+    "color": "magenta",
     "houseCost": 100,
     "rent": [12, 60, 180, 500, 700, 900]
   },
@@ -114,6 +122,7 @@
     "type": "lot",
     "name": "st. james place",
     "value": 180,
+    "color": "orange",
     "houseCost": 100,
     "rent": [14, 70, 200, 550, 750, 950]
   },
@@ -127,6 +136,7 @@
     "type": "lot",
     "name": "tennessee avenue",
     "value": 180,
+    "color": "orange",
     "houseCost": 100,
     "rent": [14, 70, 200, 550, 750, 950]
   },
@@ -135,6 +145,7 @@
     "type": "lot",
     "name": "new york avenue",
     "value": 200,
+    "color": "orange",
     "houseCost": 100,
     "rent": [16, 80, 220, 600, 800, 1000]
   },
@@ -148,6 +159,7 @@
     "type": "lot",
     "name": "kentucky avenue",
     "value": 220,
+    "color": "red",
     "houseCost": 150,
     "rent": [18, 90, 250, 700, 875, 1050]
   },
@@ -161,6 +173,7 @@
     "type": "lot",
     "name": "indiana avenue",
     "value": 220,
+    "color": "red",
     "houseCost": 150,
     "rent": [18, 90, 250, 700, 875, 1050]
   },
@@ -169,6 +182,7 @@
     "type": "lot",
     "name": "illinois avenue",
     "value": 220,
+    "color": "red",
     "houseCost": 150,
     "rent": [20, 100, 300, 750, 925, 1100]
   },
@@ -184,6 +198,7 @@
     "type": "lot",
     "name": "atlantic avenue",
     "value": 260,
+    "color": "yellow",
     "houseCost": 150,
     "rent": [22, 110, 330, 800, 975, 1150]
   },
@@ -192,6 +207,7 @@
     "type": "lot",
     "name": "ventnor avenue",
     "value": 260,
+    "color": "yellow",
     "houseCost": 150,
     "rent": [22, 110, 330, 800, 975, 1150]
   },
@@ -207,6 +223,7 @@
     "type": "lot",
     "name": "marvin gardens",
     "value": 280,
+    "color": "yellow",
     "houseCost": 150,
     "rent": [24, 120, 360, 850, 1025, 1200]
   },
@@ -219,6 +236,7 @@
     "position": 31,
     "type": "lot",
     "name": "pacific avenue",
+    "color": "green",
     "value": 300,
     "houseCost": 200,
     "rent": [26, 130, 390, 900, 1100, 1275]
@@ -228,6 +246,7 @@
     "type": "lot",
     "name": "north carolina avenue",
     "value": 300,
+    "color": "green",
     "houseCost": 200,
     "rent": [26, 130, 390, 900, 1100, 1275]
   },
@@ -241,6 +260,7 @@
     "type": "lot",
     "name": "pennsylvania avenue",
     "value": 320,
+    "color": "green",
     "houseCost": 200,
     "rent": [28, 150, 450, 1000, 1200, 1400]
   },
@@ -261,6 +281,7 @@
     "type": "lot",
     "name": "park place",
     "value": 350,
+    "color": "navy",
     "houseCost": 200,
     "rent": [35, 175, 500, 1100, 1300, 1500]
   },
@@ -274,6 +295,7 @@
     "type": "lot",
     "name": "boardwalk",
     "value": 400,
+    "color": "navy",
     "houseCost": 200,
     "rent": [50, 200, 600, 1400, 1700, 2000]
   }
