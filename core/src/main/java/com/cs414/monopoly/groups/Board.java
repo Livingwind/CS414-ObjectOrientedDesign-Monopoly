@@ -99,6 +99,10 @@ public class Board extends Group {
     spaces.get(landed).placePlayer(player);
   }
 
+  public void setPlayer(Player player, int num) {
+    spaces.get(num).placePlayer(player);
+  }
+
   public void initPlayer(Player player) {
     spaces.get(0).setPlayer(player);
   }

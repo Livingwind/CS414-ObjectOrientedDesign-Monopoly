@@ -12,6 +12,8 @@ public class DesktopLauncher {
 		config.height = 768;
 		config.resizable = false;
 		config.addIcon("assets/icon_32.png", Files.FileType.Local);
-		new LwjglApplication(new Monopoly(), config);
+		boolean debug = (arg.length > 0);
+
+		new LwjglApplication(new Monopoly(debug), config);
 	}
 }
