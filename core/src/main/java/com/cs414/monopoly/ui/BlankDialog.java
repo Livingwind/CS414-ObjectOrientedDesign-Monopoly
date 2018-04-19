@@ -36,6 +36,7 @@ public abstract class BlankDialog extends Dialog {
     button(confirm);
   }
 
+
   static String titleFormat(String string){
     String formattedTitle = "";
     for (String word : string.split(" ")) {

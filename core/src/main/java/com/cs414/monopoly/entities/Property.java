@@ -8,6 +8,7 @@ public abstract class Property {
   public final Texture texture;
   public final String name;
   public final int value;
+
   final int[] rents;
 
   public boolean mortgaged;
@@ -33,6 +34,19 @@ public abstract class Property {
     return name.equals(property.name);
   }
 
+  public void toggleMortgage(){
+    int mortgageValue = value/2;
+    int buyBack = (int) Math.round(mortgageValue * 1.10);
+    int buyback = (int) Math.round(mortgageValue * 1.10);
+    if(mortgaged && ownedBy.getMoney() >= buyback){
+      ownedBy.modifyMoney(-buyBack);
+      System.out.println("Property has been un-mortgaged");
+    }else{
+      ownedBy.modifyMoney(mortgageValue);
+      System.out.println("Property has been mortgaged");
+    }
+    mortgaged = !mortgaged;
+  }
   @Override
   public int hashCode() {
     return name.hashCode();

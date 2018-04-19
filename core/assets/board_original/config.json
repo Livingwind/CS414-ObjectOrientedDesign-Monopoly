@@ -84,6 +84,7 @@
     "color": "magenta",
     "houseCost": 100,
     "rent": [10, 50, 150, 450, 620, 750]
+
   },
   {
     "position": 12,

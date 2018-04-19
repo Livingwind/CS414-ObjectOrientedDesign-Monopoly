@@ -17,34 +17,37 @@ public class LotDialog extends PropertyDialog {
 
   @Override
   protected void clickedDialogue() {
-    super.clickedDialogue();
     // buttons
+    if(!property.mortgaged){
+      if (property.ownedBy == state.getCurrentPlayer()) {
+        Button buyHouse = new TextButton("Buy House", getSkin());
+        buyHouse.padRight(10).padLeft(10);
+        buyHouse.setColor(Color.GREEN);
+        buyHouse.addListener(new ChangeListener() {
+          @Override
+          public void changed(ChangeEvent event, Actor actor) {
+            System.out.println("Bought a house!");
+            event.cancel();
+          }
+        });
+        Button sellHouse = new TextButton("Sell House", getSkin());
+        sellHouse.padRight(10).padLeft(10);
+        sellHouse.setColor(Color.RED);
+        sellHouse.addListener(new ChangeListener() {
+          @Override
+          public void changed(ChangeEvent event, Actor actor) {
+            System.out.println("Sold a house!");
+            event.cancel();
+          }
+        });
 
-    if(property.ownedBy == state.getCurrentPlayer()) {
-      Button buyHouse = new TextButton("Buy House", getSkin());
-      buyHouse.padRight(10).padLeft(10);
-      buyHouse.setColor(Color.GREEN);
-      buyHouse.addListener(new ChangeListener(){
-        @Override
-        public void changed(ChangeEvent event, Actor actor){
-          System.out.println("Bought a house!");
-          event.cancel();
-        }
-      });
-      Button sellHouse = new TextButton("Sell House", getSkin());
-      sellHouse.padRight(10).padLeft(10);
-      sellHouse.setColor(Color.RED);
-      sellHouse.addListener(new ChangeListener(){
-        @Override
-        public void changed(ChangeEvent event, Actor actor){
-          System.out.println("Sold a house!");
-          event.cancel();
-        }
-      });
-      getContentTable().row(); // put text under image
-      button(buyHouse);
-      button(sellHouse);
+
+        getContentTable().row(); // put text under image
+        button(buyHouse);
+        button(sellHouse);
+      }
     }
+    super.clickedDialogue();
   }
 
 }
