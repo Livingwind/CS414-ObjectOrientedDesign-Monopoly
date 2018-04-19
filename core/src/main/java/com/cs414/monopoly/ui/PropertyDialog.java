@@ -39,7 +39,7 @@ public abstract class PropertyDialog extends BlankDialog {
     }
   }
 
-  void mortgageButton() {
+  private void mortgageButton() {
     if(property.ownedBy == state.getCurrentPlayer()) {
       Button mortgageProperty = (property.mortgaged) ? new TextButton("Un-Mortgage", getSkin()) : new TextButton("Mortgage", getSkin());
 
@@ -80,7 +80,7 @@ public abstract class PropertyDialog extends BlankDialog {
 
   }
 
-  void landedDialogue() {
+  private void landedDialogue() {
     getTitleLabel().setText("You landed on " + titleFormat(property.name));
     if(property.ownedBy == null) {
       unownedOptions();
@@ -89,7 +89,7 @@ public abstract class PropertyDialog extends BlankDialog {
     }
   }
 
-  String handlePayment() {
+  private String handlePayment() {
     if(property.mortgaged){
       return "This property is mortgaged";
     }else {
@@ -111,7 +111,7 @@ public abstract class PropertyDialog extends BlankDialog {
     addOKButton();
   }
 
-  void unownedOptions() {
+  private void unownedOptions() {
     if(property.value > state.getCurrentPlayer().getMoney()) {
       cantAffordOptions();
     } else {
@@ -151,7 +151,7 @@ public abstract class PropertyDialog extends BlankDialog {
   }
 
   private void cantAffordOptions() {
-    Label message = new Label(String.format("%s costs $%d.\n\nYou don't have enough\nmoney to purchase this Property.",
+    Label message = new Label(String.format("%s costs $%d.\n\nYou don't have enough\nmoney to purchase this property.",
         titleFormat(property.name), property.value), getSkin());
     message.setAlignment(Align.center);
     text(message);
