@@ -16,32 +16,34 @@ public class Monopoly extends ApplicationAdapter {
 
 	@Override
 	public void create () {
-	  Stage stage = new Stage(new ScreenViewport());
+		Stage stage = new Stage(new ScreenViewport());
 		Board board = new Board();
 		ArrayList<Player> players = new ArrayList<Player>();
 		String path = "assets/board_original/players/";
-		Player chris = new Player(path+"boat.png","chris", Color.CYAN, 0);
-		Player chris2 = new Player(path+"car.png","ian", Color.GREEN, 1500);
-		Player chris3 = new Player(path+"dog.png","brandon", Color.BROWN, 1500);
+		Player chris = new Player(path+"boat.png","Chris", Color.CYAN, 1500);
+		Player chris2 = new Player(path+"car.png","Ian", Color.GREEN, 1500);
+		Player chris3 = new Player(path+"dog.png","Brandon", Color.BLUE, 1500);
+		Player chris4 = new Player(path + "hat.png", "Christian", Color.RED, 1500);
 
 		players.add(chris);
 		players.add(chris2);
 		players.add(chris3);
+		players.add(chris4);
 		stage.addActor(board);
-	  state = GameState.getInstance();
-    state.setStage(stage);
-    state.setBoard(board);
+		state = GameState.getInstance();
+		state.setStage(stage);
+		state.setBoard(board);
 		state.addPlayers(players);
 
-    state.startGame(100000);
-    Gdx.input.setInputProcessor(stage);
+		state.startGame(100000);
+		Gdx.input.setInputProcessor(stage);
 	}
 
 	@Override
 	public void render () {
 		Gdx.gl.glClearColor(255f/255,230f/255,255f/255,1);
-    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    state.getStage().act(Gdx.graphics.getDeltaTime());
-    state.getStage().draw();
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		state.getStage().act(Gdx.graphics.getDeltaTime());
+		state.getStage().draw();
 	}
 }

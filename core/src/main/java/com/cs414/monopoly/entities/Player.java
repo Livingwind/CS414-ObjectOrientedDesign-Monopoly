@@ -40,7 +40,9 @@ public class Player extends Image {
   }
 
   public boolean purchaseProperty(Property property) {
+    GameState.getInstance().update();
     property.ownedBy = this;
+    addProperty(property);
     modifyMoney(-property.value);
     System.out.println(String.format("%s bought %s for $%d.",
         name, property.name, property.value));
@@ -70,9 +72,9 @@ public class Player extends Image {
     return netWorth;
   }
 
-  public void addProperty(Property property) {
-     properties.add(property);
-     updateNetWorth(property.value);
+  private void addProperty(Property property) {
+    properties.add(property);
+    updateNetWorth(property.value);
   }
 
   public boolean removeProperty(Property property) {
