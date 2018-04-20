@@ -21,6 +21,7 @@ public class Board extends Group {
   private float height = 1024*ratio;
 
   public ArrayList<AbstractSpace> spaces = new ArrayList<AbstractSpace>(40);
+  public int jailIndex;
 
   private void placeSpace(String path, int location,
                           JsonValue props, Vector2 pos, AbstractSpace.Direction dir) {
@@ -29,6 +30,10 @@ public class Board extends Group {
     temp.setRotation(dir.degree());
     addActor(temp);
     spaces.add(temp);
+
+    if(props.getString("type").equals("jail")) {
+      jailIndex = location;
+    }
   }
 
   private void initSpaces(String preset) {
@@ -101,6 +106,12 @@ public class Board extends Group {
 
   public void setPlayer(Player player, int num) {
     spaces.get(num).placePlayer(player);
+  }
+  
+  public void sendToJail(Player player) {
+    System.out.println(player.name + " sent to jail.");
+    player.inJail = true;
+    spaces.get(jailIndex).placePlayer(player);
   }
 
   public void initPlayer(Player player) {

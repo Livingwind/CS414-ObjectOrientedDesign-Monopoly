@@ -30,7 +30,7 @@ public class Monopoly extends ApplicationAdapter {
 		Stage stage = new Stage(new ScreenViewport());
 
 		Board board = new Board();
-		ArrayList<Player> players = new ArrayList<Player>();
+		ArrayList<Player> players = new ArrayList<>();
 		String path = "assets/board_original/players/";
 		Player chris = new Player(path+"boat.png","Chris", Color.CYAN, 1500);
 		Player chris2 = new Player(path+"car.png","Ian", Color.GREEN, 1500);

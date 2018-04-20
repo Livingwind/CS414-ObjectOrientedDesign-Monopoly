@@ -6,8 +6,9 @@ import static com.cs414.monopoly.game.Helpers.rollDice;
 
 public class PreRollState extends TurnState {
 
-  private int doubles = 1;
+  private int doubles = 0;
   public void doAction(RollContext ctx) {
+    Player current = global.getCurrentPlayer();
     int[] dice = rollDice();
     ctx.rdg.toggleDice(true);
     ctx.rdg.updateDice(dice[0], dice[1]);
@@ -15,12 +16,12 @@ public class PreRollState extends TurnState {
     if(dice[0] == dice[1]) {
       doubles++;
       if(doubles == 3) {
-        // todo: send to jail
+        global.getBoard().sendToJail(current);
         ctx.currentState = new PostRollState();
+        return;
       }
     }
 
-    Player current = global.getCurrentPlayer();
     global.getBoard().movePlayer(current, dice[0] + dice[1]);
 
     if(dice[0] != dice[1]) {

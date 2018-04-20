@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.JsonValue;
@@ -16,7 +17,7 @@ import com.cs414.monopoly.game.GameState;
 
 import java.util.ArrayList;
 
-public abstract class AbstractSpace extends Group {
+public abstract class AbstractSpace extends WidgetGroup {
 
   public enum Size {
     STANDARD(83, 132), CORNER(133, 133);
@@ -54,8 +55,9 @@ public abstract class AbstractSpace extends Group {
   // CLASS --------------------------------------------------------------
 
   final Sprite sprite;
-  private ArrayList<Player> players = new ArrayList<Player>();
+  protected ArrayList<Player> players = new ArrayList<>();
   public final int location;
+
 
 
   public AbstractSpace(String formatPath, int location, JsonValue props, Size size) {
@@ -70,9 +72,12 @@ public abstract class AbstractSpace extends Group {
 
   }
 
-  private void repositionPlayer(Player player, int index) {
-    player.setPosition((getWidth()-player.getWidth())/2,
-    (getHeight()-player.getHeight())-(player.getHeight()*index));
+  protected void repositionPlayers() {
+    for(int i = 0; i < players.size(); i++){
+      Player player = players.get(i);
+      player.setPosition((getWidth()-player.getWidth())-(player.getWidth()*(i%2)),
+          getHeight() - player.getHeight()*((i/2)+1));
+    }
   }
 
   public void placePlayer(Player player) {
@@ -84,16 +89,23 @@ public abstract class AbstractSpace extends Group {
   public void setPlayer(Player player) {
     players.add(player);
     addActor(player);
-    repositionPlayer(player, players.size()-1);
     player.space = this;
+    invalidate();
   }
 
   private void removePlayer(Player player) {
     players.remove(player);
-    for(int i = 0; i < players.size(); i++) {
-      repositionPlayer(players.get(i), i);
-    }
     removeActor(player);
+    invalidate();
+  }
+
+  @Override
+  public void layout() {
+    for(int i = 0; i < players.size(); i++) {
+      repositionPlayers();
+    }
+
+    super.layout();
   }
 
   protected abstract void onLand(Player player);
