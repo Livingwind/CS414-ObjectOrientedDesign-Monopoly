@@ -104,6 +104,10 @@ public class Board extends Group {
     spaces.get(landed).placePlayer(player);
   }
 
+  public void setPlayer(Player player, int num) {
+    spaces.get(num).placePlayer(player);
+  }
+  
   public void sendToJail(Player player) {
     System.out.println(player.name + " sent to jail.");
     player.inJail = true;

@@ -1,5 +1,6 @@
 package com.cs414.monopoly.game;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -8,15 +9,26 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.groups.Board;
+import com.cs414.monopoly.ui.debug.DebugGroup;
 
 import java.util.ArrayList;
 
 public class Monopoly extends ApplicationAdapter {
 	private GameState state;
+	private boolean debug;
+
+	public Monopoly(boolean debug) {
+		this.debug = debug;
+	}
 
 	@Override
 	public void create () {
+		if(debug) {
+			Gdx.app.setLogLevel(Application.LOG_DEBUG);
+		}
+
 		Stage stage = new Stage(new ScreenViewport());
+
 		Board board = new Board();
 		ArrayList<Player> players = new ArrayList<>();
 		String path = "assets/board_original/players/";

@@ -1,8 +1,11 @@
 package com.cs414.monopoly.game;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.groups.Board;
+import com.cs414.monopoly.ui.debug.DebugGroup;
 import com.cs414.monopoly.ui.playerhud.CurrentPlayerInfo;
 
 import java.util.ArrayList;
@@ -17,6 +20,7 @@ public class GameState {
 
   private Stage stage;
   private Board board;
+  private DebugGroup debug;
   private CurrentPlayerInfo info;
 
   public static GameState getInstance() {
@@ -27,6 +31,12 @@ public class GameState {
   }
 
   // SETUP ------------------------------------------------------------------------
+  public void initDebug() {
+    stage.addActor(new DebugGroup());
+    stage.setDebugAll(true);
+    this.debug = new DebugGroup();
+  }
+
   public void setStage(Stage stage) {
     if(this.stage == null) {
       this.stage = stage;
@@ -55,7 +65,21 @@ public class GameState {
     playerList = players;
   }
 
+  public Player getPlayer(String name) {
+    for(Player player: playerList) {
+      if(player.name.equals(name)) {
+        return player;
+      }
+    }
+    return null;
+  }
+
   public void startGame(long timelimit) throws IllegalStateException {
+    if(Gdx.app.getLogLevel() == Application.LOG_DEBUG) {
+      System.out.println("Debug enabled");
+      initDebug();
+    }
+
     if(timelimit <= 0) {
       throw new IllegalStateException();
     }
@@ -73,6 +97,14 @@ public class GameState {
   }
 
   // STATE ------------------------------------------------------------------------
+  public void log(String line) {
+    if(debug != null) {
+      debug.logCommand(line);
+    } else {
+      System.out.println(line);
+    }
+  }
+
   public void update() {
     if(info != null) {
       info.invalidate();
