@@ -40,10 +40,8 @@ public abstract class Property {
     int buyback = (int) Math.round(mortgageValue * 1.10);
     if(mortgaged && ownedBy.getMoney() >= buyback){
       ownedBy.modifyMoney(-buyBack);
-      System.out.println("Property has been un-mortgaged");
     }else{
       ownedBy.modifyMoney(mortgageValue);
-      System.out.println("Property has been mortgaged");
     }
     mortgaged = !mortgaged;
   }

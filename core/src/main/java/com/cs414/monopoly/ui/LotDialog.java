@@ -2,10 +2,12 @@ package com.cs414.monopoly.ui;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.cs414.monopoly.entities.LotProperty;
 import com.cs414.monopoly.entities.Property;
 
 public class LotDialog extends PropertyDialog {
@@ -19,14 +21,16 @@ public class LotDialog extends PropertyDialog {
   protected void clickedDialogue() {
     // buttons
     if(!property.mortgaged){
+
       if (property.ownedBy == state.getCurrentPlayer()) {
         Button buyHouse = new TextButton("Buy House", getSkin());
         buyHouse.padRight(10).padLeft(10);
         buyHouse.setColor(Color.GREEN);
+
         buyHouse.addListener(new ChangeListener() {
           @Override
           public void changed(ChangeEvent event, Actor actor) {
-            System.out.println("Bought a house!");
+            ((LotProperty)property).buyHouse();
             event.cancel();
           }
         });
@@ -36,12 +40,15 @@ public class LotDialog extends PropertyDialog {
         sellHouse.addListener(new ChangeListener() {
           @Override
           public void changed(ChangeEvent event, Actor actor) {
-            System.out.println("Sold a house!");
-            event.cancel();
+            ClickListener action = new ClickListener(){
+              @Override
+              public void clicked(InputEvent event, float x, float y) {
+                ((LotProperty)property).sellHouse();
+              }
+            };
+            new ConfirmationWindow(action, "sell a house");
           }
         });
-
-
         getContentTable().row(); // put text under image
         button(buyHouse);
         button(sellHouse);

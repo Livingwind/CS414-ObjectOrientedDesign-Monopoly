@@ -50,6 +50,7 @@ public class LotProperty extends Property {
    */
   public void buyHouse() {
     if(numHouses < 5) {
+      System.out.println("Bought a house for " + name + "!");
       numHouses++;
       rentIndex++;
     }
@@ -60,6 +61,7 @@ public class LotProperty extends Property {
    */
   public void sellHouse() {
     if(numHouses > 0) {
+      System.out.println("Sold a house for " + name + "!");
       numHouses--;
       rentIndex--;
     }

@@ -2,16 +2,14 @@ package com.cs414.monopoly.ui;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
-import com.cs414.monopoly.entities.LotProperty;
 import com.cs414.monopoly.entities.Property;
-import com.cs414.monopoly.entities.RailroadProperty;
-import com.cs414.monopoly.entities.UtilityProperty;
 
-import javax.rmi.CORBA.Util;
 
 public abstract class PropertyDialog extends BlankDialog {
   protected final Property property;
@@ -20,6 +18,7 @@ public abstract class PropertyDialog extends BlankDialog {
     super(property.name + " - $" + property.value);
     this.property = property;
     // image Table
+
     Table imageTable = new Table();
     Image image = new Image(property.texture);
     image.setScaling(Scaling.fit);
@@ -45,12 +44,18 @@ public abstract class PropertyDialog extends BlankDialog {
 
       mortgageProperty.padRight(10).padLeft(10);
       mortgageProperty.setColor(Color.MAGENTA);
+
+
       mortgageProperty.addListener(new ChangeListener(){
         @Override
         public void changed(ChangeEvent event, Actor actor){
-          property.toggleMortgage();
-          event.cancel();
-          remove();
+          ClickListener action = new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+              property.toggleMortgage();
+            }
+          };
+          new ConfirmationWindow(action, ((TextButton) mortgageProperty).getText().toString().toLowerCase());
         }
       });
       button(mortgageProperty);
@@ -71,8 +76,6 @@ public abstract class PropertyDialog extends BlankDialog {
     }
     text(message);
     message.setAlignment(Align.center);
-
-    getContentTable().row();
 
     int buyBack = (int) ((property.value/2) *1.10);
     if(property.ownedBy != null && (property.ownedBy.getMoney() >= buyBack && property.mortgaged) || !property.mortgaged)
