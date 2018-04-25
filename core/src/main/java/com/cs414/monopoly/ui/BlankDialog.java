@@ -7,8 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.cs414.monopoly.game.GameState;
 
 public abstract class BlankDialog extends Dialog {
-  private Buttons buttons = new Buttons();
-
+  private final Buttons buttons = new Buttons();
+  private final Listeners listeners = new Listeners();
   protected final GameState state = GameState.getInstance();
 
   BlankDialog(String title) {
@@ -16,7 +16,9 @@ public abstract class BlankDialog extends Dialog {
   }
 
   void addCloseButton() {
-    getTitleTable().add(buttons.getCloseButton(this));
+    Button closeButton = buttons.getCloseButton();
+    closeButton.addListener(listeners.getCloseListener(this));
+    getTitleTable().add(closeButton);
   }
 
   void addOKButton() {

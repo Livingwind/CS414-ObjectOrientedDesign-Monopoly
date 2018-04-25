@@ -5,8 +5,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.groups.Board;
+import com.cs414.monopoly.ui.Buttons;
 import com.cs414.monopoly.ui.debug.DebugGroup;
 import com.cs414.monopoly.ui.playerhud.CurrentPlayerInfo;
+import com.cs414.monopoly.ui.playerhud.HUD;
+import com.cs414.monopoly.ui.playerhud.OtherPlayerInfo;
 import com.cs414.monopoly.ui.playerhud.PropertyTable;
 
 import java.util.ArrayList;
@@ -22,7 +25,7 @@ public class GameState {
   private Stage stage;
   private Board board;
   private DebugGroup debug;
-  private CurrentPlayerInfo info;
+  private HUD hud;
   public PropertyTable propertyTable = new PropertyTable();
 
   public static GameState getInstance() {
@@ -94,8 +97,7 @@ public class GameState {
     }
     currentPlayer = playerList.get(0);
 
-    info = new CurrentPlayerInfo();
-    stage.addActor(info);
+    hud = new HUD();
   }
 
   // STATE ------------------------------------------------------------------------
@@ -108,16 +110,15 @@ public class GameState {
   }
 
   public void update() {
-    if(info != null) {
-      info.invalidate();
+    if(hud != null) {
+      hud.update();
       propertyTable.update();
     }
   }
   public void nextTurn() {
     int index = playerList.indexOf(currentPlayer);
     currentPlayer = playerList.get((index+1) % playerList.size());
-    info.invalidate();
-    info.toggleProperties(false);
+    hud.nextTurn();
     propertyTable.update();
   }
 

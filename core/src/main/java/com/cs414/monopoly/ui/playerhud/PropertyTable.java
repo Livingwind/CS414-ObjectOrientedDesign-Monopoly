@@ -48,7 +48,9 @@ public class PropertyTable extends Table {
       Property property = player.properties.get(tableRow);
 
       // property button (60% of table width)
-      Button propertyButton = buttons.getPropertyButton(player, property);
+      Button propertyButton = buttons.getTextButton(property.name);
+      propertyButton.addListener(listeners.getPropertyDialogListener(property));
+      propertyButton.addListener(listeners.getHoverListener(player, property));
       add(propertyButton).width(width * 0.6f);
 
       // only add buy/sell house buttons to lot properties
@@ -58,6 +60,7 @@ public class PropertyTable extends Table {
         if (((LotProperty)property).numHouses < 5) {
           Button buyButton = buttons.getBuyButton(property);
           buyButton.addListener(listeners.getHoverListener(player, property));
+          buyButton.addListener(listeners.getBuyHouseListener(property));
           add(buyButton).width(width * 0.2f);
         } else {
           // Gray Buy Button
@@ -68,6 +71,7 @@ public class PropertyTable extends Table {
         if (((LotProperty)property).numHouses > 0) {
           Button sellButton = buttons.getSellButton(property);
           sellButton.addListener(listeners.getHoverListener(player, property));
+          sellButton.addListener(listeners.getSellHouseListener(property));
           add(sellButton).width(width * 0.2f);
         } else {
           // Gray Sell button

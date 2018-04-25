@@ -1,34 +1,31 @@
 package com.cs414.monopoly.ui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.cs414.monopoly.entities.*;
+import com.cs414.monopoly.game.GameState;
 
 public class Buttons {
-  private Listeners listeners = new Listeners();
 
-  public Button getCloseButton(Actor closeActor){
+  // Generic Buttons____________________________________________________________________________
+  public Button getTextButton(String text) {
+    return new TextButton(text, new MonopolySkin());
+  }
+
+  public Button getCloseButton(){
     Button exit = new TextButton("X", new MonopolySkin());
     exit.padRight(15).padLeft(15);
     exit.setColor(Color.RED);
-    exit.addListener(listeners.getCloseListener(closeActor));
     return exit;
-  }
-
-  public Button getBuyButton(Property property){
-    // todo: find a bitmap font that supports 🏠
-    Button btn = new TextButton("Buy \uD83C\uDFE0", new MonopolySkin());
-    btn.setColor(Color.GREEN);
-    btn.addListener(new ChangeListener(){
-      @Override
-      public void changed(ChangeEvent event, Actor actor) {
-        ((LotProperty)property).buyHouse();
-      }
-    });
-    return btn;
   }
 
   public Button getGreyButton(String text){
@@ -37,37 +34,32 @@ public class Buttons {
     return btn;
   }
 
+  // UI Buttons___________________________________________________________________________________
+  // todo: this button doesn't do anything
+  public void addSettingsButton(ChangeListener listener){
+    Texture settingsIcon = new Texture(Gdx.files.internal("assets/settings_icon.png"));
+    Drawable drawable = new TextureRegionDrawable(new TextureRegion(settingsIcon));
+    ImageButton btn = new ImageButton(drawable);
+    btn.setSize(Gdx.graphics.getWidth()/32f, Gdx.graphics.getWidth()/32f);
+    btn.setPosition(0, Gdx.graphics.getHeight()-btn.getHeight());
+    // todo: add listener
+    btn.addListener(listener);
+    GameState.getInstance().getStage().addActor(btn);
+  }
+
+  // Property Buttons_____________________________________________________________________________
+
+  public Button getBuyButton(Property property){
+    // todo: find a bitmap font that supports 🏠
+    Button btn = new TextButton("Buy \uD83C\uDFE0", new MonopolySkin());
+    btn.setColor(Color.GREEN);
+    return btn;
+  }
+
   public Button getSellButton(Property property){
     // todo: find a bitmap font that supports 🏠
     Button btn = new TextButton("Sell \uD83C\uDFE0", new MonopolySkin());
     btn.setColor(Color.RED);
-    btn.addListener(new ChangeListener(){
-      @Override
-      public void changed(ChangeEvent event, Actor actor) {
-        ((LotProperty)property).sellHouse();
-      }
-    });
     return btn;
-  }
-
-  public Button getPropertyButton(Player player, Property property) {
-    TextButton propertyButton = new TextButton(property.name, new MonopolySkin());
-
-    // bring up property dialog when clicked
-    propertyButton.addListener(new ChangeListener() {
-      @Override
-      public void changed(ChangeEvent event, Actor actor){
-        if (property.getClass() == LotProperty.class){
-          new LotDialog(property, DialogueContext.CLICK);
-        } else if(property.getClass() == RailroadProperty.class){
-          new RailroadDialog(property, DialogueContext.CLICK);
-        } else if(property.getClass() == UtilityProperty.class){
-          new UtilityDialog(property, DialogueContext.CLICK);
-        }
-      }
-    });
-    // highlight the property on the board when moused over
-    propertyButton.addListener(listeners.getHoverListener(player, property));
-    return propertyButton;
   }
 }
