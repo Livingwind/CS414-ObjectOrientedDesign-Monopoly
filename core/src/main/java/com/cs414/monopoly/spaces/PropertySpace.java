@@ -23,17 +23,17 @@ public abstract class PropertySpace extends AbstractSpace {
 
       @Override
       public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-        sprite.setColor(Color.WHITE);
+        setSpriteColor(Color.WHITE);
       }
     });
   }
 
   private void hover() {
     if(property.ownedBy != null) {
-      sprite.setColor(property.ownedBy.color);
+      setSpriteColor(property.ownedBy.color);
     } else {
       Color color = new Color(232/255f, 232/255f, 232/255f, 1);
-      sprite.setColor(color);
+      setSpriteColor(color);
     }
   }
 

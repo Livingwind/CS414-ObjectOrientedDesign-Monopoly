@@ -1,5 +1,6 @@
 package com.cs414.monopoly.ui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -22,7 +23,7 @@ public abstract class PropertyDialog extends BlankDialog {
     Table imageTable = new Table();
     Image image = new Image(property.texture);
     image.setScaling(Scaling.fit);
-    imageTable.add(image).width(300).height(300);
+    imageTable.add(image).width(Gdx.graphics.getWidth()/4f).height(Gdx.graphics.getWidth()/4f);
 
     getContentTable().padTop(20);
     getContentTable().add(imageTable);

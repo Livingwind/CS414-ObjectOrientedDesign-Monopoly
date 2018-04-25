@@ -10,13 +10,17 @@ public class TestMonopoly extends TestGame {
 
   @Before
   public void setUp() {
-    monopoly = new Monopoly();
+    monopoly = new Monopoly(false);
   }
 
   @Test
   public void testCreate() {
-    
+    monopoly = new Monopoly(false);
   }
 
+  @Test
+  public void testDebug() {
+    monopoly = new Monopoly(true);
+  }
 
 }

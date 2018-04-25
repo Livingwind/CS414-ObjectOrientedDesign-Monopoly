@@ -8,6 +8,7 @@ public abstract class Property {
   public final Texture texture;
   public final String name;
   public final int value;
+  public int location;
 
   final int[] rents;
 
@@ -22,6 +23,7 @@ public abstract class Property {
     name = props.get("name").asString();
     value = props.get("value").asInt();
     rents = props.get("rent").asIntArray();
+    location = props.get("position").asInt();
   }
 
   public abstract int getRent();

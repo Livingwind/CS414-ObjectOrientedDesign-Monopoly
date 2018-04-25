@@ -54,7 +54,7 @@ public abstract class AbstractSpace extends WidgetGroup {
 
   // CLASS --------------------------------------------------------------
 
-  final Sprite sprite;
+  private final Sprite sprite;
   protected ArrayList<Player> players = new ArrayList<>();
   public final int location;
 
@@ -70,6 +70,10 @@ public abstract class AbstractSpace extends WidgetGroup {
     this.location = location;
     setName(props.get("name").asString());
 
+  }
+
+  public void setSpriteColor(Color color){
+    sprite.setColor(color);
   }
 
   protected void repositionPlayers() {

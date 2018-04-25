@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.cs414.monopoly.game.GameState;
 
 public abstract class BlankDialog extends Dialog {
+  private Buttons buttons = new Buttons();
 
   protected final GameState state = GameState.getInstance();
 
@@ -18,31 +19,23 @@ public abstract class BlankDialog extends Dialog {
   }
 
   void addCloseButton() {
-    Button exit = new TextButton("X", getSkin());
-    exit.padRight(15).padLeft(15);
-    exit.setColor(Color.RED);
-    exit.addListener(new ChangeListener(){
-      @Override
-      public void changed(ChangeEvent event, Actor actor){
-        remove();
-      }
-    });
-    getTitleTable().add(exit);
+    getTitleTable().add(buttons.getCloseButton(this));
   }
 
   void addOKButton() {
-    Button confirm = new TextButton("Ok", getSkin());
+    Button confirm = new TextButton("OK", getSkin());
     confirm.padLeft(20).padRight(20);
     button(confirm);
   }
 
-
   static String titleFormat(String string){
-    String formattedTitle = "";
+    StringBuilder formattedTitle = new StringBuilder();
     for (String word : string.split(" ")) {
-      formattedTitle += word.substring(0,1).toUpperCase() + word.substring(1, word.length()) + " ";
+      formattedTitle.append(word.substring(0,1).toUpperCase())
+          .append(word.substring(1))
+          .append(" ");
     }
-    return formattedTitle;
+    return formattedTitle.toString();
   }
 
 }

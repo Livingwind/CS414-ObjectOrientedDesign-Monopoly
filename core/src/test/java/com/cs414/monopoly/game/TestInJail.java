@@ -16,7 +16,6 @@ public class TestInJail extends TestGame {
 
   @Before
   public void setUp() {
-
     inJail = new InJail();
     game.setStage(Mockito.mock(Stage.class));
   }
