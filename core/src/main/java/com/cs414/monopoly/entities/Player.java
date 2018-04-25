@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.spaces.AbstractSpace;
+import com.cs414.monopoly.ui.playerhud.PlayerHUD;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ public class Player extends Image {
   public final String name;
   public final Color color;
   public boolean inJail;
+  public PlayerHUD hud;
 
   private int money;
   private int netWorth;
@@ -27,6 +29,7 @@ public class Player extends Image {
   public ArrayList<Property> properties = new ArrayList<>();
 
   public Player(String textureFile, String name, Color color, int startingMoney){
+
     Sprite sprite = new Sprite(new Texture(Gdx.files.internal(textureFile)));
     setDrawable(new SpriteDrawable(sprite));
     setSize(AbstractSpace.Size.STANDARD.getWidth()/2, AbstractSpace.Size.STANDARD.getHeight()/4);
@@ -34,11 +37,17 @@ public class Player extends Image {
     this.name = name;
     this.color = color;
     this.money = startingMoney;
-    updateNetWorth(money);
+    money = startingMoney;
+    netWorth = startingMoney;
+  }
+
+  public void initHUD() {
+    hud = new PlayerHUD(this);
+    GameState.getInstance().getStage().addActor(hud);
   }
 
   public boolean purchaseProperty(Property property) {
-    GameState.getInstance().update();
+    hud.update();
     property.ownedBy = this;
     addProperty(property);
     modifyMoney(-property.value);
@@ -111,6 +120,6 @@ public class Player extends Image {
    */
   private void updateNetWorth(int amount){
     netWorth += amount;
-    GameState.getInstance().update();
+    hud.update();
   }
 }

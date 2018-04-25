@@ -27,7 +27,6 @@ public class Monopoly extends ApplicationAdapter {
 		}
 
 		Stage stage = new Stage(new ScreenViewport());
-
 		Board board = new Board();
 		ArrayList<Player> players = new ArrayList<>();
 		String path = "assets/board_original/players/";

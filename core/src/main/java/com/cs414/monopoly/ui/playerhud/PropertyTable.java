@@ -24,6 +24,7 @@ import com.cs414.monopoly.ui.Listeners;
  *          |_ _ _ _ _ _ _ _ _ _|_ _ _ _ |_ _ _ _ _|
  */
 public class PropertyTable extends Table {
+  private Player player;
   private Buttons buttons = new Buttons();
   private Listeners listeners = new Listeners();
   private float width = CurrentPlayerInfo.width; // get width from CurrentPlayerInfo
@@ -33,8 +34,8 @@ public class PropertyTable extends Table {
     super.layout();
   }
 
-  public PropertyTable(/*Actor parent*/) {
-    // width = parent.getWidth();
+  public PropertyTable(Player player) {
+    this.player = player;
     setVisible(false);
     setSize(width,0);
   }
@@ -43,7 +44,6 @@ public class PropertyTable extends Table {
     clear();
     row();
     setSize(width,0);
-    Player player = GameState.getInstance().getCurrentPlayer();
     for (int tableRow = 0; tableRow < player.properties.size(); ++tableRow) {
       Property property = player.properties.get(tableRow);
 

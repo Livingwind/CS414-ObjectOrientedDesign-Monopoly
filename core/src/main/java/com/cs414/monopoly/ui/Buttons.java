@@ -4,14 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.cs414.monopoly.entities.*;
+import com.cs414.monopoly.entities.Property;
 import com.cs414.monopoly.game.GameState;
 
 public class Buttons {
@@ -36,15 +35,12 @@ public class Buttons {
 
   // UI Buttons___________________________________________________________________________________
   // todo: this button doesn't do anything
-  public void addSettingsButton(ChangeListener listener){
+  public Button getSettingsButton(){
     Texture settingsIcon = new Texture(Gdx.files.internal("assets/settings_icon.png"));
     Drawable drawable = new TextureRegionDrawable(new TextureRegion(settingsIcon));
     ImageButton btn = new ImageButton(drawable);
     btn.setSize(Gdx.graphics.getWidth()/32f, Gdx.graphics.getWidth()/32f);
-    btn.setPosition(0, Gdx.graphics.getHeight()-btn.getHeight());
-    // todo: add listener
-    btn.addListener(listener);
-    GameState.getInstance().getStage().addActor(btn);
+    return btn;
   }
 
   // Property Buttons_____________________________________________________________________________
