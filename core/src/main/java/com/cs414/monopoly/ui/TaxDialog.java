@@ -1,12 +1,9 @@
 package com.cs414.monopoly.ui;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.Align;
-import com.cs414.monopoly.entities.Property;
 import com.cs414.monopoly.spaces.TaxType;
 
 public class TaxDialog extends BlankDialog {

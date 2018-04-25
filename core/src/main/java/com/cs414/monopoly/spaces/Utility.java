@@ -5,7 +5,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.JsonValue;
 import com.cs414.monopoly.entities.UtilityProperty;
 import com.cs414.monopoly.ui.DialogueContext;
-import com.cs414.monopoly.ui.LotDialog;
 import com.cs414.monopoly.ui.UtilityDialog;
 
 class Utility extends PropertySpace {

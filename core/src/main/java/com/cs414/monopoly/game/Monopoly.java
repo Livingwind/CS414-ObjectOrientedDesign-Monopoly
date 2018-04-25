@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.groups.Board;
-import com.cs414.monopoly.ui.debug.DebugGroup;
 
 import java.util.ArrayList;
 
