@@ -70,6 +70,12 @@ public class Player extends Image implements Cloneable{
     System.out.println(String.format("%s's money was modified by %d", name, amount));
   }
 
+  public void modifyMoneySpecialCase(int amount, int netWorth) {
+    this.money += amount;
+    updateNetWorth(netWorth);
+    System.out.println(String.format("%s's money was modified by %d", name, amount));
+  }
+
   public int getMoney() {
     return money;
   }

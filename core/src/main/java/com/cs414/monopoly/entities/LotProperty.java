@@ -53,7 +53,7 @@ public class LotProperty extends Property {
       System.out.println("Bought a house for " + name + "!");
       numHouses++;
       rentIndex++;
-      ownedBy.modifyMoney(-houseCost);
+      ownedBy.modifyMoneySpecialCase(-houseCost, -houseCost/2);
     }
   }
 
@@ -65,7 +65,7 @@ public class LotProperty extends Property {
       System.out.println("Sold a house for " + name + "!");
       numHouses--;
       rentIndex--;
-      ownedBy.modifyMoney(houseCost/2);
+      ownedBy.modifyMoneySpecialCase(houseCost/2, 0);
     }
   }
 

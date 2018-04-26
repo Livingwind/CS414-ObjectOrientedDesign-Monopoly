@@ -54,7 +54,7 @@ public class TaxDialog extends BlankDialog {
     }
     Button payFlat = new TextButton("Pay $" + flatCost, getSkin());
     payFlat.padRight(10).padLeft(10);
-    payFlat.addListener(new ChangeListener(){
+    payFlat.addListener(new ChangeListener() {
       @Override
       public void changed(ChangeEvent event, Actor actor){
         state.getCurrentPlayer().modifyMoney(-flatCost);
