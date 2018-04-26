@@ -1,7 +1,7 @@
 package com.cs414.monopoly.game;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.cs414.monopoly.ui.RollDiceGroup;
+import com.cs414.monopoly.ui.dice.RollDiceGroup;
 
 public class RollContext {
   public TurnState currentState;

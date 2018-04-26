@@ -1,4 +1,4 @@
-package com.cs414.monopoly.ui;
+package com.cs414.monopoly.ui.dialog;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -15,7 +15,7 @@ import com.cs414.monopoly.entities.Property;
 public abstract class PropertyDialog extends BlankDialog {
   protected final Property property;
 
-  protected PropertyDialog(Property property, DialogueContext context){
+  protected PropertyDialog(Property property, DialogContext context){
     super(property.name + " - $" + property.value);
     this.property = property;
     // image Table
@@ -39,29 +39,45 @@ public abstract class PropertyDialog extends BlankDialog {
     }
   }
 
+  // Listeners___________________________________________________________
+
+  private ClickListener yesAction = new ClickListener(){
+    @Override
+    public void clicked(InputEvent event, float x, float y) {
+      property.toggleMortgage();
+      new LotDialog(property, DialogContext.CLICK);
+    }
+  };
+
+  private ClickListener noAction = new ClickListener(){
+    @Override
+    public void clicked(InputEvent event, float x, float y) {
+      new LotDialog(property, DialogContext.CLICK);
+    }
+  };
+
+  private ChangeListener mortgageListener(String msg) {
+    return new ChangeListener() {
+      @Override
+      public void changed(ChangeEvent event, Actor actor) {
+        new ConfirmationDialog(yesAction, noAction, msg, property);
+      }
+    };
+  }
+
+  // Functions___________________________________________________________
+
   private void mortgageButton() {
     if(property.ownedBy == state.getCurrentPlayer()) {
       Button mortgageProperty = (property.mortgaged) ? new TextButton("Un-Mortgage", getSkin()) : new TextButton("Mortgage", getSkin());
-
-      mortgageProperty.padRight(10).padLeft(10);
-      mortgageProperty.setColor(Color.MAGENTA);
-
-
-      mortgageProperty.addListener(new ChangeListener(){
-        @Override
-        public void changed(ChangeEvent event, Actor actor){
-          ClickListener action = new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-              property.toggleMortgage();
-            }
-          };
-          new ConfirmationWindow(action, ((TextButton) mortgageProperty).getText().toString().toLowerCase());
-        }
-      });
+      String msg = ((TextButton) mortgageProperty).getText().toString().toLowerCase();
+        mortgageProperty.padRight(10).padLeft(10);
+        mortgageProperty.setColor(Color.MAGENTA);
+        mortgageProperty.addListener(mortgageListener(msg));
       button(mortgageProperty);
     }
   }
+
   void clickedDialogue() {
     addCloseButton();
     String owner = "Property " + ((property.ownedBy == null) ? "not owned" :

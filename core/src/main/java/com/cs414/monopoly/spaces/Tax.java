@@ -2,7 +2,7 @@ package com.cs414.monopoly.spaces;
 
 import com.badlogic.gdx.utils.JsonValue;
 import com.cs414.monopoly.entities.Player;
-import com.cs414.monopoly.ui.TaxDialog;
+import com.cs414.monopoly.ui.dialog.TaxDialog;
 
 public class Tax extends AbstractSpace {
   private String name;

@@ -7,8 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.JsonValue;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.entities.Property;
-import com.cs414.monopoly.ui.DialogueContext;
-import com.cs414.monopoly.ui.LotDialog;
+import com.cs414.monopoly.ui.dialog.DialogContext;
+import com.cs414.monopoly.ui.dialog.LotDialog;
 
 public abstract class PropertySpace extends AbstractSpace {
   Property property;
@@ -39,6 +39,6 @@ public abstract class PropertySpace extends AbstractSpace {
 
   @Override
   public void onLand(Player player) {
-    new LotDialog(property, DialogueContext.LAND);
+    new LotDialog(property, DialogContext.LAND);
   }
 }

@@ -5,7 +5,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.cs414.monopoly.entities.LotProperty;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.entities.Property;
-import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.ui.Buttons;
 import com.cs414.monopoly.ui.Listeners;
 

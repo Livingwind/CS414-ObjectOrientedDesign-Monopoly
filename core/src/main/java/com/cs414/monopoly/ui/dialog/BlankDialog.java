@@ -1,10 +1,13 @@
-package com.cs414.monopoly.ui;
+package com.cs414.monopoly.ui.dialog;
 
 
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.cs414.monopoly.game.GameState;
+import com.cs414.monopoly.ui.Buttons;
+import com.cs414.monopoly.ui.Listeners;
+import com.cs414.monopoly.ui.MonopolySkin;
 
 public abstract class BlankDialog extends Dialog {
   private final Buttons buttons = new Buttons();

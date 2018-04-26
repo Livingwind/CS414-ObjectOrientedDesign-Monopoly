@@ -2,7 +2,6 @@ package com.cs414.monopoly.entities;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonValue;
-import com.cs414.monopoly.game.GameState;
 
 import java.util.HashMap;
 

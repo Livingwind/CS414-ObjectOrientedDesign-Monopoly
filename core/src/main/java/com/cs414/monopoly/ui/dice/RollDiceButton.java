@@ -1,4 +1,4 @@
-package com.cs414.monopoly.ui;
+package com.cs414.monopoly.ui.dice;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -9,6 +9,7 @@ import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.game.PostRollState;
 import com.cs414.monopoly.game.PreRollState;
 import com.cs414.monopoly.game.TurnState;
+import com.cs414.monopoly.ui.MonopolySkin;
 
 public class RollDiceButton extends TextButton{
   private GameState state = GameState.getInstance();

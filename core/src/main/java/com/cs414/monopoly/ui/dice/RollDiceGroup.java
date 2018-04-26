@@ -1,4 +1,4 @@
-package com.cs414.monopoly.ui;
+package com.cs414.monopoly.ui.dice;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
 

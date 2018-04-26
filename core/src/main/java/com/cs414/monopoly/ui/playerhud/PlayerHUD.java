@@ -2,10 +2,8 @@ package com.cs414.monopoly.ui.playerhud;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.cs414.monopoly.entities.Player;
-import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.ui.Buttons;
 import com.cs414.monopoly.ui.Listeners;
 
