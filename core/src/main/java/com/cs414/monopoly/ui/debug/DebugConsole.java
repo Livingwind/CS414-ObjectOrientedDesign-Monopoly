@@ -60,9 +60,12 @@ public class DebugConsole extends TextField {
   }
 
   private void setCommand(String[] cmds) {
-    Player player = state.getPlayer(cmds[1]);
-    state.getBoard().setPlayer(player, Integer.parseInt(cmds[2]));
-
+    try {
+      Player player = state.getPlayer(cmds[1]);
+      state.getBoard().setPlayer(player, Integer.parseInt(cmds[2]));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   private void moneyCommand(String[] cmds) {
