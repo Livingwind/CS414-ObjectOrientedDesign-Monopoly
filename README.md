@@ -24,5 +24,6 @@ Design documents are located in the design_documents folder.
 * https://github.com/libgdx/libgdx/wiki libgdx wiki
 * https://libgdx.badlogicgames.com/nightlies/docs/api/ libgdx javadoc
 * http://www.gamefromscratch.com/ Older tutorial that explains some basic concepts
+* http://www.pixnbgames.com/blog/libgdx/how-to-manage-screens-in-libgdx/ Working with screens
 
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
