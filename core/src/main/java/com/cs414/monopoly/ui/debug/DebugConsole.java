@@ -53,6 +53,7 @@ public class DebugConsole extends TextField {
     try {
       Player player = state.getPlayer(cmds[1]);
       int amount = Integer.parseInt(cmds[2]);
+      state.setTurn(player);
       state.getBoard().movePlayer(player, amount);
     } catch (Exception e) {
       e.printStackTrace();
@@ -62,6 +63,7 @@ public class DebugConsole extends TextField {
   private void setCommand(String[] cmds) {
     try {
       Player player = state.getPlayer(cmds[1]);
+      state.setTurn(player);
       state.getBoard().setPlayer(player, Integer.parseInt(cmds[2]));
     } catch (Exception e) {
       e.printStackTrace();

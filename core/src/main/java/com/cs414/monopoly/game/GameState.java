@@ -103,6 +103,13 @@ public class GameState {
     }
   }
 
+  public void setTurn(Player player) {
+    currentPlayer.hud.setVisible(false);
+    int index = playerList.indexOf(player);
+    currentPlayer = playerList.get(index);
+    currentPlayer.hud.setVisible(true);
+  }
+
   public void nextTurn() {
     currentPlayer.hud.setVisible(false);
     int index = playerList.indexOf(currentPlayer);
