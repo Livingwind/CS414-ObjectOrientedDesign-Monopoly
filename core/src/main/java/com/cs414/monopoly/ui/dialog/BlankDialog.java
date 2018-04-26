@@ -1,6 +1,7 @@
 package com.cs414.monopoly.ui.dialog;
 
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -19,8 +20,8 @@ public abstract class BlankDialog extends Dialog {
   }
 
   void addCloseButton() {
-    Button closeButton = buttons.getCloseButton();
-    closeButton.addListener(listeners.getCloseListener(this));
+    Button closeButton = buttons.textButton("X", Color.RED, 15, 15);
+    closeButton.addListener(listeners.closeListener(this));
     getTitleTable().add(closeButton);
   }
 

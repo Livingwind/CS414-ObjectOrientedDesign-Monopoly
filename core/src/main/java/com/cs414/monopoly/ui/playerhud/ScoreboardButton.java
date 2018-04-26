@@ -11,10 +11,10 @@ public class ScoreboardButton extends TextButton{
   private boolean showScoreboard = false;
   private Scoreboard scoreboard;
 
-  public ScoreboardButton(Scoreboard scoreboard) {
+  public ScoreboardButton(Scoreboard scoreboard, float width) {
     super("Show Scoreboard", new MonopolySkin());
     this.scoreboard = scoreboard;
-    setSize(Gdx.graphics.getWidth()/8f, Gdx.graphics.getWidth()/48f);
+    setSize(width, Gdx.graphics.getWidth()/48f);
     initToggle();
   }
 

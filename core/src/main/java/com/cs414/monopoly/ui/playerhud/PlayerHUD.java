@@ -14,9 +14,10 @@ public class PlayerHUD extends Group {
   // PlayerHUD objects
   private CurrentPlayerInfo playerInfo;
   public Player player;
-  private Button settingsButton = buttons.getSettingsButton();
-  private Scoreboard scoreboard = new Scoreboard();
-  private Button scoreboardButton = new ScoreboardButton(scoreboard);
+  private Button settingsButton = buttons.settingsButton();
+  private float scoreboardButtonWidth = Gdx.graphics.getWidth()/8f;
+  private Scoreboard scoreboard;
+  private Button scoreboardButton;
 
 
   public PlayerHUD(Player player) {
@@ -24,13 +25,15 @@ public class PlayerHUD extends Group {
     playerInfo = new CurrentPlayerInfo(player);
     addActor(playerInfo);
     placeSettingsButton();
-    placeScoreboardButton();
+    scoreboard = new Scoreboard(settingsButton.getWidth()+scoreboardButtonWidth, player);
     placeScoreboard();
+    scoreboardButton = new ScoreboardButton(scoreboard, scoreboardButtonWidth);
+    placeScoreboardButton();
     setVisible(false);
   }
 
   private void placeScoreboard(){
-    scoreboard.setPosition(0, Gdx.graphics.getHeight()-scoreboardButton.getHeight()-scoreboard.getHeight());
+    scoreboard.setPosition(0, Gdx.graphics.getHeight()-settingsButton.getHeight()-scoreboard.getHeight());
     addActor(scoreboard);
   }
 
@@ -40,12 +43,13 @@ public class PlayerHUD extends Group {
   }
 
   private void placeSettingsButton() {
-    settingsButton.addListener(listeners.getTextListener("Settings button not implemented yet!"));
+    settingsButton.addListener(listeners.textListener("Settings button not implemented yet!"));
     settingsButton.setPosition(0, Gdx.graphics.getHeight()-settingsButton.getHeight());
     addActor(settingsButton);
   }
 
   public void update() {
     playerInfo.update();
+    scoreboard.update();
   }
 }

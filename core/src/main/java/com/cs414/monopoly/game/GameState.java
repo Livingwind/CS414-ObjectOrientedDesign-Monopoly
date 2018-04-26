@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class GameState {
   private static GameState instance;
-  private ArrayList<Player> playerList;
+  public ArrayList<Player> playerList;
   private Player currentPlayer;
 
   private long timeremaining;

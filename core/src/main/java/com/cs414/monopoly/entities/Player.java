@@ -12,7 +12,7 @@ import com.cs414.monopoly.ui.playerhud.PlayerHUD;
 
 import java.util.ArrayList;
 
-public class Player extends Image {
+public class Player extends Image implements Cloneable{
   public final String name;
   public final Color color;
   public boolean inJail;
@@ -37,7 +37,6 @@ public class Player extends Image {
     this.name = name;
     this.color = color;
     this.money = startingMoney;
-    money = startingMoney;
     netWorth = startingMoney;
   }
 
@@ -120,6 +119,18 @@ public class Player extends Image {
    */
   private void updateNetWorth(int amount) {
     netWorth += amount;
+    System.out.println("updating");
     hud.update();
+  }
+
+  @Override
+  public Player clone() {
+    Player clone = null;
+    try{
+      clone = (Player) super.clone();
+    }catch(CloneNotSupportedException cns){
+      // todo
+    }
+    return clone;
   }
 }

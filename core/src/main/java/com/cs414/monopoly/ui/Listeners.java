@@ -16,7 +16,7 @@ import com.cs414.monopoly.ui.dialog.UtilityDialog;
 public class Listeners {
 
   // a temporary listener used for buttons that aren't implemented yet
-  public ChangeListener getTextListener(String text){
+  public ChangeListener textListener(String text){
     return new ChangeListener(){
       @Override
       public void changed(ChangeEvent event, Actor actor) {
@@ -25,7 +25,7 @@ public class Listeners {
     };
   }
 
-  public ChangeListener getCloseListener(Actor removeActor) {
+  public ChangeListener closeListener(Actor removeActor) {
     return new ChangeListener() {
       @Override
       public void changed(ChangeListener.ChangeEvent event, Actor actor) {
@@ -34,7 +34,7 @@ public class Listeners {
     };
   }
 
-  public ClickListener getToggleListener(Player player){
+  public ClickListener toggleListener(Player player){
     return new ClickListener() {
       Board board = GameState.getInstance().getBoard();
       @Override
@@ -56,7 +56,7 @@ public class Listeners {
 
   // Property Listeners___________________________________________________________________________
 
-  public ClickListener getHoverListener(Player player, Property property) {
+  public ClickListener hoverListener(Player player, Property property) {
     return new ClickListener() {
       Board board = GameState.getInstance().getBoard();
       @Override
@@ -71,7 +71,7 @@ public class Listeners {
     };
   }
 
-  public ChangeListener getPropertyDialogListener(Property property){
+  public ChangeListener propertyDialogListener(Property property){
     return new ChangeListener() {
       @Override
       public void changed(ChangeEvent event, Actor actor){
@@ -86,7 +86,7 @@ public class Listeners {
     };
   }
 
-  public ChangeListener getSellHouseListener(Property property) {
+  public ChangeListener sellHouseListener(Property property) {
     return new ChangeListener(){
       @Override
       public void changed(ChangeEvent event, Actor actor) {
@@ -95,7 +95,7 @@ public class Listeners {
     };
   }
 
-  public ChangeListener getBuyHouseListener(Property property) {
+  public ChangeListener buyHouseListener(Property property) {
     return new ChangeListener(){
       @Override
       public void changed(ChangeEvent event, Actor actor) {

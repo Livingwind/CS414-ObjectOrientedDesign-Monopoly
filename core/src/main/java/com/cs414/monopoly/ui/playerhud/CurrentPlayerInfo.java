@@ -72,7 +72,7 @@ public class CurrentPlayerInfo extends Window {
 
   private void addToggleMouseOver() {
     toggle.removeListener(toggleListener);
-    toggleListener = listeners.getToggleListener(player);
+    toggleListener = listeners.toggleListener(player);
     toggle.addListener(toggleListener);
   }
 

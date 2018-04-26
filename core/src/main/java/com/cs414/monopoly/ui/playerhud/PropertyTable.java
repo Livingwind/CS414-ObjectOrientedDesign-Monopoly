@@ -1,5 +1,6 @@
 package com.cs414.monopoly.ui.playerhud;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.cs414.monopoly.entities.LotProperty;
@@ -47,9 +48,9 @@ public class PropertyTable extends Table {
       Property property = player.properties.get(tableRow);
 
       // property button (60% of table width)
-      Button propertyButton = buttons.getTextButton(property.name);
-      propertyButton.addListener(listeners.getPropertyDialogListener(property));
-      propertyButton.addListener(listeners.getHoverListener(player, property));
+      Button propertyButton = buttons.textButton(property.name);
+      propertyButton.addListener(listeners.propertyDialogListener(property));
+      propertyButton.addListener(listeners.hoverListener(player, property));
       add(propertyButton).width(width * 0.6f);
 
       // only add buy/sell house buttons to lot properties
@@ -57,24 +58,24 @@ public class PropertyTable extends Table {
 
         // Add 'Buy 🏠' button (20% of table width)
         if (((LotProperty)property).numHouses < 5) {
-          Button buyButton = buttons.getBuyButton(property);
-          buyButton.addListener(listeners.getHoverListener(player, property));
-          buyButton.addListener(listeners.getBuyHouseListener(property));
+          Button buyButton = buttons.buyButton(property);
+            buyButton.addListener(listeners.hoverListener(player, property));
+            buyButton.addListener(listeners.buyHouseListener(property));
           add(buyButton).width(width * 0.2f);
         } else {
           // Gray Buy Button
-          add(buttons.getGreyButton("Buy \uD83C\uDFE0")).width(width * 0.2f);
+          add(buttons.textButton("Buy \uD83C\uDFE0", Color.LIGHT_GRAY)).width(width * 0.2f);
         }
 
         // Add 'Sell 🏠' button (20% of table width)
         if (((LotProperty)property).numHouses > 0) {
-          Button sellButton = buttons.getSellButton(property);
-          sellButton.addListener(listeners.getHoverListener(player, property));
-          sellButton.addListener(listeners.getSellHouseListener(property));
+          Button sellButton = buttons.sellButton(property);
+            sellButton.addListener(listeners.hoverListener(player, property));
+            sellButton.addListener(listeners.sellHouseListener(property));
           add(sellButton).width(width * 0.2f);
         } else {
           // Gray Sell button
-          add(buttons.getGreyButton("Sell \uD83C\uDFE0")).width(width * 0.2f);
+          add(buttons.textButton("Sell \uD83C\uDFE0", Color.LIGHT_GRAY)).width(width * 0.2f);
         }
       }
 

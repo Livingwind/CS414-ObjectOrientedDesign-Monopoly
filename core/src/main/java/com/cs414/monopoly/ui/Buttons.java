@@ -6,34 +6,37 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.cs414.monopoly.entities.Property;
 
 public class Buttons {
+  private Skin skin = new MonopolySkin();
 
   // Generic Buttons____________________________________________________________________________
-  public Button getTextButton(String text) {
-    return new TextButton(text, new MonopolySkin());
+  public Button textButton(String text) {
+    return new TextButton(text, skin);
   }
 
-  public Button getCloseButton(){
-    Button exit = new TextButton("X", new MonopolySkin());
-    exit.padRight(15).padLeft(15);
-    exit.setColor(Color.RED);
-    return exit;
+  public Button textButton(String text, Color color){
+    TextButton btn = new TextButton(text, skin);
+    btn.setColor(color);
+    return btn;
   }
 
-  public Button getGreyButton(String text){
-    Button btn = new TextButton(text, new MonopolySkin());
-    btn.setColor(Color.LIGHT_GRAY);
+  public Button textButton(String text, Color color, int padRight, int padLeft){
+    TextButton btn = new TextButton(text, skin);
+    btn.setColor(color);
+    btn.padRight(padRight);
+    btn.padLeft(padLeft);
     return btn;
   }
 
   // UI Buttons___________________________________________________________________________________
   // todo: this button doesn't do anything
-  public Button getSettingsButton(){
+  public Button settingsButton(){
     Texture settingsIcon = new Texture(Gdx.files.internal("assets/settings_icon.png"));
     Drawable drawable = new TextureRegionDrawable(new TextureRegion(settingsIcon));
     ImageButton btn = new ImageButton(drawable);
@@ -42,16 +45,16 @@ public class Buttons {
   }
 
   // Property Buttons_____________________________________________________________________________
-  public Button getBuyButton(Property property){
+  public Button buyButton(Property property){
     // todo: find a bitmap font that supports 🏠
-    Button btn = new TextButton("Buy \uD83C\uDFE0", new MonopolySkin());
+    Button btn = new TextButton("Buy \uD83C\uDFE0", skin);
     btn.setColor(Color.GREEN);
     return btn;
   }
 
-  public Button getSellButton(Property property){
+  public Button sellButton(Property property){
     // todo: find a bitmap font that supports 🏠
-    Button btn = new TextButton("Sell \uD83C\uDFE0", new MonopolySkin());
+    Button btn = new TextButton("Sell \uD83C\uDFE0", skin);
     btn.setColor(Color.RED);
     return btn;
   }
