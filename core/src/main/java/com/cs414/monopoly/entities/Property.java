@@ -36,7 +36,7 @@ public abstract class Property {
     return name.equals(property.name);
   }
 
-  public void toggleMortgage(){
+  public void toggleMortgage() {
     int mortgageValue = value/2;
     int buyBack = (int) Math.round(mortgageValue * 1.10);
     int buyback = (int) Math.round(mortgageValue * 1.10);

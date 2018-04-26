@@ -65,7 +65,7 @@ public class GameState {
 
   public Player getPlayer(String name) {
     for(Player player: playerList) {
-      if(player.name.equals(name)) {
+      if(player.name.toLowerCase().equals(name.toLowerCase())) {
         return player;
       }
     }

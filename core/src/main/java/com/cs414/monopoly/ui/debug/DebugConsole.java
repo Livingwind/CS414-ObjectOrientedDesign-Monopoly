@@ -1,9 +1,12 @@
 package com.cs414.monopoly.ui.debug;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.ui.MonopolySkin;
+import com.cs414.monopoly.ui.dialog.BlankDialog;
+import com.cs414.monopoly.ui.dialog.DebugDialog;
 
 public class DebugConsole extends TextField {
   private GameState state = GameState.getInstance();
@@ -25,14 +28,25 @@ public class DebugConsole extends TextField {
 
   private void processCommand(String cmd) {
     String[] parsed = cmd.split(" ");
-    switch(parsed[0]) {
+    switch(parsed[0].toLowerCase()) {
+      case "help":
+        helpCommand();
+        break;
       case "move":
         moveCommand(parsed);
         break;
       case "set":
         setCommand(parsed);
+        break;
+      case "money":
+        moneyCommand(parsed);
     }
     group.logCommand(cmd);
+  }
+
+  // Commands are added to DebugDialog
+  private void helpCommand(){
+    new DebugDialog();
   }
 
   private void moveCommand(String[] cmds) {
@@ -51,4 +65,13 @@ public class DebugConsole extends TextField {
 
   }
 
+  private void moneyCommand(String[] cmds) {
+    try {
+      Player player = state.getPlayer(cmds[1]);
+      int amount = Integer.parseInt(cmds[2]);
+      player.modifyMoney(amount);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 }

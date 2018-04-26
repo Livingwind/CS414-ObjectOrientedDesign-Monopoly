@@ -8,7 +8,7 @@ public class Tax extends AbstractSpace {
   private String name;
   private TaxType type;
 
-  public Tax(String filename, int location, JsonValue props, final TaxType type){
+  public Tax(String filename, int location, JsonValue props, final TaxType type) {
     super(filename, location, props, Size.STANDARD);
     name = props.get("name").asString();
     this.type = type;

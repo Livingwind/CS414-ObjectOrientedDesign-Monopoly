@@ -28,7 +28,7 @@ public class Player extends Image {
 
   public ArrayList<Property> properties = new ArrayList<>();
 
-  public Player(String textureFile, String name, Color color, int startingMoney){
+  public Player(String textureFile, String name, Color color, int startingMoney) {
 
     Sprite sprite = new Sprite(new Texture(Gdx.files.internal(textureFile)));
     setDrawable(new SpriteDrawable(sprite));
@@ -65,7 +65,7 @@ public class Player extends Image {
    * Modifies the player's money by the given amount using addition.
    * @param amount amount of money to add or remove from the player.
    */
-  public void modifyMoney(int amount){
+  public void modifyMoney(int amount) {
     this.money += amount;
     updateNetWorth(amount);
     System.out.println(String.format("%s's money was modified by %d", name, amount));
@@ -118,7 +118,7 @@ public class Player extends Image {
    * Called each time the player earns money or property.
    * @param amount amount to modify their net worth by.
    */
-  private void updateNetWorth(int amount){
+  private void updateNetWorth(int amount) {
     netWorth += amount;
     hud.update();
   }

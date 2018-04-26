@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.cs414.monopoly.entities.Property;
+import com.cs414.monopoly.game.GameState;
 
 
 public abstract class PropertyDialog extends BlankDialog {
@@ -82,22 +83,26 @@ public abstract class PropertyDialog extends BlankDialog {
     addCloseButton();
     String owner = "Property " + ((property.ownedBy == null) ? "not owned" :
         "owned by: " + property.ownedBy.name + "\n");
-    String mortgaged = "Property is mortgaged";
+    if (GameState.getInstance().getCurrentPlayer().name.equals(property.ownedBy.name)){
+      owner = "You own this property.";
+    }
+    String mortgaged = "Mortgaged!";
 
     Label message;
-    if((property.ownedBy == null || !property.mortgaged))
+    if((property.ownedBy == null || !property.mortgaged)) {
       message = new Label(owner, getSkin());
-    else{
-      message = new Label(owner + mortgaged, getSkin());
+    } else {
+      message = new Label(owner + "\n" + mortgaged, getSkin());
       message.setColor(Color.RED);
     }
     text(message);
     message.setAlignment(Align.center);
 
     int buyBack = (int) ((property.value/2) *1.10);
-    if(property.ownedBy != null && (property.ownedBy.getMoney() >= buyBack && property.mortgaged) || !property.mortgaged)
+    if(property.ownedBy != null && (property.ownedBy.getMoney() >= buyBack && property.mortgaged)
+        || !property.mortgaged) {
       mortgageButton();
-
+    }
   }
 
   private void landedDialogue() {
@@ -112,7 +117,7 @@ public abstract class PropertyDialog extends BlankDialog {
   private String handlePayment() {
     if(property.mortgaged){
       return "This property is mortgaged";
-    }else {
+    } else {
       state.getCurrentPlayer().modifyMoney(-property.getRent());
       property.ownedBy.modifyMoney(+property.getRent());
       return String.format("You paid %s $%d.", property.ownedBy.name, property.getRent());
