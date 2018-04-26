@@ -37,12 +37,11 @@ public class Buttons {
     Texture settingsIcon = new Texture(Gdx.files.internal("assets/settings_icon.png"));
     Drawable drawable = new TextureRegionDrawable(new TextureRegion(settingsIcon));
     ImageButton btn = new ImageButton(drawable);
-    btn.setSize(Gdx.graphics.getWidth()/32f, Gdx.graphics.getWidth()/32f);
+    btn.setSize(Gdx.graphics.getWidth()/48f, Gdx.graphics.getWidth()/48f);
     return btn;
   }
 
   // Property Buttons_____________________________________________________________________________
-
   public Button getBuyButton(Property property){
     // todo: find a bitmap font that supports 🏠
     Button btn = new TextButton("Buy \uD83C\uDFE0", new MonopolySkin());

@@ -46,7 +46,6 @@ public class CurrentPlayerInfo extends Window {
     toggle.setText(msg);
   }
 
-
   private void resize() {
     if(!showTable) {
       setSize(width, Gdx.graphics.getHeight()/10f);
