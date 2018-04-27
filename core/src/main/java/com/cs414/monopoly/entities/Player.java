@@ -12,7 +12,7 @@ import com.cs414.monopoly.ui.playerhud.PlayerHUD;
 
 import java.util.ArrayList;
 
-public class Player extends Image implements Cloneable{
+public class Player extends Image {
   public final String name;
   public final Color color;
   public boolean inJail;
