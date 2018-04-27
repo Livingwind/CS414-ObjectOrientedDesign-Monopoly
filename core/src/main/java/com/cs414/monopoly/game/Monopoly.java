@@ -24,7 +24,7 @@ public class Monopoly extends Game {
 			Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
 			String path = "assets/board_original/players/";
-			Player p1 = new Player(path+"hat.png","Admiral Grace Hopper", Color.SCARLET, 1500);
+			Player p1 = new Player(path+"hat.png","Grace Hopper", Color.SCARLET, 1500);
       Player p2 = new Player(path+"boat.png","Christopher Westerman", Color.CYAN, 1500);
       ArrayList<Player> testers = new ArrayList<>();
       testers.add(p1);
