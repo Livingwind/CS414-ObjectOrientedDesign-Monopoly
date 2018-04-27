@@ -8,12 +8,9 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.cs414.monopoly.TestGame;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.game.GameState;
-import com.cs414.monopoly.groups.Board;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 

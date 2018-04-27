@@ -1,11 +1,13 @@
 package com.cs414.monopoly.ui.playerhud;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.cs414.monopoly.entities.*;
+import com.cs414.monopoly.entities.LotProperty;
+import com.cs414.monopoly.entities.Player;
+import com.cs414.monopoly.entities.Property;
 import com.cs414.monopoly.game.GameState;
-import com.cs414.monopoly.ui.*;
+import com.cs414.monopoly.ui.Buttons;
+import com.cs414.monopoly.ui.Listeners;
 
 /**
  * Creates a table of owned properties for the current player.

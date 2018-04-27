@@ -1,7 +1,6 @@
 package com.cs414.monopoly.spaces;
 
 import com.badlogic.gdx.utils.JsonValue;
-import com.badlogic.gdx.utils.PooledLinkedList;
 import com.cs414.monopoly.entities.Player;
 
 public class Jail extends AbstractSpace {

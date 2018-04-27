@@ -6,7 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.cs414.monopoly.entities.*;
-import com.cs414.monopoly.game.GameState;
 
 public class Buttons {
   private Listeners listeners = new Listeners();
