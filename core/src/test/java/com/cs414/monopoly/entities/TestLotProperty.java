@@ -7,9 +7,7 @@ import com.cs414.monopoly.TestGame;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class TestLotProperty extends TestGame {
   private LotProperty lotProperty1;
@@ -26,13 +24,13 @@ public class TestLotProperty extends TestGame {
 
   @Test
   public void testEquals(){
-    assertTrue(lotProperty1.equals(lotProperty2));
-    assertFalse(lotProperty1.equals(lotProperty3));
+    assertEquals(lotProperty1, lotProperty2);
+    assertNotEquals(lotProperty1, lotProperty3);
   }
 
   @Test
   public void testHashCode() {
-    assertTrue(lotProperty1.hashCode() == lotProperty1.name.hashCode());
+    assertEquals(lotProperty1.hashCode(), lotProperty1.name.hashCode());
   }
 
   @Test

@@ -1,11 +1,9 @@
 package com.cs414.monopoly.ui.debug;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.ui.MonopolySkin;
-import com.cs414.monopoly.ui.dialog.BlankDialog;
 import com.cs414.monopoly.ui.dialog.DebugDialog;
 
 public class DebugConsole extends TextField {

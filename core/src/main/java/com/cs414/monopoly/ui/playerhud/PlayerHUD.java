@@ -26,18 +26,19 @@ public class PlayerHUD extends Group {
     addActor(playerInfo);
     placeSettingsButton();
     scoreboard = new Scoreboard(settingsButton.getWidth()+scoreboardButtonWidth, player);
+    scoreboard.setPosition(scoreboard.getWidth(), Gdx.graphics.getHeight()-settingsButton.getHeight()-scoreboard.getHeight());
     placeScoreboard();
     scoreboardButton = new ScoreboardButton(scoreboard, scoreboardButtonWidth);
     placeScoreboardButton();
     setVisible(false);
   }
 
-  private void placeScoreboard(){
+  private void placeScoreboard() {
     scoreboard.setPosition(0, Gdx.graphics.getHeight()-settingsButton.getHeight()-scoreboard.getHeight());
     addActor(scoreboard);
   }
 
-  private void placeScoreboardButton(){
+  private void placeScoreboardButton() {
     scoreboardButton.setPosition(settingsButton.getWidth(), Gdx.graphics.getHeight()-scoreboardButton.getHeight());
     addActor(scoreboardButton);
   }
@@ -46,6 +47,14 @@ public class PlayerHUD extends Group {
     settingsButton.addListener(listeners.textListener("Settings button not implemented yet!"));
     settingsButton.setPosition(0, Gdx.graphics.getHeight()-settingsButton.getHeight());
     addActor(settingsButton);
+  }
+
+  public void updatePlayerInfo(){
+    playerInfo.update();
+  }
+
+  public void updateScoreboard() {
+    scoreboard.update();
   }
 
   public void update() {

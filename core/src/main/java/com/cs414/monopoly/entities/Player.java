@@ -46,7 +46,6 @@ public class Player extends Image implements Cloneable{
   }
 
   public boolean purchaseProperty(Property property) {
-    hud.update();
     property.ownedBy = this;
     addProperty(property);
     modifyMoney(-property.value);
@@ -125,18 +124,6 @@ public class Player extends Image implements Cloneable{
    */
   private void updateNetWorth(int amount) {
     netWorth += amount;
-    System.out.println("updating");
     hud.update();
-  }
-
-  @Override
-  public Player clone() {
-    Player clone = null;
-    try{
-      clone = (Player) super.clone();
-    }catch(CloneNotSupportedException cns){
-      // todo
-    }
-    return clone;
   }
 }
