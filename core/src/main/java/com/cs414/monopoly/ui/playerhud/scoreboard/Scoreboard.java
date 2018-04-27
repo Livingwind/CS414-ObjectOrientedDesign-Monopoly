@@ -82,21 +82,27 @@ public class Scoreboard extends Window {
   public void update() {
     super.layout();
     clear();
+
     Button playerName = buttons.textButton("Player");
     playerName.addListener(setNameComparator);
     if (comparator == 3) playerName.setColor(Color.GRAY);
+
     Button playerMoney = buttons.textButton("Money");
     playerMoney.addListener(setMoneyComparator);
     if (comparator == 2) playerMoney.setColor(Color.GRAY);
+
     Button playerNetWorth = buttons.textButton("Net Worth");
     playerNetWorth.addListener(setNetWorthComparator);
     if (comparator == 1) playerNetWorth.setColor(Color.GRAY);
-    Button tradeInvis = buttons.textButton("Trade");
+
+    Button tradeInvis = buttons.textButton(" Trade ");
     tradeInvis.setVisible(false);
-    add(playerName).align(Align.left);
-    add(playerMoney).align(Align.left);
-    add(playerNetWorth).align(Align.left);
-    add(tradeInvis).align(Align.left);
+
+    add(playerName).expandX().fill();
+    add(playerMoney).expandX().fill();
+    add(playerNetWorth).expandX().fill();
+    add(tradeInvis).expandX().fill();
+
     setHeight(playerMoney.getHeight() + 7 * sortedPlayers.size());
     row();
 
@@ -109,10 +115,10 @@ public class Scoreboard extends Window {
       Label pMoney = new Label(String.format("$%d ", player.getMoney()), skin);
       Label pNetWorth = new Label(String.format("$%d ", player.getNetWorth()), skin);
       add(pName).width(100).align(Align.left);
-      add(pMoney).align(Align.left);
-      add(pNetWorth).align(Align.left);
+      add(pMoney).expand().fill();
+      add(pNetWorth).expand().fill();
       if (!currentPlayer.name.equals(player.name)) {
-        Button trade = buttons.textButton("Trade");
+        Button trade = buttons.textButton(" Trade ");
         trade.addListener(listeners.textListener("Boop"));
         trade.addListener(listeners.toggleListener(player));
         add(trade);
