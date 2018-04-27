@@ -8,9 +8,7 @@ import com.cs414.monopoly.TestGame;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class TestRailroadProperty extends TestGame {
   private RailroadProperty railroadProperty1;
@@ -29,13 +27,13 @@ public class TestRailroadProperty extends TestGame {
 
   @Test
   public void testEquals(){
-    assertTrue(railroadProperty1.equals(railroadProperty2));
-    assertFalse(railroadProperty1.equals(railroadProperty3));
+    assertEquals(railroadProperty1, railroadProperty2);
+    assertNotEquals(railroadProperty1, railroadProperty3);
   }
 
   @Test
   public void testHashCode() {
-    assertTrue(railroadProperty1.hashCode() == railroadProperty1.name.hashCode());
+    assertEquals(railroadProperty1.hashCode(), railroadProperty1.name.hashCode());
   }
 
   @Test
