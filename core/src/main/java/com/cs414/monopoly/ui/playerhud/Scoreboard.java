@@ -1,7 +1,14 @@
 package com.cs414.monopoly.ui.playerhud;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.game.GameState;
@@ -13,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Scoreboard extends Window {
+  // todo spacing between columns
   private Player currentPlayer;
   private Buttons buttons = new Buttons();
   private Listeners listeners = new Listeners();
@@ -20,21 +28,16 @@ public class Scoreboard extends Window {
   private ArrayList<Player> clonedPlayerList = GameState.getInstance().playerList;
 
   public Scoreboard(float width, Player currentPlayer) {
-    super("Scoreboard", new MonopolySkin());
+    super("", new MonopolySkin());
     this.currentPlayer = currentPlayer;
     setSize(Gdx.graphics.getWidth()/4f, Gdx.graphics.getWidth()/8f);
     setVisible(false);
     setMovable(false);
 
+    Texture backgroundTexture = new Texture(Gdx.files.internal("assets/table-background.png"));
+    Drawable backgroundTRD = new TextureRegionDrawable(new TextureRegion(backgroundTexture));
+    setBackground(backgroundTRD);
     update();
-  }
-
-  private static ArrayList<Player> clonePlayers(ArrayList<Player> list) {
-    ArrayList<Player> clone = new ArrayList<>(list.size());
-    for (Player p : list){
-      clone.add(p.clone());
-    }
-    return clone;
   }
 
   public void update() {
@@ -49,13 +52,8 @@ public class Scoreboard extends Window {
     add(tradeInvis).align(Align.left);
     row();
 
-    ArrayList<Player> sortedPlayers = clonePlayers(clonedPlayerList);
-    Collections.sort(sortedPlayers, new PlayerComparator());
-
-    for (int i = 0; i < sortedPlayers.size(); ++i){
-      Player player = sortedPlayers.get(i);
-      System.out.println(i + ") " + player.name);
-    }
+    ArrayList<Player> sortedPlayers = new ArrayList<>(clonedPlayerList);
+    Collections.sort(sortedPlayers, new PlayerNetWorthComparator());
 
     for (Player player : sortedPlayers){
       Label pName = new Label(player.name, skin);
