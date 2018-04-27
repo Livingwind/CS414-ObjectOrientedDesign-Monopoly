@@ -38,7 +38,7 @@ public class Scoreboard extends Window {
   public Scoreboard(Player currentPlayer) {
     super("", new MonopolySkin());
     this.currentPlayer = currentPlayer;
-    setSize(Gdx.graphics.getWidth()/4f, Gdx.graphics.getWidth()/8f);
+    setSize(Gdx.graphics.getWidth()/4f, Gdx.graphics.getWidth()/6f);
     setVisible(false);
     setMovable(false);
     Texture backgroundTexture = new Texture(Gdx.files.internal("assets/table-background.png"));
@@ -80,10 +80,6 @@ public class Scoreboard extends Window {
     }
   };
 
-  public void getHeader() {
-
-  }
-
   public void update() {
     super.layout();
     clear();
@@ -109,9 +105,10 @@ public class Scoreboard extends Window {
 
     for (Player player : sortedPlayers){
       Label pName = new Label(player.name, skin);
+      pName.setWrap(true);
       Label pMoney = new Label(String.format("$%d ", player.getMoney()), skin);
       Label pNetWorth = new Label(String.format("$%d ", player.getNetWorth()), skin);
-      add(pName).align(Align.left);
+      add(pName).width(100).align(Align.left);
       add(pMoney);
       add(pNetWorth).align(Align.left);
       if (!currentPlayer.name.equals(player.name)) {
