@@ -2,11 +2,14 @@ package com.cs414.monopoly.ui.dialog;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.cs414.monopoly.entities.LotProperty;
 import com.cs414.monopoly.entities.Property;
+import com.cs414.monopoly.ui.DialogContext;
 
 public class LotDialog extends PropertyDialog {
   public LotDialog(Property property, DialogContext context) {
@@ -23,9 +26,9 @@ public class LotDialog extends PropertyDialog {
         Button buyHouse = new TextButton("Buy House", getSkin());
         buyHouse.padRight(10).padLeft(10);
         buyHouse.setColor(Color.GREEN);
-        buyHouse.addListener(new ChangeListener() {
+        buyHouse.addListener(new ClickListener() {
           @Override
-          public void changed(ChangeEvent event, Actor actor) {
+          public void clicked(InputEvent event, float x, float y) {
             if (((LotProperty) property).numHouses < 5) {
               ((LotProperty) property).buyHouse();
             }
@@ -35,9 +38,9 @@ public class LotDialog extends PropertyDialog {
         Button sellHouse = new TextButton("Sell House", getSkin());
         sellHouse.padRight(10).padLeft(10);
         sellHouse.setColor(Color.RED);
-        sellHouse.addListener(new ChangeListener() {
+        sellHouse.addListener(new ClickListener() {
           @Override
-          public void changed(ChangeEvent event, Actor actor) {
+          public void clicked(InputEvent event, float x, float y) {
             if (((LotProperty) property).numHouses > 0) {
               ((LotProperty) property).sellHouse();
             }

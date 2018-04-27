@@ -1,4 +1,4 @@
-package com.cs414.monopoly.ui.dialog;
+package com.cs414.monopoly.ui;
 
 public enum DialogContext {
   LAND,

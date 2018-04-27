@@ -119,7 +119,7 @@ public class Scoreboard extends Window {
       add(pNetWorth).expand().fill();
       if (!currentPlayer.name.equals(player.name)) {
         Button trade = buttons.textButton(" Trade ");
-        trade.addListener(listeners.textListener("Boop"));
+        trade.addListener(listeners.tradeListener(currentPlayer, player));
         trade.addListener(listeners.toggleListener(player));
         add(trade);
       }

@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.cs414.monopoly.entities.Property;
 import com.cs414.monopoly.game.GameState;
+import com.cs414.monopoly.ui.DialogContext;
 
 
 public abstract class PropertyDialog extends BlankDialog {
@@ -146,9 +147,9 @@ public abstract class PropertyDialog extends BlankDialog {
     Button auction = new TextButton("Auction", getSkin());
     auction.padRight(10).padLeft(10);
     auction.setColor(Color.RED);
-    auction.addListener(new ChangeListener(){
+    auction.addListener(new ClickListener(){
       @Override
-      public void changed(ChangeEvent event, Actor actor){
+      public void  clicked(InputEvent event, float x, float y) {
         System.out.println("AUCTION NOT IMPLEMENTED");
         remove();
       }
@@ -165,9 +166,9 @@ public abstract class PropertyDialog extends BlankDialog {
     Button buyProperty = new TextButton("Buy Property", getSkin());
     buyProperty.padRight(10).padLeft(10);
     buyProperty.setColor(Color.GREEN);
-    buyProperty.addListener(new ChangeListener(){
+    buyProperty.addListener(new ClickListener(){
       @Override
-      public void changed(ChangeEvent event, Actor actor){
+      public void clicked(InputEvent event, float x, float y) {
         state.getCurrentPlayer().purchaseProperty(property);
         remove();
       }
