@@ -23,7 +23,6 @@ import com.cs414.monopoly.ui.playerhud.PlayerNameComparator;
 import com.cs414.monopoly.ui.playerhud.PlayerNetWorthComparator;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class Scoreboard extends Window {

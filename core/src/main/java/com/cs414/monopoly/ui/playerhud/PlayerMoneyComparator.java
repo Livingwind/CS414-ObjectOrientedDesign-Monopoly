@@ -1,6 +1,7 @@
 package com.cs414.monopoly.ui.playerhud;
 
 import com.cs414.monopoly.entities.Player;
+
 import java.util.Comparator;
 
 public class PlayerMoneyComparator implements Comparator<Player> {
