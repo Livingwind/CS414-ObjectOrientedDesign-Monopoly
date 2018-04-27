@@ -37,7 +37,7 @@ public class Scoreboard extends Window {
   public Scoreboard(Player currentPlayer) {
     super("", new MonopolySkin());
     this.currentPlayer = currentPlayer;
-    setSize(Gdx.graphics.getWidth()/4f, Gdx.graphics.getWidth()/6f);
+    setSize(Gdx.graphics.getWidth()/4f, 0);
     setVisible(false);
     setMovable(false);
     Texture backgroundTexture = new Texture(Gdx.files.internal("assets/table-background.png"));
@@ -97,6 +97,7 @@ public class Scoreboard extends Window {
     add(playerMoney).align(Align.left);
     add(playerNetWorth).align(Align.left);
     add(tradeInvis).align(Align.left);
+    setHeight(playerMoney.getHeight() + 7 * sortedPlayers.size());
     row();
 
     sortedPlayers = new ArrayList<>(GameState.getInstance().playerList);
@@ -104,7 +105,7 @@ public class Scoreboard extends Window {
 
     for (Player player : sortedPlayers){
       Label pName = new Label(player.name, skin);
-      pName.setWrap(true);
+        pName.setWrap(true);
       Label pMoney = new Label(String.format("$%d ", player.getMoney()), skin);
       Label pNetWorth = new Label(String.format("$%d ", player.getNetWorth()), skin);
       add(pName).width(100).align(Align.left);
@@ -116,6 +117,7 @@ public class Scoreboard extends Window {
         trade.addListener(listeners.toggleListener(player));
         add(trade);
       }
+      setHeight(getHeight()+(pName.getHeight()*1.5f));
       row();
     }
   }
