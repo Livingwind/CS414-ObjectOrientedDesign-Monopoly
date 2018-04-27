@@ -109,7 +109,7 @@ public class Scoreboard extends Window {
       Label pMoney = new Label(String.format("$%d ", player.getMoney()), skin);
       Label pNetWorth = new Label(String.format("$%d ", player.getNetWorth()), skin);
       add(pName).width(100).align(Align.left);
-      add(pMoney);
+      add(pMoney).align(Align.left);
       add(pNetWorth).align(Align.left);
       if (!currentPlayer.name.equals(player.name)) {
         Button trade = buttons.textButton("Trade");
