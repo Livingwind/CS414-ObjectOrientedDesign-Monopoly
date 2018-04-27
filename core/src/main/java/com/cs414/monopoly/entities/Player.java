@@ -58,7 +58,6 @@ public class Player extends Image implements Cloneable{
     return true;
   }
 
-
   /**
    * Modifies the player's money by the given amount using addition.
    * @param amount amount of money to add or remove from the player.

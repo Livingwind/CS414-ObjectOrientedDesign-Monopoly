@@ -1,4 +1,4 @@
-package com.cs414.monopoly.ui.playerhud;
+package com.cs414.monopoly.ui.playerhud.scoreboard;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -11,10 +11,10 @@ public class ScoreboardButton extends TextButton{
   private boolean showScoreboard = false;
   private Scoreboard scoreboard;
 
-  public ScoreboardButton(Scoreboard scoreboard, float width) {
+  public ScoreboardButton(Scoreboard scoreboard, float settingsButtonSize) {
     super("Show Scoreboard", new MonopolySkin());
     this.scoreboard = scoreboard;
-    setSize(width, Gdx.graphics.getWidth()/48f);
+    setSize(scoreboard.getWidth()-settingsButtonSize, settingsButtonSize);
     initToggle();
   }
 
