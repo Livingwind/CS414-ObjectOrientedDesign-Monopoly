@@ -83,15 +83,16 @@ public abstract class PropertyDialog extends BlankDialog {
     addCloseButton();
     String owner = "Property " + ((property.ownedBy == null) ? "not owned" :
         "owned by: " + property.ownedBy.name + "\n");
-    if (GameState.getInstance().getCurrentPlayer().name.equals(property.ownedBy.name)){
-      owner = "You own this property.";
-    }
+
     String mortgaged = "Mortgaged!";
 
     Label message;
     if((property.ownedBy == null || !property.mortgaged)) {
       message = new Label(owner, getSkin());
     } else {
+      if (property.ownedBy.name.equals(GameState.getInstance().getCurrentPlayer().name)) {
+        owner = "You own this property.";
+      }
       message = new Label(owner + "\n" + mortgaged, getSkin());
       message.setColor(Color.RED);
     }
