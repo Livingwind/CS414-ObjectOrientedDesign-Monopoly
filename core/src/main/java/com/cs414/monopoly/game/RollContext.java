@@ -21,4 +21,7 @@ public class RollContext {
     currentState.doAction(this);
   }
 
+  public void setJail() {
+    currentState = new InJail();
+  }
 }
