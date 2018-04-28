@@ -43,7 +43,7 @@
   },
   {
     "text": "Pay school fees of $150",
-    "money": 150
+    "money": -150
   },
   {
     "text": "Receive $25 consultancy fee",
@@ -55,6 +55,6 @@
   },
   {
     "text": "You inherit $100" ,
-    "money": 10
+    "money": 100
   }
 ]
