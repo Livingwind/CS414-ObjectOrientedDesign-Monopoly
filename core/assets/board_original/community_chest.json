@@ -1,0 +1,60 @@
+[
+  {
+    "text": "Advance to Go (Collect $200)",
+    "set": 0,
+    "go": true
+  },
+  {
+    "text": "Bank error in your favor - Collect $200",
+    "money": 200
+  },
+  {
+    "text": "Doctor’s fees - Pay $50",
+    "money": -50
+  },
+  {
+    "text": "From sale of stock you get $50",
+    "money": 50
+  },
+  {
+    "text": "Get out of Jail Free",
+    "jailcard": 1
+  },
+  {
+    "text": "Go to Jail - Go directly to Jail",
+    "set": 30,
+    "go": false
+  },
+  {
+    "text": "Holiday Fund matures - Collect $100",
+    "money": 100
+  },
+  {
+    "text": "Income tax refund - Collect $20",
+    "money": 20
+  },
+  {
+    "text": "Life insurance matures - Collect $100",
+    "money": 100
+  },
+  {
+    "text": "Pay hospital fees of $100",
+    "money": -100
+  },
+  {
+    "text": "Pay school fees of $150",
+    "money": 150
+  },
+  {
+    "text": "Receive $25 consultancy fee",
+    "money": 25
+  },
+  {
+    "text": "You have won second prize in a beauty contest - Collect $10" ,
+    "money": 10
+  },
+  {
+    "text": "You inherit $100" ,
+    "money": 10
+  }
+]
