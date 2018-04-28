@@ -1,0 +1,52 @@
+package com.cs414.monopoly.ui.trade;
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.cs414.monopoly.entities.LotProperty;
+import com.cs414.monopoly.entities.Player;
+import com.cs414.monopoly.entities.Property;
+import com.cs414.monopoly.ui.MonopolySkin;
+
+import java.util.ArrayList;
+
+public class TradeContent extends Table {
+  public Table buttonTable = new Table();
+  public Table labelTable = new Table();
+  public ArrayList<Property> selectedProperties = new ArrayList<>();
+
+  public TradeContent(Player player){
+    fillTables(player);
+  }
+
+  private void fillTables(Player player){
+    for (Property property : player.properties){
+      Label propertyLabel = new Label(property.name, new MonopolySkin());
+      propertyLabel.setVisible(false);
+      if (property.mortgaged){
+        propertyLabel.setColor(Color.MAGENTA);
+      }
+
+      TradePropertyButton propertyButton;
+      // It's a Lot
+      if (LotProperty.class == property.getClass()){
+        // Lot with houses: can't trade
+        if (((LotProperty)property).numHouses > 0){
+          propertyButton = new TradePropertyButton(propertyLabel);
+        }
+        // Lot without houses
+        else {
+          propertyButton = new TradePropertyButton(property, propertyLabel, selectedProperties);
+        }
+      }
+      // It's not a Lot
+      else {
+        propertyButton = new TradePropertyButton(property, propertyLabel, selectedProperties);
+      }
+      buttonTable.add(propertyButton).expandX().fill();
+      buttonTable.row();
+      labelTable.add(propertyLabel).expandX().fill();
+      labelTable.row();
+    }
+  }
+}
