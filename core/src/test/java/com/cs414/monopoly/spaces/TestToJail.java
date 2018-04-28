@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class TestToJail extends TestGame {
 
@@ -33,7 +34,7 @@ public class TestToJail extends TestGame {
   public void testPlacePlayer(){
     assertEquals(testPlayer1.space, toJail1);
     toJail2.placePlayer(testPlayer1);
-    assertEquals(testPlayer1.space, toJail2);
+    assertNotEquals(testPlayer1.space, toJail2);
   }
 
   @Test
