@@ -4,16 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.JsonValue;
 import com.cs414.monopoly.entities.Player;
-import com.cs414.monopoly.game.GameState;
 
 import java.util.ArrayList;
 
@@ -54,7 +49,7 @@ public abstract class AbstractSpace extends WidgetGroup {
 
   // CLASS --------------------------------------------------------------
 
-  final Sprite sprite;
+  private final Sprite sprite;
   protected ArrayList<Player> players = new ArrayList<>();
   public final int location;
 
@@ -70,6 +65,10 @@ public abstract class AbstractSpace extends WidgetGroup {
     this.location = location;
     setName(props.get("name").asString());
 
+  }
+
+  public void setSpriteColor(Color color){
+    sprite.setColor(color);
   }
 
   protected void repositionPlayers() {

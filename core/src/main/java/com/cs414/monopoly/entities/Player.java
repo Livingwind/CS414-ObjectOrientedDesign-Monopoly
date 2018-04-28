@@ -1,6 +1,5 @@
 package com.cs414.monopoly.entities;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,7 +12,6 @@ import com.cs414.monopoly.spaces.AbstractSpace;
 import java.util.ArrayList;
 
 public class Player extends Image {
-  private final Sprite sprite;
   public final String name;
   public final Color color;
   public boolean inJail;
@@ -26,10 +24,10 @@ public class Player extends Image {
   public int numRoads;
   public int numUtilities;
 
-  public ArrayList<Property> properties = new ArrayList<Property>();
+  public ArrayList<Property> properties = new ArrayList<>();
 
   public Player(String textureFile, String name, Color color, int startingMoney){
-    sprite = new Sprite(new Texture(Gdx.files.internal(textureFile)));
+    Sprite sprite = new Sprite(new Texture(Gdx.files.internal(textureFile)));
     setDrawable(new SpriteDrawable(sprite));
     setSize(AbstractSpace.Size.STANDARD.getWidth()/2, AbstractSpace.Size.STANDARD.getHeight()/4);
 

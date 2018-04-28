@@ -2,6 +2,7 @@ package com.cs414.monopoly.entities;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonValue;
+import com.cs414.monopoly.game.GameState;
 
 import java.util.HashMap;
 
@@ -9,7 +10,7 @@ public class LotProperty extends Property {
   private static HashMap<Color, Integer> colorMap = new HashMap<>();
   public final Color color;
   public int houseCost;
-  private int numHouses;
+  public int numHouses;
   private int rentIndex;
 
   public LotProperty(String filename, JsonValue props) {
@@ -50,8 +51,10 @@ public class LotProperty extends Property {
    */
   public void buyHouse() {
     if(numHouses < 5) {
+      System.out.println("Bought a house for " + name + "!");
       numHouses++;
       rentIndex++;
+      GameState.getInstance().update();
     }
   }
 
@@ -60,8 +63,10 @@ public class LotProperty extends Property {
    */
   public void sellHouse() {
     if(numHouses > 0) {
+      System.out.println("Sold a house for " + name + "!");
       numHouses--;
       rentIndex--;
+      GameState.getInstance().update();
     }
   }
 

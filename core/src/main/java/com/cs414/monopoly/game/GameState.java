@@ -7,6 +7,7 @@ import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.groups.Board;
 import com.cs414.monopoly.ui.debug.DebugGroup;
 import com.cs414.monopoly.ui.playerhud.CurrentPlayerInfo;
+import com.cs414.monopoly.ui.playerhud.PropertyTable;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class GameState {
   private Board board;
   private DebugGroup debug;
   private CurrentPlayerInfo info;
+  public PropertyTable propertyTable = new PropertyTable();
 
   public static GameState getInstance() {
     if(instance == null) {
@@ -108,6 +110,7 @@ public class GameState {
   public void update() {
     if(info != null) {
       info.invalidate();
+      propertyTable.update();
     }
   }
   public void nextTurn() {
@@ -115,6 +118,7 @@ public class GameState {
     currentPlayer = playerList.get((index+1) % playerList.size());
     info.invalidate();
     info.toggleProperties(false);
+    propertyTable.update();
   }
 
   public Player getCurrentPlayer() {

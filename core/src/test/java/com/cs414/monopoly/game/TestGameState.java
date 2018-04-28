@@ -9,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-
 import java.util.ArrayList;
 
+import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 
@@ -19,7 +19,7 @@ public class TestGameState extends TestGame {
 
   private GameState game = GameState.getInstance();
   private String path = "assets/board_original/players/";
-  private ArrayList<Player> players = new ArrayList<Player>();
+  private ArrayList<Player> players = new ArrayList<>();
 
   @Before public void setUp(){
     Player p0 = new Player(path+"boat.png","chris", Color.CYAN, 0);
@@ -47,7 +47,7 @@ public class TestGameState extends TestGame {
     game.setBoard(new Board());
     game.addPlayers(players);
     game.startGame(100);
-    assertTrue(game.getCurrentPlayer() != null);
+    assertNotNull(game.getCurrentPlayer());
   }
 
 

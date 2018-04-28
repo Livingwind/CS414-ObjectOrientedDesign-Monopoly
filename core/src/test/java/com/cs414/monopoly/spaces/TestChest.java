@@ -16,7 +16,6 @@ public class TestChest extends TestGame {
   private Chest chest1;
   private Chest chest2;
   private Player testPlayer1;
-  private Player testPlayer2;
 
   @Before
   public void setUp() {
@@ -24,7 +23,7 @@ public class TestChest extends TestGame {
     chest1 = new Chest("assets/board_original/%s/02.png", 2, root.get(2));
     chest2 = new Chest("assets/board_original/%s/02.png", 2, root.get(2));
     testPlayer1 = new Player("assets/board_original/players/car.png","test1", Color.GREEN, 1500);
-    testPlayer2 = new Player("assets/board_original/players/boat.png","test2", Color.RED, 1500);
+    Player testPlayer2 = new Player("assets/board_original/players/boat.png","test2", Color.RED, 1500);
     chest1.setPlayer(testPlayer1);
     chest1.setPlayer(testPlayer2);
   }

@@ -1,6 +1,7 @@
 package com.cs414.monopoly.game;
 
 import com.badlogic.gdx.Gdx;
+
 import java.util.Random;
 
 public abstract class Helpers {

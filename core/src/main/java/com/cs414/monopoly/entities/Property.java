@@ -8,6 +8,7 @@ public abstract class Property {
   public final Texture texture;
   public final String name;
   public final int value;
+  public int location;
 
   final int[] rents;
 
@@ -22,6 +23,7 @@ public abstract class Property {
     name = props.get("name").asString();
     value = props.get("value").asInt();
     rents = props.get("rent").asIntArray();
+    location = props.get("position").asInt();
   }
 
   public abstract int getRent();
@@ -40,10 +42,8 @@ public abstract class Property {
     int buyback = (int) Math.round(mortgageValue * 1.10);
     if(mortgaged && ownedBy.getMoney() >= buyback){
       ownedBy.modifyMoney(-buyBack);
-      System.out.println("Property has been un-mortgaged");
     }else{
       ownedBy.modifyMoney(mortgageValue);
-      System.out.println("Property has been mortgaged");
     }
     mortgaged = !mortgaged;
   }

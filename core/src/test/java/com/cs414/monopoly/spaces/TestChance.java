@@ -16,7 +16,6 @@ public class TestChance extends TestGame {
   private Chance chance1;
   private Chance chance2;
   private Player testPlayer1;
-  private Player testPlayer2;
 
   @Before
   public void setUp() {
@@ -24,7 +23,7 @@ public class TestChance extends TestGame {
     chance1 = new Chance("assets/board_original/%s/07.png", 7, root.get(7));
     chance2 = new Chance("assets/board_original/%s/07.png", 7, root.get(7));
     testPlayer1 = new Player("assets/board_original/players/car.png","test1", Color.GREEN, 1500);
-    testPlayer2 = new Player("assets/board_original/players/boat.png","test2", Color.RED, 1500);
+    Player testPlayer2 = new Player("assets/board_original/players/boat.png","test2", Color.RED, 1500);
     chance1.setPlayer(testPlayer1);
     chance1.setPlayer(testPlayer2);
   }
