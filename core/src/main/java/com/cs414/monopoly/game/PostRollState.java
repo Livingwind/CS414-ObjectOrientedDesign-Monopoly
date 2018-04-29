@@ -4,7 +4,7 @@ public class PostRollState extends TurnState {
   @Override
   public void doAction(RollContext ctx) {
     global.nextTurn();
-    if(!GameState.getInstance().getCurrentPlayer().inJail) {
+    if(GameState.getInstance().getCurrentPlayer().inJail < 1) {
       ctx.currentState = new PreRollState();
     } else {
       ctx.currentState = new InJail();

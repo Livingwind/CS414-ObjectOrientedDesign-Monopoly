@@ -2,6 +2,8 @@ package com.cs414.monopoly.entities;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonValue;
+import com.cs414.monopoly.game.GameState;
+import com.cs414.monopoly.spaces.Lot;
 
 import java.util.HashMap;
 
@@ -53,8 +55,9 @@ public class LotProperty extends Property {
       System.out.println("Bought a house for " + name + "!");
       numHouses++;
       rentIndex++;
-      ownedBy.modifyMoneySpecialCase(-houseCost, -houseCost/2);
     }
+
+    ((Lot)GameState.getInstance().getBoard().spaces.get(location)).updateProperties();
   }
 
   /**
@@ -65,8 +68,12 @@ public class LotProperty extends Property {
       System.out.println("Sold a house for " + name + "!");
       numHouses--;
       rentIndex--;
-      ownedBy.modifyMoneySpecialCase(houseCost/2, 0);
     }
+    ((Lot)GameState.getInstance().getBoard().spaces.get(location)).updateProperties();
+  }
+
+  public int getHousingValue(){
+    return numHouses < 5 ? numHouses * houseCost : houseCost;
   }
 
   @Override

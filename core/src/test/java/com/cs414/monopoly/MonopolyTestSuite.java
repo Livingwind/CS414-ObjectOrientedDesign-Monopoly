@@ -6,6 +6,7 @@ import com.cs414.monopoly.entities.TestRailroadProperty;
 import com.cs414.monopoly.entities.TestUtilityProperty;
 import com.cs414.monopoly.game.*;
 import com.cs414.monopoly.spaces.*;
+import com.cs414.monopoly.stages.TestGameScreen;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -29,7 +30,8 @@ import org.junit.runners.Suite;
     TestUtility.class,
     TestMonopoly.class,
     TestPostRollState.class,
-    TestInJail.class
+    TestInJail.class,
+    TestGameScreen.class
 })
 public class MonopolyTestSuite {
 }
