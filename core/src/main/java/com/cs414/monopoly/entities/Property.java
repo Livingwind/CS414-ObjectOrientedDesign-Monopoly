@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.JsonValue;
 public abstract class Property {
   public final Image image;
   public final String name;
-  public int value;
+  public final int value;
 
   final int[] rents;
   public boolean mortgaged;
