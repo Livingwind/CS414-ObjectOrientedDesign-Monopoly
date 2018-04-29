@@ -11,7 +11,6 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.cs414.monopoly.entities.Property;
 import com.cs414.monopoly.ui.DialogContext;
-import com.cs414.monopoly.ui.PopupDialog;
 import com.cs414.monopoly.ui.auction.AuctionGroup;
 
 

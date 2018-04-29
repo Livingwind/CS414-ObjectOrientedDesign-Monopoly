@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.Scaling;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.entities.Property;
 import com.cs414.monopoly.game.GameState;
-import com.cs414.monopoly.ui.PopupDialog;
+import com.cs414.monopoly.ui.dialog.PopupDialog;
 import com.cs414.monopoly.ui.dialog.BlankDialog;
 
 public class AuctionDisplay extends BlankDialog {
