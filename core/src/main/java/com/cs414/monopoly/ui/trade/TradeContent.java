@@ -15,11 +15,11 @@ public class TradeContent extends Table {
   public Table labelTable = new Table();
   public ArrayList<Property> selectedProperties = new ArrayList<>();
 
-  public TradeContent(Player player){
-    fillTables(player);
+  public TradeContent(Player player, NetWorthLabel netWorth){
+    fillTables(player, netWorth);
   }
 
-  private void fillTables(Player player){
+  private void fillTables(Player player, NetWorthLabel netWorth){
     Label buttonTablePadding = new Label("________________________", new MonopolySkin());
       buttonTablePadding.setVisible(false);
     Label labelTablePadding = new Label("________________________", new MonopolySkin());
@@ -45,12 +45,12 @@ public class TradeContent extends Table {
         }
         // Lot without houses
         else {
-          propertyButton = new TradePropertyButton(property, propertyLabel, selectedProperties);
+          propertyButton = new TradePropertyButton(property, propertyLabel, selectedProperties, netWorth);
         }
       }
       // It's not a Lot
       else {
-        propertyButton = new TradePropertyButton(property, propertyLabel, selectedProperties);
+        propertyButton = new TradePropertyButton(property, propertyLabel, selectedProperties, netWorth);
       }
       buttonTable.add(propertyButton).expandX().fill();
       buttonTable.row();

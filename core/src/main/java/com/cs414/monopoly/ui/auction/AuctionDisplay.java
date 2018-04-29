@@ -107,6 +107,7 @@ public class AuctionDisplay extends BlankDialog {
     Player buyer = GameState.getInstance().getPlayer(playerInfo.highestBidder().name);
     property.ownedBy = buyer;
     buyer.addProperty(property);
+    buyer.modifyMoney(-playerInfo.highestBid());
   }
 
   private void updateDisplay() {

@@ -12,12 +12,14 @@ import java.util.ArrayList;
 
 public class TradePropertyButton extends TextButton {
   private Label propertyLabel;
+  private NetWorthLabel netWorth;
   private boolean pressed = false;
   public Property property;
   private ArrayList<Property> selectedProperties;
 
-  public TradePropertyButton(Property property, Label propertyLabel, ArrayList<Property> selectedProperties) {
+  public TradePropertyButton(Property property, Label propertyLabel, ArrayList<Property> selectedProperties, NetWorthLabel netWorth) {
     super(property.name, new MonopolySkin());
+    this.netWorth = netWorth;
     this.property = property;
     this.propertyLabel = propertyLabel;
     this.selectedProperties = selectedProperties;
@@ -39,10 +41,12 @@ public class TradePropertyButton extends TextButton {
     if (!pressed) {
       propertyLabel.setVisible(false);
       selectedProperties.remove(property);
+      netWorth.updateText(-property.value);
     }
     else {
       propertyLabel.setVisible(true);
       selectedProperties.add(property);
+      netWorth.updateText(property.value);
     }
   }
 

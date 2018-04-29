@@ -4,8 +4,8 @@ import com.cs414.monopoly.entities.Player;
 
 public class TradeContentManager extends TradeContent {
 
-  public TradeContentManager(Player player, boolean swap){
-    super(player);
+  public TradeContentManager(Player player, boolean swap, NetWorthLabel netWorth){
+    super(player, netWorth);
     if(swap){
       add(buttonTable);
       add(labelTable);
