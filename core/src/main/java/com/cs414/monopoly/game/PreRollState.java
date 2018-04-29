@@ -22,6 +22,7 @@ public class PreRollState extends TurnState {
       }
     }
 
+    global.lastRoll = dice[0] + dice[1];
     global.getBoard().movePlayer(current, dice[0] + dice[1]);
 
     if(dice[0] != dice[1]) {

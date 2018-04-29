@@ -20,6 +20,7 @@ public class GameState {
   private Stage stage;
   private Board board;
   private DebugGroup debug;
+  public int lastRoll;
 
   public static GameState getInstance() {
     if(instance == null) {
