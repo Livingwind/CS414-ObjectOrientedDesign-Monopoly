@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.cs414.monopoly.entities.*;
 import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.groups.Board;
-import com.cs414.monopoly.ui.dialog.DialogContext;
 import com.cs414.monopoly.ui.dialog.LotDialog;
 import com.cs414.monopoly.ui.dialog.RailroadDialog;
 import com.cs414.monopoly.ui.dialog.UtilityDialog;

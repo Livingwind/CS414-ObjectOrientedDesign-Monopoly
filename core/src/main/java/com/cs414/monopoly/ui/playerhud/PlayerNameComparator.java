@@ -1,6 +1,7 @@
 package com.cs414.monopoly.ui.playerhud;
 
 import com.cs414.monopoly.entities.Player;
+import com.cs414.monopoly.game.GameState;
 
 import java.util.Comparator;
 
