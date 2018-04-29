@@ -1,0 +1,57 @@
+[
+  {
+    "text": "Advance to Go (Collect $200)",
+    "set": 0,
+    "go": true
+  },
+  {
+    "text": "Advance to Illinois Ave",
+    "set": 24,
+    "go": true
+  },
+  {
+    "text": "Advance to St. Charles Place",
+    "set": 11,
+    "go": true
+  },
+  {
+    "text": "Bank pays you dividend of $50",
+    "collect": 50
+  },
+  {
+    "text": "Get out of Jail Free",
+    "jailcard": 1
+  },
+  {
+    "text": "Go Back 3 Spaces",
+    "set": -3,
+    "go": false
+  },
+  {
+    "text": "Go to Jail - Go directly to Jail",
+    "set": 30,
+    "go": false
+  },
+  {
+    "text": "Pay poor tax of $15",
+    "money": -15
+  },
+  {
+    "text": "Take a trip to Reading Railroad",
+    "set": 5,
+    "go": true
+  },
+  {
+    "text": "Take a walk on the Boardwalk",
+    "set": 39,
+    "go": true
+  },
+  {
+    "text": "Your building loan matures - Collect $150",
+    "money": 150
+  },
+  {
+    "text": "You have won a crossword competition - Collect $100",
+    "money": 100
+  }
+]

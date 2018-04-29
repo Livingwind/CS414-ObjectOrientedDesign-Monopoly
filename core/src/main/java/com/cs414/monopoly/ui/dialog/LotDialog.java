@@ -2,9 +2,11 @@ package com.cs414.monopoly.ui.dialog;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.cs414.monopoly.entities.LotProperty;
 import com.cs414.monopoly.entities.Property;
 
@@ -38,12 +40,19 @@ public class LotDialog extends PropertyDialog {
         sellHouse.addListener(new ChangeListener() {
           @Override
           public void changed(ChangeEvent event, Actor actor) {
-            if (((LotProperty) property).numHouses > 0) {
-              ((LotProperty) property).sellHouse();
-            }
-            event.cancel();
+            ClickListener action = new ClickListener(){
+              @Override
+              public void clicked(InputEvent event, float x, float y) {
+                if (((LotProperty) property).numHouses > 0) {
+                  ((LotProperty) property).sellHouse();
+                }
+                event.cancel();
+              }
+            };
+            new PopupDialog(action, "sell a house");
           }
         });
+        getContentTable().row(); // put text under image
         button(buyHouse);
         button(sellHouse);
       }
