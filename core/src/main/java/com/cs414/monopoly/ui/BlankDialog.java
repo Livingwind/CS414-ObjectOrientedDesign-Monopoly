@@ -11,7 +11,7 @@ public abstract class BlankDialog extends Dialog {
 
   protected final GameState state = GameState.getInstance();
 
-  BlankDialog(String title) {
+  public BlankDialog(String title) {
     super(titleFormat(title), new MonopolySkin());
   }
 
@@ -21,6 +21,7 @@ public abstract class BlankDialog extends Dialog {
 
   void addOKButton() {
     Button confirm = new TextButton("OK", getSkin());
+
     confirm.padLeft(20).padRight(20);
     button(confirm);
   }

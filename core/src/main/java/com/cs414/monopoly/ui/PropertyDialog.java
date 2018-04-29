@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.cs414.monopoly.entities.Property;
+import com.cs414.monopoly.ui.auction.AuctionGroup;
 
 
 public abstract class PropertyDialog extends BlankDialog {
@@ -21,7 +22,7 @@ public abstract class PropertyDialog extends BlankDialog {
     // image Table
 
     Table imageTable = new Table();
-    Image image = new Image(property.texture);
+    Image image = property.image;
     image.setScaling(Scaling.fit);
     imageTable.add(image).width(Gdx.graphics.getWidth()/4f).height(Gdx.graphics.getWidth()/4f);
 
@@ -42,7 +43,6 @@ public abstract class PropertyDialog extends BlankDialog {
   private void mortgageButton() {
     if(property.ownedBy == state.getCurrentPlayer()) {
       Button mortgageProperty = (property.mortgaged) ? new TextButton("Un-Mortgage", getSkin()) : new TextButton("Mortgage", getSkin());
-
       mortgageProperty.padRight(10).padLeft(10);
       mortgageProperty.setColor(Color.MAGENTA);
 
@@ -56,7 +56,7 @@ public abstract class PropertyDialog extends BlankDialog {
               property.toggleMortgage();
             }
           };
-          new ConfirmationWindow(action, ((TextButton) mortgageProperty).getText().toString().toLowerCase());
+          new PopupDialog(action, ((TextButton) mortgageProperty).getText().toString().toLowerCase());
         }
       });
       button(mortgageProperty);
@@ -81,7 +81,6 @@ public abstract class PropertyDialog extends BlankDialog {
     int buyBack = (int) ((property.value/2) *1.10);
     if(property.ownedBy != null && (property.ownedBy.getMoney() >= buyBack && property.mortgaged) || !property.mortgaged)
       mortgageButton();
-
   }
 
   private void landedDialogue() {
@@ -128,7 +127,7 @@ public abstract class PropertyDialog extends BlankDialog {
     auction.addListener(new ChangeListener(){
       @Override
       public void changed(ChangeEvent event, Actor actor){
-        System.out.println("AUCTION NOT IMPLEMENTED");
+        new AuctionGroup(property);
         remove();
       }
     });
