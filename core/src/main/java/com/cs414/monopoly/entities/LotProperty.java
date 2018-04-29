@@ -43,35 +43,51 @@ public class LotProperty extends Property {
     return new Color();
   }
 
-  public int getColorNumber(LotProperty property) {
-    return colorMap.get(property.color);
+  public static int getColorGroupSize(Color color){
+    return colorMap.get(color);
   }
 
   /**
    * Increases the number of houses on this lot and increases the rent by one
    */
   public void buyHouse() {
-    if(numHouses < 5) {
+    GameState state = GameState.getInstance();
+    if (numHouses < 4) {
+      state.numHouses--;
       System.out.println("Bought a house for " + name + "!");
-      numHouses++;
-      rentIndex++;
-      ownedBy.hud.update();
+    } else if (numHouses == 4) {
+      state.numHotels--;
+      state.numHouses += 4;
+      System.out.println("Bought a hotel for " + name + "!");
+    } else {
+      System.out.println("WARNING: Unable to buy house.");
+      return;
     }
-
-    ((Lot)GameState.getInstance().getBoard().spaces.get(location)).updateProperties();
+    numHouses++;
+    rentIndex++;
+    state.getCurrentPlayer().modifyMoney(-houseCost);
   }
 
   /**
    * Decreases the number of houses on this lot and decreases the rent by one
    */
   public void sellHouse() {
-    if(numHouses > 0) {
-      System.out.println("Sold a house for " + name + "!");
+    GameState state = GameState.getInstance();
+    if(numHouses == 5) {
+      state.numHotels++;
+      numHouses = 0;
+      rentIndex = 0;
+      System.out.println("Sold a hotel for " + name + "!");
+    } else if (numHouses > 0) {
+      state.numHouses++;
       numHouses--;
       rentIndex--;
-      ownedBy.hud.update();
+      System.out.println("Sold a house for " + name + "!");
+    } else {
+      System.out.println("WARNING: Unable to sell house.");
+      return;
     }
-    ((Lot)GameState.getInstance().getBoard().spaces.get(location)).updateProperties();
+    state.getCurrentPlayer().modifyMoney((int)(0.5 * houseCost));
   }
 
   public int getHousingValue(){
@@ -80,6 +96,9 @@ public class LotProperty extends Property {
 
   @Override
   public int getRent() {
-    return rents[rentIndex];
+    if(ownedBy.hasMonopoly(color) && rentIndex == 0)
+      return rents[rentIndex] * 2;
+    else
+      return rents[rentIndex];
   }
 }
