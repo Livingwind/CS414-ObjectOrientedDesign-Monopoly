@@ -55,6 +55,7 @@ public class LotProperty extends Property {
       System.out.println("Bought a house for " + name + "!");
       numHouses++;
       rentIndex++;
+      ownedBy.hud.update();
     }
 
     ((Lot)GameState.getInstance().getBoard().spaces.get(location)).updateProperties();
@@ -68,6 +69,7 @@ public class LotProperty extends Property {
       System.out.println("Sold a house for " + name + "!");
       numHouses--;
       rentIndex--;
+      ownedBy.hud.update();
     }
     ((Lot)GameState.getInstance().getBoard().spaces.get(location)).updateProperties();
   }
