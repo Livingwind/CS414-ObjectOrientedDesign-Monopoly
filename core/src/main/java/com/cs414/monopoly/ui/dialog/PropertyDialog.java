@@ -10,8 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.cs414.monopoly.entities.Property;
-import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.ui.DialogContext;
+import com.cs414.monopoly.ui.auction.AuctionGroup;
 
 
 public abstract class PropertyDialog extends BlankDialog {
@@ -23,7 +23,7 @@ public abstract class PropertyDialog extends BlankDialog {
     // image Table
 
     Table imageTable = new Table();
-    Image image = new Image(property.texture);
+    Image image = property.image;
     image.setScaling(Scaling.fit);
     imageTable.add(image).width(Gdx.graphics.getWidth()/4f).height(Gdx.graphics.getWidth()/4f);
 
@@ -41,69 +41,47 @@ public abstract class PropertyDialog extends BlankDialog {
     }
   }
 
-  // Listeners___________________________________________________________
-
-  private ClickListener yesAction = new ClickListener(){
-    @Override
-    public void clicked(InputEvent event, float x, float y) {
-      property.toggleMortgage();
-      new LotDialog(property, DialogContext.CLICK);
-    }
-  };
-
-  private ClickListener noAction = new ClickListener(){
-    @Override
-    public void clicked(InputEvent event, float x, float y) {
-      new LotDialog(property, DialogContext.CLICK);
-    }
-  };
-
-  private ChangeListener mortgageListener(String msg) {
-    return new ChangeListener() {
-      @Override
-      public void changed(ChangeEvent event, Actor actor) {
-        new ConfirmationDialog(yesAction, noAction, msg, property);
-      }
-    };
-  }
-
-  // Functions___________________________________________________________
-
   private void mortgageButton() {
     if(property.ownedBy == state.getCurrentPlayer()) {
       Button mortgageProperty = (property.mortgaged) ? new TextButton("Un-Mortgage", getSkin()) : new TextButton("Mortgage", getSkin());
-      String msg = ((TextButton) mortgageProperty).getText().toString().toLowerCase();
-        mortgageProperty.padRight(10).padLeft(10);
-        mortgageProperty.setColor(Color.MAGENTA);
-        mortgageProperty.addListener(mortgageListener(msg));
+      mortgageProperty.padRight(10).padLeft(10);
+      mortgageProperty.setColor(Color.MAGENTA);
+
+
+      mortgageProperty.addListener(new ChangeListener(){
+        @Override
+        public void changed(ChangeEvent event, Actor actor){
+          ClickListener action = new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+              property.toggleMortgage();
+            }
+          };
+          new PopupDialog(action, ((TextButton) mortgageProperty).getText().toString().toLowerCase());
+        }
+      });
       button(mortgageProperty);
     }
   }
-
   void clickedDialogue() {
     addCloseButton();
     String owner = "Property " + ((property.ownedBy == null) ? "not owned" :
         "owned by: " + property.ownedBy.name + "\n");
-    if (GameState.getInstance().getCurrentPlayer().name.equals(property.ownedBy.name)){
-      owner = "You own this property.";
-    }
-    String mortgaged = "Mortgaged!";
+    String mortgaged = "Property is mortgaged";
 
     Label message;
-    if((property.ownedBy == null || !property.mortgaged)) {
+    if((property.ownedBy == null || !property.mortgaged))
       message = new Label(owner, getSkin());
-    } else {
-      message = new Label(owner + "\n" + mortgaged, getSkin());
+    else{
+      message = new Label(owner + mortgaged, getSkin());
       message.setColor(Color.RED);
     }
     text(message);
     message.setAlignment(Align.center);
 
     int buyBack = (int) ((property.value/2) *1.10);
-    if(property.ownedBy != null && (property.ownedBy.getMoney() >= buyBack && property.mortgaged)
-        || !property.mortgaged) {
+    if(property.ownedBy != null && (property.ownedBy.getMoney() >= buyBack && property.mortgaged) || !property.mortgaged)
       mortgageButton();
-    }
   }
 
   private void landedDialogue() {
@@ -118,7 +96,7 @@ public abstract class PropertyDialog extends BlankDialog {
   private String handlePayment() {
     if(property.mortgaged){
       return "This property is mortgaged";
-    } else {
+    }else {
       state.getCurrentPlayer().modifyMoney(-property.getRent());
       property.ownedBy.modifyMoney(+property.getRent());
       return String.format("You paid %s $%d.", property.ownedBy.name, property.getRent());
@@ -147,10 +125,10 @@ public abstract class PropertyDialog extends BlankDialog {
     Button auction = new TextButton("Auction", getSkin());
     auction.padRight(10).padLeft(10);
     auction.setColor(Color.RED);
-    auction.addListener(new ClickListener(){
+    auction.addListener(new ChangeListener(){
       @Override
-      public void  clicked(InputEvent event, float x, float y) {
-        System.out.println("AUCTION NOT IMPLEMENTED");
+      public void changed(ChangeEvent event, Actor actor){
+        new AuctionGroup(property);
         remove();
       }
     });
@@ -166,9 +144,9 @@ public abstract class PropertyDialog extends BlankDialog {
     Button buyProperty = new TextButton("Buy Property", getSkin());
     buyProperty.padRight(10).padLeft(10);
     buyProperty.setColor(Color.GREEN);
-    buyProperty.addListener(new ClickListener(){
+    buyProperty.addListener(new ChangeListener(){
       @Override
-      public void clicked(InputEvent event, float x, float y) {
+      public void changed(ChangeEvent event, Actor actor){
         state.getCurrentPlayer().purchaseProperty(property);
         remove();
       }

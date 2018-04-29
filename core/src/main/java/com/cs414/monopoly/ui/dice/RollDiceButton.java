@@ -1,15 +1,11 @@
-package com.cs414.monopoly.ui.dice;
+package com.cs414.monopoly.ui;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.cs414.monopoly.game.GameState;
-import com.cs414.monopoly.game.PostRollState;
-import com.cs414.monopoly.game.PreRollState;
-import com.cs414.monopoly.game.TurnState;
-import com.cs414.monopoly.ui.MonopolySkin;
+import com.cs414.monopoly.game.*;
 
 public class RollDiceButton extends TextButton{
   private GameState state = GameState.getInstance();
@@ -40,6 +36,9 @@ public class RollDiceButton extends TextButton{
     else if(rollState instanceof PostRollState) {
       setColor(Color.RED);
       msg = "END TURN";
+    } else if(rollState instanceof InJail) {
+      setColor(Color.ORANGE);
+      msg = "ROLL TO ESCAPE!";
     }
 
     setText(msg);

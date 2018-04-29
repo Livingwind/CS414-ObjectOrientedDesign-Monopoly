@@ -2,24 +2,22 @@ package com.cs414.monopoly.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.JsonValue;
 
 public abstract class Property {
-  public final Texture texture;
+  public final Image image;
   public final String name;
   public final int value;
-  public int location;
 
   final int[] rents;
-
   public boolean mortgaged;
-
   public Player ownedBy;
+  public int location;
 
   Property(String formatPath, JsonValue props) {
     String path = String.format(formatPath, "deeds");
-    texture = new Texture(Gdx.files.internal(path));
-
+    image = new Image(new Texture(Gdx.files.internal(path)));
     name = props.get("name").asString();
     value = props.get("value").asInt();
     rents = props.get("rent").asIntArray();

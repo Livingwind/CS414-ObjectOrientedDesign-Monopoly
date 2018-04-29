@@ -26,10 +26,11 @@ public class LotDialog extends PropertyDialog {
         Button buyHouse = new TextButton("Buy House", getSkin());
         buyHouse.padRight(10).padLeft(10);
         buyHouse.setColor(Color.GREEN);
-        buyHouse.addListener(new ClickListener() {
+        buyHouse.addListener(new ChangeListener() {
           @Override
-          public void clicked(InputEvent event, float x, float y) {
+          public void changed(ChangeEvent event, Actor actor) {
             if (((LotProperty) property).numHouses < 5) {
+              event.cancel();
               ((LotProperty) property).buyHouse();
             }
             event.cancel();
@@ -38,15 +39,23 @@ public class LotDialog extends PropertyDialog {
         Button sellHouse = new TextButton("Sell House", getSkin());
         sellHouse.padRight(10).padLeft(10);
         sellHouse.setColor(Color.RED);
-        sellHouse.addListener(new ClickListener() {
+        sellHouse.addListener(new ChangeListener() {
           @Override
-          public void clicked(InputEvent event, float x, float y) {
-            if (((LotProperty) property).numHouses > 0) {
-              ((LotProperty) property).sellHouse();
-            }
-            event.cancel();
+          public void changed(ChangeEvent event, Actor actor) {
+            ClickListener action = new ClickListener(){
+              @Override
+              public void clicked(InputEvent event, float x, float y) {
+                if (((LotProperty) property).numHouses > 0) {
+                  event.cancel();
+                  ((LotProperty) property).sellHouse();
+                }
+                event.cancel();
+              }
+            };
+            new PopupDialog(action, "sell a house");
           }
         });
+        getContentTable().row(); // put text under image
         button(buyHouse);
         button(sellHouse);
       }
@@ -54,4 +63,3 @@ public class LotDialog extends PropertyDialog {
     super.clickedDialogue();
   }
 }
-
