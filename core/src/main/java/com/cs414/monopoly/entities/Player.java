@@ -15,16 +15,15 @@ import java.util.ArrayList;
 public class Player extends Image {
   public final String name;
   public final Color color;
-  public boolean inJail;
+  public int inJail;
   public PlayerHUD hud;
 
   private int money;
-  private int netWorth;
   private GetOutOfJailFree getOutOfJail = GetOutOfJailFree.NONE;
 
   public AbstractSpace space;
-  public int numRoads;
-  public int numUtilities;
+  int numRoads;
+  int numUtilities;
 
   public ArrayList<Property> properties = new ArrayList<>();
 
@@ -32,12 +31,11 @@ public class Player extends Image {
 
     Sprite sprite = new Sprite(new Texture(Gdx.files.internal(textureFile)));
     setDrawable(new SpriteDrawable(sprite));
-    setSize(AbstractSpace.Size.STANDARD.getWidth()/2, AbstractSpace.Size.STANDARD.getHeight()/4);
+    setSize(AbstractSpace.Size.STANDARD.getWidth() / 2, AbstractSpace.Size.STANDARD.getHeight() / 4);
 
     this.name = name;
     this.color = color;
     this.money = startingMoney;
-    netWorth = startingMoney;
   }
 
   public void initHUD() {
@@ -51,27 +49,22 @@ public class Player extends Image {
     modifyMoney(-property.value);
     System.out.println(String.format("%s bought %s for $%d.",
         name, property.name, property.value));
-    if(property instanceof RailroadProperty)
+    if (property instanceof RailroadProperty)
       numRoads++;
-    else if(property instanceof UtilityProperty)
+    else if (property instanceof UtilityProperty)
       numUtilities++;
     return true;
   }
 
   /**
    * Modifies the player's money by the given amount using addition.
+   *
    * @param amount amount of money to add or remove from the player.
    */
   public void modifyMoney(int amount) {
     this.money += amount;
-    updateNetWorth(amount);
     System.out.println(String.format("%s's money was modified by %d", name, amount));
-  }
-
-  public void modifyMoneySpecialCase(int amount, int netWorth) {
-    this.money += amount;
-    updateNetWorth(netWorth);
-    System.out.println(String.format("%s's money was modified by %d", name, amount));
+    hud.update();
   }
 
   public int getMoney() {
@@ -79,20 +72,24 @@ public class Player extends Image {
   }
 
   public int getNetWorth() {
+    int netWorth = money;
+    for (Property property : properties) {
+      netWorth += property.mortgaged ? property.value / 2 : property.value;
+      if (property instanceof LotProperty)
+        netWorth += ((LotProperty) property).getHousingValue();
+    }
+    money += getOutOfJail == GetOutOfJailFree.BOTH ? 100 : (getOutOfJail == GetOutOfJailFree.NONE ? 0 : 50);
     return netWorth;
   }
 
   public void addProperty(Property property) {
     properties.add(property);
-    updateNetWorth(property.value);
+    hud.update();
   }
 
-  public boolean removeProperty(Property property) {
-    if(!properties.remove(property)) {
-      return false;
-    }
-    updateNetWorth(-1 * property.value);
-    return true;
+  public void removeProperty(Property property) {
+    properties.remove(property);
+    hud.update();
   }
 
   public GetOutOfJailFree getGetOutOfJail() {
@@ -101,7 +98,8 @@ public class Player extends Image {
 
   /**
    * Adds the given card to the player. If the player has both cards, the internal of GetOutOfJail
-   *  keeps the value at BOTH.
+   * keeps the value at BOTH.
+   *
    * @param card type of card to give to the player
    */
   public void addGetOutOfJail(GetOutOfJailFree card) {
@@ -110,7 +108,8 @@ public class Player extends Image {
 
   /**
    * Removes the card from the player. Will keep the value at NONE or the owned if called with a card the player
-   *  doesn't have the specified card.
+   * doesn't have the specified card.
+   *
    * @param card type of card to remove from the player
    */
   public void removeGetOutOfJail(GetOutOfJailFree card) {
@@ -121,8 +120,4 @@ public class Player extends Image {
    * Called each time the player earns money or property.
    * @param amount amount to modify their net worth by.
    */
-  private void updateNetWorth(int amount) {
-    netWorth += amount;
-    hud.update();
-  }
 }

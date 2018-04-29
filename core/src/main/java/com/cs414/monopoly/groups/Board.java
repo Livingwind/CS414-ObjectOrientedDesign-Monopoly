@@ -20,8 +20,8 @@ public class Board extends Group {
   private float width = 1024*ratio;
   private float height = 1024*ratio;
 
-  public ArrayList<AbstractSpace> spaces = new ArrayList<AbstractSpace>(40);
-  public int jailIndex;
+  public ArrayList<AbstractSpace> spaces = new ArrayList<>(40);
+  private int jailIndex;
 
   private void placeSpace(String path, int location,
                           JsonValue props, Vector2 pos, AbstractSpace.Direction dir) {
@@ -110,7 +110,7 @@ public class Board extends Group {
   
   public void sendToJail(Player player) {
     System.out.println(player.name + " sent to jail.");
-    player.inJail = true;
+    player.inJail = 1;
     spaces.get(jailIndex).placePlayer(player);
   }
 

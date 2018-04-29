@@ -18,7 +18,7 @@ public class Jail extends AbstractSpace {
     int inJail = 0;
     int outJail = 0;
     for(Player player: players) {
-      if(player.inJail) {
+      if(player.inJail > 0) {
         // Position the players in a square starting from top to bottom
         player.setPosition((getWidth()-player.getWidth())-(player.getWidth()*(inJail%2)),
             player.getHeight()*(inJail/2));

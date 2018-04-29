@@ -1,7 +1,6 @@
 package com.cs414.monopoly.ui.dice;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.cs414.monopoly.ui.RollDiceButton;
 
 public class RollDiceGroup extends Group {
   private Die die1 = new Die();
