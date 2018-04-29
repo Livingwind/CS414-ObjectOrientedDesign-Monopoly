@@ -1,4 +1,4 @@
-package com.cs414.monopoly.ui;
+package com.cs414.monopoly.ui.dialog;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -10,13 +10,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.cs414.monopoly.entities.Property;
+import com.cs414.monopoly.ui.DialogContext;
 import com.cs414.monopoly.ui.auction.AuctionGroup;
 
 
 public abstract class PropertyDialog extends BlankDialog {
   protected final Property property;
 
-  protected PropertyDialog(Property property, DialogueContext context){
+  protected PropertyDialog(Property property, DialogContext context){
     super(property.name + " - $" + property.value);
     this.property = property;
     // image Table

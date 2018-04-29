@@ -1,4 +1,4 @@
-package com.cs414.monopoly.ui;
+package com.cs414.monopoly.ui.dialog;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -9,9 +9,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.cs414.monopoly.entities.LotProperty;
 import com.cs414.monopoly.entities.Property;
+import com.cs414.monopoly.ui.DialogContext;
 
 public class LotDialog extends PropertyDialog {
-  public LotDialog(Property property, DialogueContext context) {
+  public LotDialog(Property property, DialogContext context) {
     super(property, context);
     show(state.getStage());
   }

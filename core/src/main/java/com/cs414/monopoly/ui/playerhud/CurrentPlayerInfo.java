@@ -10,20 +10,22 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.cs414.monopoly.entities.Player;
-import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.ui.Listeners;
 import com.cs414.monopoly.ui.MonopolySkin;
 
 public class CurrentPlayerInfo extends Window {
+  private Player player;
   private Listeners listeners = new Listeners();
   private Label text = new Label("", getSkin());
-  private TextButton toggle = new TextButton("", getSkin());
   private ClickListener toggleListener = new ClickListener();
-  private boolean showTable;
+  private PropertyTable propertyTable;
+  private TextButton toggle = new TextButton("", getSkin());
+  private boolean showTable = false;
   public static float width = Gdx.graphics.getWidth()/4f; // PropertyTable uses this width
 
-  public CurrentPlayerInfo() {
+  public CurrentPlayerInfo(Player player) {
     super("Current Player", new MonopolySkin());
+    this.player = player;
     resize();
     setMovable(false);
     initToggle();
@@ -31,47 +33,31 @@ public class CurrentPlayerInfo extends Window {
     row();
     add(toggle);
     row();
-    add(GameState.getInstance().propertyTable).expand().width(200);
+    propertyTable = new PropertyTable(player);
+    add(propertyTable).expand().width(width);
   }
 
-  private void addToggleMouseOver() {
-    toggle.removeListener(toggleListener);
-    toggleListener = listeners.getToggleListener(GameState.getInstance().getCurrentPlayer());
-    toggle.addListener(toggleListener);
+  public void update(){
+    propertyTable.update();
   }
 
-  @Override
-  public void layout() {
-    super.layout();
-    setPosition(Gdx.graphics.getWidth()-getWidth(), Gdx.graphics.getHeight()-getHeight());
-    Player player = GameState.getInstance().getCurrentPlayer();
-    String name = String.format("Current Player: %s", player.name);
-    String money = String.format("Money: $%d", player.getMoney());
-    getTitleLabel().setText(name);
-    setColor(player.color);
-    text.setText(money);
-    setToggleText();
-    addToggleMouseOver();
-    resize();
+  private void setToggleText() {
+    String msg = ((showTable)? "Hide" : "Show") + " Properties";
+    toggle.setText(msg);
   }
 
   private void resize() {
     if(!showTable) {
       setSize(width, Gdx.graphics.getHeight()/10f);
     } else {
-      setSize(width, Gdx.graphics.getHeight()/10f + GameState.getInstance().propertyTable.getHeight());
+      setSize(width, Gdx.graphics.getHeight()/10f + propertyTable.getHeight());
     }
   }
 
-  public void toggleProperties(boolean visibility){
+  private void toggleProperties(boolean visibility){
     showTable = visibility;
     resize();
-    GameState.getInstance().propertyTable.setVisible(showTable);
-  }
-
-  private void setToggleText() {
-    String msg = ((showTable)? "Hide" : "Show") + " Properties";
-    toggle.setText(msg);
+    propertyTable.setVisible(showTable);
   }
 
   private void initToggle() {
@@ -82,5 +68,25 @@ public class CurrentPlayerInfo extends Window {
         toggleProperties(!showTable);
       }
     });
+  }
+
+  private void addToggleMouseOver() {
+    toggle.removeListener(toggleListener);
+    toggleListener = listeners.toggleListener(player);
+    toggle.addListener(toggleListener);
+  }
+
+  @Override
+  public void layout() {
+    super.layout();
+    setPosition(Gdx.graphics.getWidth()-getWidth(), Gdx.graphics.getHeight()-getHeight());
+    String name = String.format("Current Player: %s", player.name);
+    String money = String.format("Money: $%d", player.getMoney());
+    getTitleLabel().setText(name);
+    setColor(player.color);
+    text.setText(money);
+    setToggleText();
+    addToggleMouseOver();
+    resize();
   }
 }

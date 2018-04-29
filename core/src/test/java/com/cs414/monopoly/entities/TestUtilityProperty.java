@@ -27,13 +27,13 @@ public class TestUtilityProperty extends TestGame {
 
   @Test
   public void testEquals(){
-    assertTrue(utilityProperty1.equals(utilityProperty2));
-    assertFalse(utilityProperty1.equals(utilityProperty3));
+    assertEquals(utilityProperty1, utilityProperty2);
+    assertNotEquals(utilityProperty1, utilityProperty3);
   }
 
   @Test
   public void testHashCode() {
-    assertTrue(utilityProperty1.hashCode() == utilityProperty1.name.hashCode());
+    assertEquals(utilityProperty1.hashCode(), utilityProperty1.name.hashCode());
   }
 
   @Test

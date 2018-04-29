@@ -1,6 +1,6 @@
 package com.cs414.monopoly.ui;
 
-public enum DialogueContext {
+public enum DialogContext {
   LAND,
   CLICK,
   SPAWN

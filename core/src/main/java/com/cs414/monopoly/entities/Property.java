@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.JsonValue;
 public abstract class Property {
   public final Image image;
   public final String name;
-  public int value;
+  public final int value;
 
   final int[] rents;
   public boolean mortgaged;
@@ -34,7 +34,7 @@ public abstract class Property {
     return name.equals(property.name);
   }
 
-  public void toggleMortgage(){
+  public void toggleMortgage() {
     int mortgageValue = value/2;
     int buyBack = (int) Math.round(mortgageValue * 1.10);
     int buyback = (int) Math.round(mortgageValue * 1.10);

@@ -1,22 +1,27 @@
-package com.cs414.monopoly.ui;
+package com.cs414.monopoly.ui.dialog;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-public class ConfirmationWindow extends BlankDialog {
+public class PopupDialog extends BlankDialog {
 
-  ConfirmationWindow(ClickListener listener, String message) {
+  public PopupDialog(ClickListener listener, String message) {
     super("Confirm");
     confirmationButtons(listener, message);
+    getContentTable().pad(20, 20, 20, 20);
+    show(state.getStage());
+  }
+  public PopupDialog(String message) {
+    super(" ");
+    popUp(message);
+    getContentTable().pad(20, 20, 20, 20);
     show(state.getStage());
   }
 
-  void confirmationButtons(ClickListener listener, final String message) {
+  private void confirmationButtons(ClickListener listener, final String message) {
     String question = "Are you sure you want to " + message + "?";
     Label outMessage = new Label(question, getSkin());
     text(outMessage);
@@ -35,5 +40,11 @@ public class ConfirmationWindow extends BlankDialog {
     });
     button(yesButton);
     button(noButton);
+  }
+
+  private void popUp(String message){
+    Label outMessage = new Label(message, getSkin());
+    text(outMessage).center();
+    addOKButton();
   }
  }

@@ -1,73 +1,61 @@
 package com.cs414.monopoly.ui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.cs414.monopoly.entities.*;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.cs414.monopoly.entities.Property;
 
 public class Buttons {
-  private Listeners listeners = new Listeners();
+  private Skin skin = new MonopolySkin();
 
-  public Button getCloseButton(Actor closeActor){
-    Button exit = new TextButton("X", new MonopolySkin());
-    exit.padRight(15).padLeft(15);
-    exit.setColor(Color.RED);
-    exit.addListener(listeners.getCloseListener(closeActor));
-    return exit;
+  // Generic Buttons____________________________________________________________________________
+  public Button textButton(String text) {
+    return new TextButton(text, skin);
   }
 
-  public Button getBuyButton(Property property){
+  public Button textButton(String text, Color color){
+    TextButton btn = new TextButton(text, skin);
+    btn.setColor(color);
+    return btn;
+  }
+
+  public Button textButton(String text, Color color, int padRight, int padLeft){
+    TextButton btn = new TextButton(text, skin);
+    btn.setColor(color);
+    btn.padRight(padRight);
+    btn.padLeft(padLeft);
+    return btn;
+  }
+
+  // UI Buttons___________________________________________________________________________________
+  // todo: this button doesn't do anything
+  public Button settingsButton(){
+    Texture settingsIcon = new Texture(Gdx.files.internal("assets/settings_icon.png"));
+    Drawable drawable = new TextureRegionDrawable(new TextureRegion(settingsIcon));
+    ImageButton btn = new ImageButton(drawable);
+    btn.setSize(Gdx.graphics.getWidth()/48f, Gdx.graphics.getWidth()/48f);
+    return btn;
+  }
+
+  // Property Buttons_____________________________________________________________________________
+  public Button buyButton(Property property){
     // todo: find a bitmap font that supports 🏠
-    Button btn = new TextButton("Buy \uD83C\uDFE0", new MonopolySkin());
+    Button btn = new TextButton("Buy \uD83C\uDFE0", skin);
     btn.setColor(Color.GREEN);
-    btn.addListener(new ChangeListener(){
-      @Override
-      public void changed(ChangeEvent event, Actor actor) {
-        ((LotProperty)property).buyHouse();
-      }
-    });
     return btn;
   }
 
-  public Button getGreyButton(String text){
-    Button btn = new TextButton(text, new MonopolySkin());
-    btn.setColor(Color.LIGHT_GRAY);
-    return btn;
-  }
-
-  public Button getSellButton(Property property){
+  public Button sellButton(Property property){
     // todo: find a bitmap font that supports 🏠
-    Button btn = new TextButton("Sell \uD83C\uDFE0", new MonopolySkin());
+    Button btn = new TextButton("Sell \uD83C\uDFE0", skin);
     btn.setColor(Color.RED);
-    btn.addListener(new ChangeListener(){
-      @Override
-      public void changed(ChangeEvent event, Actor actor) {
-        ((LotProperty)property).sellHouse();
-      }
-    });
     return btn;
-  }
-
-  public Button getPropertyButton(Player player, Property property) {
-    TextButton propertyButton = new TextButton(property.name, new MonopolySkin());
-
-    // bring up property dialog when clicked
-    propertyButton.addListener(new ChangeListener() {
-      @Override
-      public void changed(ChangeEvent event, Actor actor){
-        if (property.getClass() == LotProperty.class){
-          new LotDialog(property, DialogueContext.CLICK);
-        } else if(property.getClass() == RailroadProperty.class){
-          new RailroadDialog(property, DialogueContext.CLICK);
-        } else if(property.getClass() == UtilityProperty.class){
-          new UtilityDialog(property, DialogueContext.CLICK);
-        }
-      }
-    });
-    // highlight the property on the board when moused over
-    propertyButton.addListener(listeners.getHoverListener(player, property));
-    return propertyButton;
   }
 }

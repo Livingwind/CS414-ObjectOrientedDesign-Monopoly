@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 public class AuctionPlayerInfo {
   private GameState state = GameState.getInstance();
-  protected ArrayList<Player> playerList = state.playerList;
+  protected ArrayList<Player> playerList = new ArrayList<>(state.playerList);
   protected ArrayList<Integer> bids = new ArrayList<>();
   private int highBidIndex = 0;
   private int currBidIndex = 1;
 
   public AuctionPlayerInfo(){
-    for (int i=0; i< playerList.size(); i++) {
+    for (int i=0; i < playerList.size(); i++) {
       bids.add(0);
     }
     //placeholder for initial state
@@ -23,10 +23,14 @@ public class AuctionPlayerInfo {
   }
   public String playerInfo(){
     String playerInfo = "Current Bidder: " + playerList.get(currBidIndex).name + "\n\n";
+    StringBuilder sb = new StringBuilder(playerInfo);
     for(int i=1; i< playerList.size(); i++){
-      playerInfo += playerList.get(i).name + ": \t$" + bids.get(i) + "\n";
+      sb.append(playerList.get(i).name)
+          .append(": \t$")
+          .append(bids.get(i))
+          .append("\n");
     }
-    return playerInfo;
+    return sb.toString();
   }
 
   public Player highestBidder(){
