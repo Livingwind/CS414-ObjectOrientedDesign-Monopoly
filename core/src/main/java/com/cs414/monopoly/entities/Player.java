@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Player extends Image {
   public final String name;
   public final Color color;
-  public boolean inJail;
+  public int inJail;
   public PlayerHUD hud;
 
   private int money;
@@ -23,8 +23,8 @@ public class Player extends Image {
   private GetOutOfJailFree getOutOfJail = GetOutOfJailFree.NONE;
 
   public AbstractSpace space;
-  public int numRoads;
-  public int numUtilities;
+  int numRoads;
+  int numUtilities;
 
   public ArrayList<Property> properties = new ArrayList<>();
 

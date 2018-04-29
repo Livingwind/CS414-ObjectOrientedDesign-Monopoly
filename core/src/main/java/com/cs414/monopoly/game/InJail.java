@@ -12,7 +12,7 @@ public class InJail extends TurnState {
     ctx.rdg.toggleDice(true);
     ctx.rdg.updateDice(dice[0], dice[1]);
     if(dice[0] == dice[1]) {
-      current.inJail = false;
+      current.inJail = 0;
       global.getBoard().movePlayer(current, dice[0]+dice[1]);
     }
 
