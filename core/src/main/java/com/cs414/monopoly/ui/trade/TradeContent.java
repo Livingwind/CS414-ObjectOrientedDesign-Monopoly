@@ -20,6 +20,15 @@ public class TradeContent extends Table {
   }
 
   private void fillTables(Player player){
+    Label buttonTablePadding = new Label("________________________", new MonopolySkin());
+      buttonTablePadding.setVisible(false);
+    Label labelTablePadding = new Label("________________________", new MonopolySkin());
+      labelTablePadding.setVisible(false);
+    buttonTable.add(buttonTablePadding);
+    buttonTable.row();
+    labelTable.add(labelTablePadding);
+    labelTable.row();
+
     for (Property property : player.properties){
       Label propertyLabel = new Label(property.name, new MonopolySkin());
       propertyLabel.setVisible(false);

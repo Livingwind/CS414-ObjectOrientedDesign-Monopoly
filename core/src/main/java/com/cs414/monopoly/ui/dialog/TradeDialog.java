@@ -2,6 +2,7 @@ package com.cs414.monopoly.ui.dialog;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -46,14 +47,21 @@ public class TradeDialog extends BlankDialog {
   }
 
   public TradeDialog(Player currentPlayer, Player otherPlayer){
-    super(" ");
+    super(currentPlayer.name + " Trading With " + otherPlayer.name + " ");
     this.currentPlayer = currentPlayer;
     this.otherPlayer = otherPlayer;
     addCloseButton();
-    getTitleLabel().setText(currentPlayer.name + " Trading With " + otherPlayer.name + " ");
 
     TradeTable currentTable = new TradeTable(currentPlayer, true);
+    float sizeCurrent = currentTable.getWidth();
     TradeTable otherTable = new TradeTable(otherPlayer, false);
+    float sizeOther = otherTable.getWidth();
+
+    if(sizeCurrent > sizeOther){
+      otherTable.setWidth(currentTable.getWidth());
+    } else {
+      currentTable.setWidth(otherTable.getWidth());
+    }
     getContentTable().add(currentTable).align(Align.bottom);
     getContentTable().add(otherTable).align(Align.bottom);
     getContentTable().row();
@@ -63,7 +71,8 @@ public class TradeDialog extends BlankDialog {
     tradeButton.addListener(tradeListener(currentTable, otherTable));
     button(tradeButton);
 
+    show(state.getStage());
     setSize(Gdx.graphics.getWidth()/2f, Gdx.graphics.getHeight()/2f);
-    GameState.getInstance().getStage().addActor(this);
+    setPosition(Gdx.graphics.getWidth()/2f, Gdx.graphics.getHeight()/2f, Align.center);
   }
 }

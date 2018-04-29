@@ -7,13 +7,11 @@ public class TradeContentManager extends TradeContent {
   public TradeContentManager(Player player, boolean swap){
     super(player);
     if(swap){
-      add(buttonTable).fill();
-      add(labelTable).fill();
-      row();
+      add(buttonTable);
+      add(labelTable);
     } else{
-      add(labelTable).fill();
-      add(buttonTable).fill();
-      row();
+      add(labelTable);
+      add(buttonTable);
     }
   }
 }
