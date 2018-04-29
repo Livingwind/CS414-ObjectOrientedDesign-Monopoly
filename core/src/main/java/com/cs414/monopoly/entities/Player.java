@@ -92,6 +92,16 @@ public class Player extends Image {
     hud.update();
   }
 
+  public boolean hasMonopoly(Color color) {
+    int numNeeded = LotProperty.getColorGroupSize(color);
+    for (Property ownedProperty: properties) {
+      if(ownedProperty instanceof LotProperty)
+        if(((LotProperty) ownedProperty).color.equals(color))
+          numNeeded--;
+    }
+    return numNeeded == 0;
+  }
+
   public GetOutOfJailFree getGetOutOfJail() {
     return getOutOfJail;
   }
