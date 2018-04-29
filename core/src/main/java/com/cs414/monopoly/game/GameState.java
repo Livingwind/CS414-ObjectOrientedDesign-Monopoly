@@ -6,8 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.groups.Board;
 import com.cs414.monopoly.ui.debug.DebugGroup;
-import com.cs414.monopoly.ui.playerhud.CurrentPlayerInfo;
-import com.cs414.monopoly.ui.playerhud.PropertyTable;
 
 import java.util.ArrayList;
 
@@ -22,8 +20,6 @@ public class GameState {
   private Stage stage;
   private Board board;
   private DebugGroup debug;
-  private CurrentPlayerInfo info;
-  public PropertyTable propertyTable = new PropertyTable();
 
   public static GameState getInstance() {
     if(instance == null) {
@@ -33,7 +29,7 @@ public class GameState {
   }
 
   // SETUP ------------------------------------------------------------------------
-  public void initDebug() {
+  private void initDebug() {
     stage.addActor(new DebugGroup());
     stage.setDebugAll(true);
     this.debug = new DebugGroup();
@@ -69,7 +65,7 @@ public class GameState {
 
   public Player getPlayer(String name) {
     for(Player player: playerList) {
-      if(player.name.equals(name)) {
+      if(player.name.toLowerCase().equals(name.toLowerCase())) {
         return player;
       }
     }
@@ -91,11 +87,11 @@ public class GameState {
 
     for(Player player: playerList) {
       board.initPlayer(player);
+      player.initHUD();
     }
     currentPlayer = playerList.get(0);
+    currentPlayer.hud.setVisible(true);
 
-    info = new CurrentPlayerInfo();
-    stage.addActor(info);
   }
 
   // STATE ------------------------------------------------------------------------
@@ -107,18 +103,18 @@ public class GameState {
     }
   }
 
-  public void update() {
-    if(info != null) {
-      info.invalidate();
-      propertyTable.update();
-    }
+  public void setTurn(Player player) {
+    currentPlayer.hud.setVisible(false);
+    int index = playerList.indexOf(player);
+    currentPlayer = playerList.get(index);
+    currentPlayer.hud.setVisible(true);
   }
+
   public void nextTurn() {
+    currentPlayer.hud.setVisible(false);
     int index = playerList.indexOf(currentPlayer);
     currentPlayer = playerList.get((index+1) % playerList.size());
-    info.invalidate();
-    info.toggleProperties(false);
-    propertyTable.update();
+    currentPlayer.hud.setVisible(true);
   }
 
   public Player getCurrentPlayer() {

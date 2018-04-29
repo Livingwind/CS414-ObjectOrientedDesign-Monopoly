@@ -1,4 +1,4 @@
-package com.cs414.monopoly.ui;
+package com.cs414.monopoly.ui.dialog;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -54,7 +54,7 @@ public class TaxDialog extends BlankDialog {
     }
     Button payFlat = new TextButton("Pay $" + flatCost, getSkin());
     payFlat.padRight(10).padLeft(10);
-    payFlat.addListener(new ChangeListener(){
+    payFlat.addListener(new ChangeListener() {
       @Override
       public void changed(ChangeEvent event, Actor actor){
         state.getCurrentPlayer().modifyMoney(-flatCost);

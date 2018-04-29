@@ -24,13 +24,13 @@ public class TestLotProperty extends TestGame {
 
   @Test
   public void testEquals(){
-    assertTrue(lotProperty1.equals(lotProperty2));
-    assertFalse(lotProperty1.equals(lotProperty3));
+    assertEquals(lotProperty1, lotProperty2);
+    assertNotEquals(lotProperty1, lotProperty3);
   }
 
   @Test
   public void testHashCode() {
-    assertTrue(lotProperty1.hashCode() == lotProperty1.name.hashCode());
+    assertEquals(lotProperty1.hashCode(), lotProperty1.name.hashCode());
   }
 
   @Test

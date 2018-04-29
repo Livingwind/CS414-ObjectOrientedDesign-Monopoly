@@ -5,13 +5,26 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.cs414.monopoly.entities.Player;
-import com.cs414.monopoly.entities.Property;
+import com.cs414.monopoly.entities.*;
 import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.groups.Board;
+import com.cs414.monopoly.ui.dialog.LotDialog;
+import com.cs414.monopoly.ui.dialog.RailroadDialog;
+import com.cs414.monopoly.ui.dialog.UtilityDialog;
 
 public class Listeners {
-  public ChangeListener getCloseListener(Actor removeActor) {
+
+  // a temporary listener used for buttons that aren't implemented yet
+  public ChangeListener textListener(String text){
+    return new ChangeListener(){
+      @Override
+      public void changed(ChangeEvent event, Actor actor) {
+        System.out.println(text);
+      }
+    };
+  }
+
+  public ChangeListener closeListener(Actor removeActor) {
     return new ChangeListener() {
       @Override
       public void changed(ChangeListener.ChangeEvent event, Actor actor) {
@@ -20,22 +33,7 @@ public class Listeners {
     };
   }
 
-  public ClickListener getHoverListener(Player player, Property property) {
-    return new ClickListener() {
-      Board board = GameState.getInstance().getBoard();
-      @Override
-      public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-        board.spaces.get(property.location).setSpriteColor(player.color);
-      }
-
-      @Override
-      public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-        board.spaces.get(property.location).setSpriteColor(Color.WHITE);
-      }
-    };
-  }
-
-  public ClickListener getToggleListener(Player player){
+  public ClickListener toggleListener(Player player){
     return new ClickListener() {
       Board board = GameState.getInstance().getBoard();
       @Override
@@ -51,6 +49,56 @@ public class Listeners {
           Property property = player.properties.get(i);
           board.spaces.get(property.location).setSpriteColor(Color.WHITE);
         }
+      }
+    };
+  }
+
+  // Property Listeners___________________________________________________________________________
+
+  public ClickListener hoverListener(Player player, Property property) {
+    return new ClickListener() {
+      Board board = GameState.getInstance().getBoard();
+      @Override
+      public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+        board.spaces.get(property.location).setSpriteColor(player.color);
+      }
+
+      @Override
+      public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+        board.spaces.get(property.location).setSpriteColor(Color.WHITE);
+      }
+    };
+  }
+
+  public ChangeListener propertyDialogListener(Property property){
+    return new ChangeListener() {
+      @Override
+      public void changed(ChangeEvent event, Actor actor){
+        if (property.getClass() == LotProperty.class){
+          new LotDialog(property, DialogContext.CLICK);
+        } else if(property.getClass() == RailroadProperty.class){
+          new RailroadDialog(property, DialogContext.CLICK);
+        } else if(property.getClass() == UtilityProperty.class){
+          new UtilityDialog(property, DialogContext.CLICK);
+        }
+      }
+    };
+  }
+
+  public ChangeListener sellHouseListener(Property property) {
+    return new ChangeListener(){
+      @Override
+      public void changed(ChangeEvent event, Actor actor) {
+        ((LotProperty)property).sellHouse();
+      }
+    };
+  }
+
+  public ChangeListener buyHouseListener(Property property) {
+    return new ChangeListener(){
+      @Override
+      public void changed(ChangeEvent event, Actor actor) {
+        ((LotProperty)property).buyHouse();
       }
     };
   }

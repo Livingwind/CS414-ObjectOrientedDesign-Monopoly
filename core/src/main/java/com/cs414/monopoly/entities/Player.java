@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.spaces.AbstractSpace;
+import com.cs414.monopoly.ui.playerhud.PlayerHUD;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ public class Player extends Image {
   public final String name;
   public final Color color;
   public boolean inJail;
+  public PlayerHUD hud;
 
   private int money;
   private int netWorth;
@@ -26,7 +28,8 @@ public class Player extends Image {
 
   public ArrayList<Property> properties = new ArrayList<>();
 
-  public Player(String textureFile, String name, Color color, int startingMoney){
+  public Player(String textureFile, String name, Color color, int startingMoney) {
+
     Sprite sprite = new Sprite(new Texture(Gdx.files.internal(textureFile)));
     setDrawable(new SpriteDrawable(sprite));
     setSize(AbstractSpace.Size.STANDARD.getWidth()/2, AbstractSpace.Size.STANDARD.getHeight()/4);
@@ -34,11 +37,15 @@ public class Player extends Image {
     this.name = name;
     this.color = color;
     this.money = startingMoney;
-    updateNetWorth(money);
+    netWorth = startingMoney;
+  }
+
+  public void initHUD() {
+    hud = new PlayerHUD(this);
+    GameState.getInstance().getStage().addActor(hud);
   }
 
   public boolean purchaseProperty(Property property) {
-    GameState.getInstance().update();
     property.ownedBy = this;
     addProperty(property);
     modifyMoney(-property.value);
@@ -51,14 +58,19 @@ public class Player extends Image {
     return true;
   }
 
-
   /**
    * Modifies the player's money by the given amount using addition.
    * @param amount amount of money to add or remove from the player.
    */
-  public void modifyMoney(int amount){
+  public void modifyMoney(int amount) {
     this.money += amount;
     updateNetWorth(amount);
+    System.out.println(String.format("%s's money was modified by %d", name, amount));
+  }
+
+  public void modifyMoneySpecialCase(int amount, int netWorth) {
+    this.money += amount;
+    updateNetWorth(netWorth);
     System.out.println(String.format("%s's money was modified by %d", name, amount));
   }
 
@@ -70,7 +82,7 @@ public class Player extends Image {
     return netWorth;
   }
 
-  private void addProperty(Property property) {
+  public void addProperty(Property property) {
     properties.add(property);
     updateNetWorth(property.value);
   }
@@ -109,8 +121,8 @@ public class Player extends Image {
    * Called each time the player earns money or property.
    * @param amount amount to modify their net worth by.
    */
-  private void updateNetWorth(int amount){
+  private void updateNetWorth(int amount) {
     netWorth += amount;
-    GameState.getInstance().update();
+    hud.update();
   }
 }

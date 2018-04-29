@@ -1,14 +1,18 @@
-package com.cs414.monopoly.ui;
+package com.cs414.monopoly.ui.dialog;
 
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.cs414.monopoly.game.GameState;
+import com.cs414.monopoly.ui.Buttons;
+import com.cs414.monopoly.ui.Listeners;
+import com.cs414.monopoly.ui.MonopolySkin;
 
 public abstract class BlankDialog extends Dialog {
-  private Buttons buttons = new Buttons();
-
+  private final Buttons buttons = new Buttons();
+  private final Listeners listeners = new Listeners();
   protected final GameState state = GameState.getInstance();
 
   public BlankDialog(String title) {
@@ -16,7 +20,9 @@ public abstract class BlankDialog extends Dialog {
   }
 
   void addCloseButton() {
-    getTitleTable().add(buttons.getCloseButton(this));
+    Button closeButton = buttons.textButton("X", Color.RED, 15, 15);
+    closeButton.addListener(listeners.closeListener(this));
+    getTitleTable().add(closeButton);
   }
 
   void addOKButton() {

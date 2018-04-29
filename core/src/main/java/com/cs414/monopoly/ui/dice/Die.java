@@ -1,4 +1,4 @@
-package com.cs414.monopoly.ui;
+package com.cs414.monopoly.ui.dice;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -9,8 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import java.util.ArrayList;
 
 public class Die extends Image {
-  private ArrayList<Sprite> sprites = new ArrayList<Sprite>();
-  private int currentface;
+  private ArrayList<Sprite> sprites = new ArrayList<>();
 
   public Die() {
     for(int i = 1; i <= 6; ++i) {
