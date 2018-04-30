@@ -4,6 +4,7 @@ import com.badlogic.gdx.*;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
@@ -49,7 +50,8 @@ public class TestGame {
     Gdx.gl20 = mock(GL20.class);
     Gdx.gl = Gdx.gl20;
     state = GameState.getInstance();
-    state.setBoard(new Board());
+    Board board = new Board();
+    state.setBoard(board);
     state.setStage(mock(Stage.class));
     config = new JsonReader().parse(Gdx.files.internal("assets/board_original/config.json")).get(1);
     testPlayer1 = new Player("assets/board_original/players/car.png","test1", Color.GREEN, 1500);
@@ -63,6 +65,7 @@ public class TestGame {
     testPlayer2.hud = mock(PlayerHUD.class);
     doNothing().when(testPlayer2.hud).update();
     state.startGame(100);
+    board.setPlayer(testPlayer1, 0);
   }
 
   @AfterClass

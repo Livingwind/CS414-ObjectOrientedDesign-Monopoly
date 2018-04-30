@@ -33,5 +33,14 @@ public class TestGameState extends TestGame {
     assertNotNull(state.getCurrentPlayer());
   }
 
+  @Test
+  public void testLog(){
+    state.log("test");
+  }
+
+  @Test
+  public void testGetPlayer() {
+    assertNotNull(state.getPlayer("test1"));
+  }
 
 }

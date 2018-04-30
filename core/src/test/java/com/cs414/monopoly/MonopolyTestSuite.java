@@ -1,6 +1,7 @@
 package com.cs414.monopoly;
 
 
+import com.cs414.monopoly.entities.TestGetOutOfJailFree;
 import com.cs414.monopoly.entities.TestLotProperty;
 import com.cs414.monopoly.entities.TestRailroadProperty;
 import com.cs414.monopoly.entities.TestUtilityProperty;
@@ -55,7 +56,9 @@ import org.junit.runners.Suite;
     TestDebugDialog.class,
     TestTradeDialogError.class,
     TestSetupScreen.class,
-    TestGameScreen.class
+    TestGameScreen.class,
+    TestGetOutOfJailFree.class
+
 })
 public class MonopolyTestSuite {
 }
