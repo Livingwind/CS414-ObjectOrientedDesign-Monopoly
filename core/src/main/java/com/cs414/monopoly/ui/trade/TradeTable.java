@@ -21,18 +21,25 @@ public class TradeTable extends Table {
 
   public TradeTable(Player player, Boolean swap){
     Label invisRow = new Label("", new MonopolySkin());
+    Label playerLabel = new Label(player.name, new MonopolySkin());
+
+    add(playerLabel);
+    row();
 
     propertyContent = new TradeContentManager(player, swap, tradeNetWorth);
     add(propertyContent);
     row();
+
     Table offer = new Table();
     offerLabel.setColor(Color.GREEN);
     offer.add(offerLabel).align(Align.right);
     offer.add(offerTextField).align(Align.left);
     add(tradeNetWorth);
     row();
+
     add(invisRow);
     row();
+
     add(offer);
   }
 

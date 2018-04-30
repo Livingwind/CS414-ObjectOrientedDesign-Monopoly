@@ -14,6 +14,7 @@ public class TradeContent extends Table {
   public Table buttonTable = new Table();
   public Table labelTable = new Table();
   public ArrayList<Property> selectedProperties = new ArrayList<>();
+  private boolean isEmpty = true;
 
   public TradeContent(Player player, NetWorthLabel netWorth){
     fillTables(player, netWorth);
@@ -29,7 +30,12 @@ public class TradeContent extends Table {
     labelTable.add(labelTablePadding);
     labelTable.row();
 
+    addProperties(player, netWorth);
+  }
+
+  private void addProperties(Player player, NetWorthLabel netWorth){
     for (Property property : player.properties){
+      isEmpty = false;
       Label propertyLabel = new Label(property.name, new MonopolySkin());
       propertyLabel.setVisible(false);
       if (property.mortgaged){
@@ -56,6 +62,9 @@ public class TradeContent extends Table {
       buttonTable.row();
       labelTable.add(propertyLabel).expandX().fill();
       labelTable.row();
+    }
+    if (isEmpty){
+      netWorth.setVisible(false);
     }
   }
 }
