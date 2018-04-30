@@ -42,7 +42,7 @@ public abstract class PropertyDialog extends BlankDialog {
   }
 
   private void mortgageButton() {
-    if(property.ownedBy == state.getCurrentPlayer()) {
+    if(state.getCurrentPlayer().canMortgageProperty(property)) {
       Button mortgageProperty = (property.mortgaged) ? new TextButton("Un-Mortgage", getSkin()) : new TextButton("Mortgage", getSkin());
       mortgageProperty.padRight(10).padLeft(10);
       mortgageProperty.setColor(Color.MAGENTA);

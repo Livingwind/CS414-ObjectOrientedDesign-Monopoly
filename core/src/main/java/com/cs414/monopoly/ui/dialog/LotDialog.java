@@ -31,8 +31,8 @@ public class LotDialog extends PropertyDialog {
           public void changed(ChangeEvent event, Actor actor) {
             if (property.ownedBy.canPurchaseHouse((LotProperty)property)) {
               ((LotProperty) property).buyHouse();
+              remove();
             }
-            event.cancel();
           }
         });
 
@@ -47,14 +47,9 @@ public class LotDialog extends PropertyDialog {
               public void clicked(InputEvent event, float x, float y) {
                 if (property.ownedBy.canSellHouse((LotProperty)property)) {
                   ((LotProperty) property).sellHouse();
-                  event.cancel();
-                }
-                else {
-                  event.cancel();
                 }
               }
             };
-            event.cancel();
             if(property.ownedBy.canSellHouse((LotProperty)property)){
               new PopupDialog(action, "sell a house");
             }

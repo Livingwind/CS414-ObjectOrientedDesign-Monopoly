@@ -153,6 +153,17 @@ public class Player extends Image {
     return true;
   }
 
+  public boolean canMortgageProperty(Property property) {
+    if(property.ownedBy != this)
+      return false;
+
+    if(property instanceof LotProperty) {
+      if (((LotProperty) property).numHouses > 0)
+        return false;
+    }
+    return true;
+  }
+
   public GetOutOfJailFree getGetOutOfJail() {
     return getOutOfJail;
   }
