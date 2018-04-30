@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class LotProperty extends Property {
   private static HashMap<Color, Integer> colorMap = new HashMap<>();
   public final Color color;
-  private int houseCost;
+  public int houseCost;
   public int numHouses;
   private int rentIndex;
 
