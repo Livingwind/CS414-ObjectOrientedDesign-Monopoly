@@ -61,7 +61,7 @@ public class DebugConsole extends TextField {
   private void setCommand(String[] cmds) {
     try {
       Player player = state.getPlayer(cmds[1]);
-      state.setTurn(player);
+      //state.setTurn(player);
       state.getBoard().setPlayer(player, Integer.parseInt(cmds[2]));
     } catch (Exception e) {
       e.printStackTrace();
