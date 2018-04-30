@@ -1,10 +1,15 @@
 package com.cs414.monopoly.game;
 
 import com.cs414.monopoly.entities.Player;
+import com.cs414.monopoly.ui.dialog.JailDialog;
 
 import static com.cs414.monopoly.game.Helpers.rollDice;
 
 public class InJail extends TurnState {
+  public InJail() {
+    new JailDialog();
+  }
+
   @Override
   public void doAction(RollContext ctx) {
     Player current = global.getCurrentPlayer();

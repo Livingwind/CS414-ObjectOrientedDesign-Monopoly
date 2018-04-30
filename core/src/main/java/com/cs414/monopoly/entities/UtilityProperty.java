@@ -1,6 +1,7 @@
 package com.cs414.monopoly.entities;
 
 import com.badlogic.gdx.utils.JsonValue;
+import com.cs414.monopoly.game.GameState;
 
 public class UtilityProperty extends Property{
   public UtilityProperty(String filename, JsonValue props) {
@@ -8,9 +9,6 @@ public class UtilityProperty extends Property{
   }
 
   public int getRent() {
-    // TODO Have the current player roll dice
-    int rollResult = 3;
-
-    return rents[ownedBy.numUtilities - 1] * rollResult;
+    return rents[ownedBy.numUtilities - 1] * GameState.getInstance().lastRoll;
   }
 }

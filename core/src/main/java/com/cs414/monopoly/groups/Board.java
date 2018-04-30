@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.cs414.monopoly.entities.Player;
+import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.spaces.AbstractSpace;
 import com.cs414.monopoly.spaces.SpaceFactory;
 
@@ -37,7 +38,10 @@ public class Board extends Group {
   }
 
   private void initSpaces(String preset) {
-    JsonValue root = new JsonReader().parse(Gdx.files.internal("assets/"+preset+"/config.json"));
+    JsonValue settings = new JsonReader().parse(Gdx.files.internal("assets/"+preset+"/config.json"));
+    JsonValue root = settings.get(1);
+
+    GameState.setHousing(settings.get(0).getInt("maxHouses"),settings.get(0).getInt("maxHotels"));
 
     String path = "assets/"+preset+"/%s/";
     Vector2 pos = new Vector2(getWidth(), AbstractSpace.Size.CORNER.getHeight());

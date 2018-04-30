@@ -34,17 +34,17 @@ public abstract class Property {
     return name.equals(property.name);
   }
 
-  public void toggleMortgage() {
+  public void toggleMortgage(){
+    mortgaged = !mortgaged;
     int mortgageValue = value/2;
     int buyBack = (int) Math.round(mortgageValue * 1.10);
-    int buyback = (int) Math.round(mortgageValue * 1.10);
-    if(mortgaged && ownedBy.getMoney() >= buyback){
+    if(mortgaged && ownedBy.getMoney() >= buyBack){
       ownedBy.modifyMoney(-buyBack);
     }else{
       ownedBy.modifyMoney(mortgageValue);
     }
-    mortgaged = !mortgaged;
   }
+
   @Override
   public int hashCode() {
     return name.hashCode();

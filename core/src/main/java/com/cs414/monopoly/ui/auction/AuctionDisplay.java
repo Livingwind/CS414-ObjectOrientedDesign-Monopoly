@@ -104,8 +104,11 @@ public class AuctionDisplay extends BlankDialog {
 
   private void sellProperty() {
     System.out.println(playerInfo.highestBidder().name);
-    Player buyShit = GameState.getInstance().getPlayer(playerInfo.highestBidder().name);
-    buyShit.addProperty(property);
+    Player buyer = GameState.getInstance().getPlayer(playerInfo.highestBidder().name);
+    property.ownedBy = buyer;
+    buyer.addProperty(property);
+    buyer.modifyMoney(-playerInfo.highestBid());
+    GameState.getInstance().getCurrentPlayer().hud.update();
   }
 
   private void updateDisplay() {

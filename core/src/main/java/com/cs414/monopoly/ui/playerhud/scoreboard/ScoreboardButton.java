@@ -38,5 +38,4 @@ public class ScoreboardButton extends TextButton{
     setColor(Color.LIGHT_GRAY);
     addListener(toggleListener);
   }
-
 }

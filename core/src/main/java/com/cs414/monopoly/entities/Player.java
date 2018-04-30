@@ -92,6 +92,78 @@ public class Player extends Image {
     hud.update();
   }
 
+  public boolean hasMonopoly(Color color) {
+    int numNeeded = LotProperty.getColorGroupSize(color);
+    for (Property ownedProperty: properties) {
+      if(ownedProperty instanceof LotProperty)
+        if(((LotProperty) ownedProperty).color.equals(color))
+          numNeeded--;
+    }
+    return numNeeded == 0;
+  }
+
+  public boolean canPurchaseHouse(LotProperty property) {
+    GameState state = GameState.getInstance();
+
+    //check money
+    if(property.houseCost > money) {
+      return false;
+    }
+
+    //check if no houses or (hotel and no hotels)
+    if(state.numHouses == 0 || (property.numHouses == 4 && state.numHotels == 0))
+      return false;
+
+    //get owned properties of color
+    ArrayList<LotProperty> lotProperties = getOwnedPropertiesOfColor(property.color);
+
+    //check monopoly on color
+    if(lotProperties.size() != LotProperty.getColorGroupSize(property.color))
+      return false;
+
+    //enforce building evenly
+    for (LotProperty ownedProperty: lotProperties) {
+      if(ownedProperty.numHouses < property.numHouses)
+        return false;
+    }
+    //check if max houses
+    if(property.numHouses >= 5) {
+      return false;
+    }
+    return true;
+  }
+
+  public boolean canSellHouse(LotProperty property) {
+    //get owned properties of color
+    ArrayList<LotProperty> lotProperties = getOwnedPropertiesOfColor(property.color);
+
+    //check monopoly on color
+    if(lotProperties.size() != LotProperty.getColorGroupSize(property.color))
+      return false;
+
+    //enforce building evenly
+    for (LotProperty ownedProperty: lotProperties) {
+      if(ownedProperty.numHouses > property.numHouses)
+        return false;
+    }
+    //check if zero houses
+    if(property.numHouses <= 0){
+      return false;
+    }
+    return true;
+  }
+
+  public boolean canMortgageProperty(Property property) {
+    if(property.ownedBy != this)
+      return false;
+
+    if(property instanceof LotProperty) {
+      if (((LotProperty) property).numHouses > 0)
+        return false;
+    }
+    return true;
+  }
+
   public GetOutOfJailFree getGetOutOfJail() {
     return getOutOfJail;
   }
@@ -116,8 +188,13 @@ public class Player extends Image {
     getOutOfJail = getOutOfJail.removeCard(card);
   }
 
-  /**
-   * Called each time the player earns money or property.
-   * @param amount amount to modify their net worth by.
-   */
+  private ArrayList<LotProperty> getOwnedPropertiesOfColor(Color color) {
+    ArrayList<LotProperty> lotProperties = new ArrayList<>();
+    for (Property ownedProperty: properties) {
+      if(ownedProperty instanceof LotProperty)
+        if(((LotProperty) ownedProperty).color.equals(color) && !ownedProperty.mortgaged)
+          lotProperties.add((LotProperty) ownedProperty);
+    }
+    return lotProperties;
+  }
 }

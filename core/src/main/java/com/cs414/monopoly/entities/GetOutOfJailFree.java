@@ -29,4 +29,8 @@ public enum GetOutOfJailFree {
       default: return this;
     }
   }
+
+  public boolean hasCard(GetOutOfJailFree card) {
+    return (this.value & card.value) > 0;
+  }
 }

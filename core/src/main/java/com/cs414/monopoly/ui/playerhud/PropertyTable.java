@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.cs414.monopoly.entities.LotProperty;
 import com.cs414.monopoly.entities.Player;
 import com.cs414.monopoly.entities.Property;
+import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.ui.Buttons;
 import com.cs414.monopoly.ui.Listeners;
 
@@ -53,31 +54,33 @@ public class PropertyTable extends Table {
       propertyButton.addListener(listeners.hoverListener(player, property));
       add(propertyButton).width(width * 0.6f);
 
-      // only add buy/sell house buttons to lot properties
-      if (property.getClass() == LotProperty.class){
-
-        // Add 'Buy 🏠' button (20% of table width)
-        if (((LotProperty)property).numHouses < 5) {
+      if (property.getClass() == LotProperty.class) {
+        if (player.canPurchaseHouse((LotProperty)property)) {
           Button buyButton = buttons.buyButton(property);
-            buyButton.addListener(listeners.hoverListener(player, property));
-            buyButton.addListener(listeners.buyHouseListener(property));
+          buyButton.addListener(listeners.hoverListener(player, property));
+          buyButton.addListener(listeners.buyHouseListener(property));
           add(buyButton).width(width * 0.2f);
-        } else {
+        }
+        else {
           // Gray Buy Button
           add(buttons.textButton("Buy \uD83C\uDFE0", Color.LIGHT_GRAY)).width(width * 0.2f);
         }
 
-        // Add 'Sell 🏠' button (20% of table width)
-        if (((LotProperty)property).numHouses > 0) {
+        if (player.canSellHouse((LotProperty)property)) {
           Button sellButton = buttons.sellButton(property);
-            sellButton.addListener(listeners.hoverListener(player, property));
-            sellButton.addListener(listeners.sellHouseListener(property));
+          sellButton.addListener(listeners.hoverListener(player, property));
+          sellButton.addListener(listeners.sellHouseListener(property));
           add(sellButton).width(width * 0.2f);
-        } else {
-          // Gray Sell button
+        }
+        else {
+          // Gray Buy Button
           add(buttons.textButton("Sell \uD83C\uDFE0", Color.LIGHT_GRAY)).width(width * 0.2f);
         }
       }
+
+
+
+
 
       // Scale the PropertyTable height to fit the new row
       setSize(getWidth(), getHeight() + propertyButton.getHeight());

@@ -3,31 +3,31 @@ package com.cs414.monopoly.ui;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.cs414.monopoly.entities.*;
 import com.cs414.monopoly.game.GameState;
 import com.cs414.monopoly.groups.Board;
 import com.cs414.monopoly.ui.dialog.LotDialog;
 import com.cs414.monopoly.ui.dialog.RailroadDialog;
+import com.cs414.monopoly.ui.dialog.TradeDialog;
 import com.cs414.monopoly.ui.dialog.UtilityDialog;
 
 public class Listeners {
 
   // a temporary listener used for buttons that aren't implemented yet
-  public ChangeListener textListener(String text){
-    return new ChangeListener(){
+  public ClickListener textListener(String text){
+    return new ClickListener(){
       @Override
-      public void changed(ChangeEvent event, Actor actor) {
+      public void clicked(InputEvent event, float x, float y) {
         System.out.println(text);
       }
     };
   }
 
-  public ChangeListener closeListener(Actor removeActor) {
-    return new ChangeListener() {
+  public ClickListener closeListener(Actor removeActor) {
+    return new ClickListener() {
       @Override
-      public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+      public void  clicked(InputEvent event, float x, float y) {
         removeActor.remove();
       }
     };
@@ -53,6 +53,15 @@ public class Listeners {
     };
   }
 
+  public ClickListener tradeListener(Player current, Player other){
+    return new ClickListener(){
+      @Override
+      public void clicked(InputEvent event, float x, float y) {
+        new TradeDialog(current, other);
+      }
+    };
+  }
+
   // Property Listeners___________________________________________________________________________
 
   public ClickListener hoverListener(Player player, Property property) {
@@ -70,10 +79,10 @@ public class Listeners {
     };
   }
 
-  public ChangeListener propertyDialogListener(Property property){
-    return new ChangeListener() {
+  public ClickListener propertyDialogListener(Property property){
+    return new ClickListener() {
       @Override
-      public void changed(ChangeEvent event, Actor actor){
+      public void clicked(InputEvent event, float x, float y) {
         if (property.getClass() == LotProperty.class){
           new LotDialog(property, DialogContext.CLICK);
         } else if(property.getClass() == RailroadProperty.class){
@@ -85,19 +94,19 @@ public class Listeners {
     };
   }
 
-  public ChangeListener sellHouseListener(Property property) {
-    return new ChangeListener(){
+  public ClickListener sellHouseListener(Property property) {
+    return new ClickListener() {
       @Override
-      public void changed(ChangeEvent event, Actor actor) {
+      public void  clicked(InputEvent event, float x, float y) {
         ((LotProperty)property).sellHouse();
       }
     };
   }
 
-  public ChangeListener buyHouseListener(Property property) {
-    return new ChangeListener(){
+  public ClickListener buyHouseListener(Property property) {
+    return new ClickListener() {
       @Override
-      public void changed(ChangeEvent event, Actor actor) {
+      public void clicked(InputEvent event, float x, float y) {
         ((LotProperty)property).buyHouse();
       }
     };

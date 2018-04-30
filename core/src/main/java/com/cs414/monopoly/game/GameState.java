@@ -20,6 +20,9 @@ public class GameState {
   private Stage stage;
   private Board board;
   private DebugGroup debug;
+  public static int numHouses;
+  public static int numHotels;
+  public int lastRoll;
 
   public static GameState getInstance() {
     if(instance == null) {
@@ -123,5 +126,10 @@ public class GameState {
 
   public RollContext getCurrentContext() {
     return rollContext;
+  }
+
+  public static void setHousing(int numHouses, int numHotels) {
+    instance.numHouses = numHouses;
+    instance.numHotels = numHotels;
   }
 }
