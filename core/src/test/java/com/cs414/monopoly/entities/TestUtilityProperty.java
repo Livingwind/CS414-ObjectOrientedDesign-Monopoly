@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.cs414.monopoly.TestGame;
+import com.cs414.monopoly.game.GameState;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,22 +14,17 @@ import static org.junit.Assert.*;
 public class TestUtilityProperty extends TestGame {
   private UtilityProperty utilityProperty1;
   private UtilityProperty utilityProperty2;
-  private UtilityProperty utilityProperty3;
-  private Player testPlayer;
 
   @Before
   public void setUp() {
-    JsonValue root = new JsonReader().parse(Gdx.files.internal("assets/board_original/config.json"));
-    utilityProperty1 = new UtilityProperty("assets/board_original/%s/12.png",root.get(12));
-    utilityProperty2 = new UtilityProperty("assets/board_original/%s/12.png",root.get(12));
-    utilityProperty3 = new UtilityProperty("assets/board_original/%s/28.png",root.get(28));
-    testPlayer = new Player("assets/board_original/players/car.png","test", Color.GREEN, 1500);
+    utilityProperty1 = new UtilityProperty("assets/board_original/%s/12.png",config.get(12));
+    utilityProperty2 = new UtilityProperty("assets/board_original/%s/28.png",config.get(28));
   }
 
   @Test
   public void testEquals(){
-    assertEquals(utilityProperty1, utilityProperty2);
-    assertNotEquals(utilityProperty1, utilityProperty3);
+    assertEquals(utilityProperty1, utilityProperty1);
+    assertNotEquals(utilityProperty1, utilityProperty2);
   }
 
   @Test
@@ -38,10 +34,11 @@ public class TestUtilityProperty extends TestGame {
 
   @Test
   public void testGetRent() {
-    testPlayer.purchaseProperty(utilityProperty1);
-    assertEquals(12, utilityProperty1.getRent());
-    testPlayer.purchaseProperty(utilityProperty3);
-    assertEquals(30, utilityProperty1.getRent());
+    state.lastRoll = 12;
+    testPlayer1.purchaseProperty(utilityProperty1);
+    assertEquals(48, utilityProperty1.getRent());
+    testPlayer1.purchaseProperty(utilityProperty2);
+    assertEquals(120, utilityProperty1.getRent());
   }
 
 }

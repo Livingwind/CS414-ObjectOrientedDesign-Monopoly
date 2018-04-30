@@ -15,16 +15,11 @@ public class TestJail extends TestGame {
 
   private Jail jail1;
   private Jail jail2;
-  private Player testPlayer1;
-  private Player testPlayer2;
 
   @Before
   public void setUp() {
-    JsonValue root = new JsonReader().parse(Gdx.files.internal("assets/board_original/config.json"));
-    jail1 = new Jail("assets/board_original/%s/10.png", 10, root.get(10));
-    jail2 = new Jail("assets/board_original/%s/10.png", 10, root.get(10));
-    testPlayer1 = new Player("assets/board_original/players/car.png","test1", Color.GREEN, 1500);
-    testPlayer2 = new Player("assets/board_original/players/boat.png","test2", Color.RED, 1500);
+    jail1 = new Jail("assets/board_original/%s/10.png", 10, config.get(10));
+    jail2 = new Jail("assets/board_original/%s/10.png", 10, config.get(10));
     jail1.setPlayer(testPlayer1);
     jail1.setPlayer(testPlayer2);
   }

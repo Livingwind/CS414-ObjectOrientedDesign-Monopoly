@@ -13,22 +13,17 @@ import static org.junit.Assert.*;
 public class TestRailroadProperty extends TestGame {
   private RailroadProperty railroadProperty1;
   private RailroadProperty railroadProperty2;
-  private RailroadProperty railroadProperty3;
-  private Player testPlayer;
 
   @Before
   public void setUp() {
-    JsonValue root = new JsonReader().parse(Gdx.files.internal("assets/board_original/config.json"));
-    railroadProperty1 = new RailroadProperty("assets/board_original/%s/05.png",root.get(5));
-    railroadProperty2 = new RailroadProperty("assets/board_original/%s/05.png",root.get(5));
-    railroadProperty3 = new RailroadProperty("assets/board_original/%s/15.png",root.get(15));
-    testPlayer = new Player("assets/board_original/players/car.png","test", Color.GREEN, 1500);
+    railroadProperty1 = new RailroadProperty("assets/board_original/%s/05.png",config.get(5));
+    railroadProperty2 = new RailroadProperty("assets/board_original/%s/15.png",config.get(15));
   }
 
   @Test
   public void testEquals(){
-    assertEquals(railroadProperty1, railroadProperty2);
-    assertNotEquals(railroadProperty1, railroadProperty3);
+    assertEquals(railroadProperty1, railroadProperty1);
+    assertNotEquals(railroadProperty1, railroadProperty2);
   }
 
   @Test
@@ -38,9 +33,14 @@ public class TestRailroadProperty extends TestGame {
 
   @Test
   public void testGetRent() {
-    testPlayer.purchaseProperty(railroadProperty1);
+    testPlayer1.addProperty(railroadProperty1);
+    railroadProperty1.ownedBy = testPlayer1;
+    testPlayer1.numRoads++;
     assertEquals(25, railroadProperty1.getRent());
-    testPlayer.purchaseProperty(railroadProperty3);
+
+    testPlayer1.addProperty(railroadProperty2);
+    railroadProperty2.ownedBy = testPlayer1;
+    testPlayer1.numRoads++;
     assertEquals(50, railroadProperty1.getRent());
   }
 }

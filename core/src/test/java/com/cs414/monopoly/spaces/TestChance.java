@@ -15,15 +15,11 @@ public class TestChance extends TestGame {
 
   private Chance chance1;
   private Chance chance2;
-  private Player testPlayer1;
 
   @Before
   public void setUp() {
-    JsonValue root = new JsonReader().parse(Gdx.files.internal("assets/board_original/config.json"));
-    chance1 = new Chance("assets/board_original/%s/07.png", 7, root.get(7));
-    chance2 = new Chance("assets/board_original/%s/07.png", 7, root.get(7));
-    testPlayer1 = new Player("assets/board_original/players/car.png","test1", Color.GREEN, 1500);
-    Player testPlayer2 = new Player("assets/board_original/players/boat.png","test2", Color.RED, 1500);
+    chance1 = new Chance("assets/board_original/%s/07.png", 7, config.get(7));
+    chance2 = new Chance("assets/board_original/%s/07.png", 7, config.get(7));
     chance1.setPlayer(testPlayer1);
     chance1.setPlayer(testPlayer2);
   }

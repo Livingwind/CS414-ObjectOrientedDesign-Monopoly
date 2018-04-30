@@ -19,39 +19,24 @@ import static org.junit.Assert.assertEquals;
 
 public class TestUtility extends TestGame {
 
-  private Utility utility1;
-  private Utility utility2;
-  private Player testPlayer1;
-  private Player testPlayer2;
+  private Utility utility;
+
 
   @Before
   public void setUp() {
-    JsonValue root = new JsonReader().parse(Gdx.files.internal("assets/board_original/config.json"));
-    utility1 = new Utility("assets/board_original/%s/05.png", 5, root.get(5));
-    utility2 = new Utility("assets/board_original/%s/15.png", 15, root.get(15));
-    testPlayer1 = new Player("assets/board_original/players/car.png","test1", Color.GREEN, 1500);
-    testPlayer2 = new Player("assets/board_original/players/boat.png","test2", Color.RED, 1500);
-    ArrayList<Player> players = new ArrayList<Player>();
-    players.add(testPlayer1);
-    players.add(testPlayer2);
-
-    GameState.getInstance().setStage(Mockito.mock(Stage.class));
-    GameState.getInstance().setBoard(new Board());
-    GameState.getInstance().addPlayers(players);
-    GameState.getInstance().startGame(1000);
-
+    utility = new Utility("assets/board_original/%s/05.png", 5, config.get(5));
   }
 
   @Test
   public void testPlacePlayer(){
-    utility2.placePlayer(testPlayer1);
-    assertEquals(testPlayer1.space, utility2);
+    utility.placePlayer(testPlayer1);
+    assertEquals(testPlayer1.space, utility);
   }
 
   @Test
   public void testSetPlayer() {
-    utility2.setPlayer(testPlayer1);
-    assertEquals(utility2, testPlayer1.space);
+    utility.setPlayer(testPlayer1);
+    assertEquals(utility, testPlayer1.space);
   }
 
   @Test

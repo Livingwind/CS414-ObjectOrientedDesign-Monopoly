@@ -9,15 +9,11 @@ import org.mockito.Mockito;
 
 public class TestInJail extends TestGame {
 
-  private GameState game = GameState.getInstance();
-  private String path = "assets/board_original/players/";
-  InJail inJail;
-
+  private InJail inJail;
 
   @Before
   public void setUp() {
     inJail = new InJail();
-    game.setStage(Mockito.mock(Stage.class));
   }
 
   @Test

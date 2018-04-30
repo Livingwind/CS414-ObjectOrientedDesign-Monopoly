@@ -13,16 +13,10 @@ import static org.junit.Assert.assertTrue;
 public class TestSpaceFactory extends TestGame {
 
   AbstractSpace space;
-  JsonValue root;
-
-  @Before
-  public void setUp() {
-    root = new JsonReader().parse(Gdx.files.internal("assets/board_original/config.json"));
-  }
 
   @Test
   public void testCreateSpace() {
-    space = SpaceFactory.createSpace("assets/board_original/%s/", 5, root.get(5));
+    space = SpaceFactory.createSpace("assets/board_original/%s/", 5, config.get(5));
     assertTrue(space instanceof Railroad);
   }
 

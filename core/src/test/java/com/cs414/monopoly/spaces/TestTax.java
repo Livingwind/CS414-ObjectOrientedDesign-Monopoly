@@ -18,19 +18,13 @@ public class TestTax extends TestGame {
 
   private Tax tax1;
   private Tax tax2;
-  private Player testPlayer1;
-  private Player testPlayer2;
 
   @Before
   public void setUp() {
-    JsonValue root = new JsonReader().parse(Gdx.files.internal("assets/board_original/config.json"));
-    tax1 = new Tax("assets/board_original/%s/04.png", 4, root.get(4), TaxType.INCOME);
-    tax2 = new Tax("assets/board_original/%s/38.png", 38, root.get(38), TaxType.LUXURY);
-    testPlayer1 = new Player("assets/board_original/players/car.png","test1", Color.GREEN, 1500);
-    testPlayer2 = new Player("assets/board_original/players/boat.png","test2", Color.RED, 1500);
+    tax1 = new Tax("assets/board_original/%s/04.png", 4, config.get(4), TaxType.INCOME);
+    tax2 = new Tax("assets/board_original/%s/38.png", 38, config.get(38), TaxType.LUXURY);
     tax1.setPlayer(testPlayer1);
     tax2.setPlayer(testPlayer2);
-    GameState.getInstance().setStage(Mockito.mock(Stage.class));
   }
 
   @Test

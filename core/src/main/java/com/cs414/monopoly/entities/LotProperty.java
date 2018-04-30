@@ -47,6 +47,10 @@ public class LotProperty extends Property {
     return colorMap.get(color);
   }
 
+  public static void resetColorMap() {
+    colorMap.clear();
+  }
+
   /**
    * Increases the number of houses on this lot and increases the rent by one
    */
