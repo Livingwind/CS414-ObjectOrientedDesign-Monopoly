@@ -14,8 +14,10 @@ public class DebugDialog extends BlankDialog {
         + "\n    Moves the player to an exact location."
         + "\n\n> money playerName int"
         + "\n    Adds/Removes money from the player."
+        + "\n\n> property playerName int"
     );
     Button btn = new TextButton("OK", new MonopolySkin());
+    btn.padLeft(10).padRight(10);
     button(btn);
     show(state.getStage());
   }

@@ -66,6 +66,8 @@ public class LotProperty extends Property {
     numHouses++;
     rentIndex++;
     state.getCurrentPlayer().modifyMoney(-houseCost);
+    ownedBy.hud.update();
+    ((Lot)GameState.getInstance().getBoard().spaces.get(location)).updateProperties();
   }
 
   /**
@@ -88,6 +90,8 @@ public class LotProperty extends Property {
       return;
     }
     state.getCurrentPlayer().modifyMoney((int)(0.5 * houseCost));
+    ownedBy.hud.update();
+    ((Lot)GameState.getInstance().getBoard().spaces.get(location)).updateProperties();
   }
 
   public int getHousingValue(){

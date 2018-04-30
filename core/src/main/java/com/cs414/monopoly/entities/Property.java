@@ -45,6 +45,7 @@ public abstract class Property {
     }
     mortgaged = !mortgaged;
   }
+
   @Override
   public int hashCode() {
     return name.hashCode();

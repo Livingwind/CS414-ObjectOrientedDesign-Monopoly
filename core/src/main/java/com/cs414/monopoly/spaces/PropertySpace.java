@@ -11,7 +11,7 @@ import com.cs414.monopoly.ui.DialogContext;
 import com.cs414.monopoly.ui.dialog.LotDialog;
 
 public abstract class PropertySpace extends AbstractSpace {
-  Property property;
+  public Property property;
 
   PropertySpace(String filename, int location, JsonValue props) {
     super(filename, location, props, Size.STANDARD);

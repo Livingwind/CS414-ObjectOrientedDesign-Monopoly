@@ -1,9 +1,11 @@
 package com.cs414.monopoly.ui.dialog;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.cs414.monopoly.spaces.TaxType;
 
 public class TaxDialog extends BlankDialog {
@@ -41,9 +43,9 @@ public class TaxDialog extends BlankDialog {
       flatCost = 200;
       Button payPercent = new TextButton("Pay 10%", getSkin());
       payPercent.padRight(10).padLeft(10);
-      payPercent.addListener(new ChangeListener(){
+      payPercent.addListener(new ClickListener(){
         @Override
-        public void changed(ChangeEvent event, Actor actor){
+        public void  clicked(InputEvent event, float x, float y) {
           state.getCurrentPlayer().modifyMoney((int)Math.round(-0.1 * state.getCurrentPlayer().getNetWorth()));
           remove();
         }
@@ -54,9 +56,9 @@ public class TaxDialog extends BlankDialog {
     }
     Button payFlat = new TextButton("Pay $" + flatCost, getSkin());
     payFlat.padRight(10).padLeft(10);
-    payFlat.addListener(new ChangeListener() {
+    payFlat.addListener(new ClickListener() {
       @Override
-      public void changed(ChangeEvent event, Actor actor){
+      public void clicked(InputEvent event, float x, float y) {
         state.getCurrentPlayer().modifyMoney(-flatCost);
         remove();
       }
