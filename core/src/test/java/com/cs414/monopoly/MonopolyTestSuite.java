@@ -7,6 +7,14 @@ import com.cs414.monopoly.entities.TestUtilityProperty;
 import com.cs414.monopoly.game.*;
 import com.cs414.monopoly.spaces.*;
 import com.cs414.monopoly.stages.TestGameScreen;
+import com.cs414.monopoly.stages.TestSetupScreen;
+import com.cs414.monopoly.ui.auction.TestAuctionDisplay;
+import com.cs414.monopoly.ui.auction.TestAuctionGroup;
+import com.cs414.monopoly.ui.debug.TestDebugConsole;
+import com.cs414.monopoly.ui.dialog.*;
+import com.cs414.monopoly.ui.setup.TestSetupDialog;
+import com.cs414.monopoly.ui.trade.TestTradePropertyButton;
+import com.cs414.monopoly.ui.trade.TestTradeTable;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -31,6 +39,22 @@ import org.junit.runners.Suite;
     TestMonopoly.class,
     TestPostRollState.class,
     TestInJail.class,
+    TestPreRollState.class,
+    TestGameScreen.class,
+    TestLotDialog.class,
+    TestRailroadDialog.class,
+    TestUtilityDialog.class,
+    TestPopupDialog.class,
+    TestAuctionDisplay.class,
+    TestSetupDialog.class,
+    TestDebugConsole.class,
+    TestTradeTable.class,
+    TestTradePropertyButton.class,
+    TestTradeDialog.class,
+    TestAuctionGroup.class,
+    TestDebugDialog.class,
+    TestTradeDialogError.class,
+    TestSetupScreen.class,
     TestGameScreen.class
 })
 public class MonopolyTestSuite {

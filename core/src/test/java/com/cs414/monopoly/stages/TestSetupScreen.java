@@ -11,12 +11,8 @@ public class TestSetupScreen extends TestGame {
   @Test
   public void testBuild() {
     SpriteBatch batch = Mockito.mock(SpriteBatch.class);
-    ScreenManager manager = ScreenManager.getInstance();
-    manager.init(new Monopoly(false));
-    manager.showScreen(Screens.SETUP, batch);
 
-    SetupScreen game = (SetupScreen)manager.getScreen();
-    game.pause();
-    game.resume();
+    SetupScreen game = new SetupScreen(batch);
+    game.build();
   }
 }

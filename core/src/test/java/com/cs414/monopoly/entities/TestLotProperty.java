@@ -55,11 +55,24 @@ public class TestLotProperty extends TestGame {
     lotProperty1.buyHouse();
     lotProperty1.buyHouse();
     lotProperty1.buyHouse();
+    lotProperty1.sellHouse();
+    lotProperty1.sellHouse();
+    lotProperty1.buyHouse();
+    lotProperty1.buyHouse();
     lotProperty1.buyHouse();
     assertEquals(250, lotProperty1.getRent());
 
     lotProperty1.sellHouse();
     assertEquals(4, lotProperty1.getRent());
+  }
+
+
+  @Test
+  public void testToggleMortgage() {
+    lotProperty1.ownedBy = testPlayer1;
+    assertFalse(lotProperty1.mortgaged);
+    lotProperty1.toggleMortgage();
+    assertTrue(lotProperty1.mortgaged);
   }
 
   @After
