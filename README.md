@@ -16,6 +16,8 @@ The file structure should look like:
 -assets/*
 ```
 
+Our project also comes with an in app debug console that can be launched by running the jar with an additional parameter debug
+
 Design documents are located in the design_documents folder.
 
 ---
