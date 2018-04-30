@@ -23,7 +23,7 @@ public class GameState {
   public static int numHouses;
   public static int numHotels;
   public int lastRoll;
-  
+
   public static GameState getInstance() {
     if(instance == null) {
       instance = new GameState();
